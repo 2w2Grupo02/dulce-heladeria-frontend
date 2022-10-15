@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/validators/MustMatch';
+import { usuario } from '../../interfaces/Usuario';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -8,6 +9,7 @@ import { MustMatch } from 'src/app/validators/MustMatch';
   styleUrls: ['./registrar-usuario.component.css']
 })
 export class RegistrarUsuarioComponent implements OnInit {
+  private usuario!:usuario; 
   constructor() { }
 
   ngOnInit(): void {
