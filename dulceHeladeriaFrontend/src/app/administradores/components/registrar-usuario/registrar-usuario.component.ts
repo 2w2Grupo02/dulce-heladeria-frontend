@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from 'src/app/validators/MustMatch';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -37,7 +38,7 @@ export class RegistrarUsuarioComponent implements OnInit {
       Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
     ]),
     rol : new FormControl("",Validators.required)
-  })
+  }, [MustMatch("password","confirmarContraseña")]);
 
   enviar(){
     if(this.form.valid){
@@ -46,5 +47,6 @@ export class RegistrarUsuarioComponent implements OnInit {
       alert("form invalido")
     }
   }
+
 
 }
