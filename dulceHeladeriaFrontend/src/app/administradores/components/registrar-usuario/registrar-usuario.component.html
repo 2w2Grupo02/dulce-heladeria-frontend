@@ -32,7 +32,7 @@
         </div>
         <div class="form-group col-sm-6">
           <!--<label for="inputEmailRepetirContraseña">Repetir Contraseña</label>-->
-          <input type="password" class="form-control" id="inputEmailRepetirContraseña" placeholder="Email Repetir Contraseña" formControlName="confirmarContraseña">
+          <input type="password" class="form-control" id="inputRepetirContraseña" placeholder="Repetir Contraseña" formControlName="confirmarContraseña">
         </div>
       </div>
     
@@ -43,6 +43,6 @@
           <option value="2">Vendedor</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Agregar</button>
+      <button type="submit" class="btn btn-primary" (click)="enviar()">Agregar</button>
     </form>
   </div>
