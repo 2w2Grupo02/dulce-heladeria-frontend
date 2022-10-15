@@ -21,7 +21,7 @@ input{
     justify-content: center;
 }
 
-.btn,.title{
+.btn,.title,.logo{
     align-self: center;
 }
 
@@ -31,3 +31,9 @@ input{
     text-align: center;
     border-radius: 10px;
 }
+
+.logo{
+    width: 180px;
+}
+
+
