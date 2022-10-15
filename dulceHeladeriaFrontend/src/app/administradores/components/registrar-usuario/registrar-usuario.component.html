@@ -1,0 +1,48 @@
+<div class="form-container">
+    <img>
+    <div class="title">
+      <p><b>AGREGAR USUARIO</b></p>
+    </div>
+    <form class="container-fluid form" [formGroup]="form">
+      <div class="row"> 
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputNombre">Nombre</label> -->
+          <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" formControlName="nombre">
+        </div>
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputApellido">Apellido</label> -->
+          <input type="text" class="form-control" id="inputApellido" placeholder="Apellido" formControlName="apellido">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputDni">Dni</label> -->
+          <input type="text" class="form-control" id="inputDni" placeholder="Dni" formControlName="dni">
+        </div>
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputEmail">Email</label> -->
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email">
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputContraseña">Contraseña</label> -->
+          <input type="password" class="form-control" id="inputContraseña" placeholder="Contraseña" formControlName="contraseña">
+        </div>
+        <div class="form-group col-sm-6">
+          <!--<label for="inputEmailRepetirContraseña">Repetir Contraseña</label>-->
+          <input type="password" class="form-control" id="inputEmailRepetirContraseña" placeholder="Email Repetir Contraseña" formControlName="confirmarContraseña">
+        </div>
+      </div>
+    
+      <div class="row">
+        <select class="form-select form-select-md mb-3" aria-label=".from.select-md Rol de usuario" formControlName="rol">
+          <option selected>Selecciona un rol...</option>
+          <option value="1">Administrador</option>
+          <option value="2">Vendedor</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+  </div>
