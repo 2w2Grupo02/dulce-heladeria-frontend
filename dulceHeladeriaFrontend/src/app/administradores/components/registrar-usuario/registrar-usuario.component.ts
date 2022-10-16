@@ -31,6 +31,9 @@ export class RegistrarUsuarioComponent implements OnInit {
       Validators.required,
       Validators.email
     ]),
+    userName : new FormControl("",[
+      Validators.required
+    ]),
     contraseña : new FormControl("",[
       Validators.required,
       Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
