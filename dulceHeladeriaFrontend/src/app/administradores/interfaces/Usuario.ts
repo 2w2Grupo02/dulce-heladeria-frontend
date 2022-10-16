@@ -1,8 +1,9 @@
 export interface usuario {
-    nombre:string;
-    apellido:string;
-    dni:string;
-    email:string;
-    contraseña:string;
-    rol:string
+    name?:string;
+    lastName?:string;
+    dni?:string;
+    userName?: string
+    email?:string;
+    password?:string;
+    rol?:number
 }

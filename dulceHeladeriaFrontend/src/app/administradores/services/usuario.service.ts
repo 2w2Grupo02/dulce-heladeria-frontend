@@ -12,7 +12,7 @@ export class UsuarioService {
 
   constructor(private http:HttpClient) { }
 
-  create(usuario:usuario){
-    return this.http.post<boolean>(this.url,usuario); 
+  create(usuario:usuario): Observable<any>{
+    return this.http.post<any>('https://localhost:44350/api/User',usuario); 
   }
 }
