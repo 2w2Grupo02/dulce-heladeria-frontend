@@ -3,7 +3,5 @@ export interface dtoNuevaVenta{
     unidad: number;
     precio: number;
     total: number;
-    nombreCliente: string;
-    apellidoCliente:string;
-    dniCliente:number;
+    subtotal: number;
 }

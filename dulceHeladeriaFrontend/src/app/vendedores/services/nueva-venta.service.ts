@@ -9,8 +9,8 @@ import { dtoNuevaVenta } from '../interfaces/dtoVenta';
 })
 export class NuevaVentaService {
 
-  private RECURSO: string = 'ventas';
-  private API_URL: string = `${environment.apiUrlBase}/${this.RECURSO}`;
+
+  private API_URL: string = environment.apiUrlBase;
 
   private _options = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true' }),
@@ -19,15 +19,15 @@ export class NuevaVentaService {
   constructor(private http: HttpClient) { }
 
   obtenerVentaRealizada(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URL, this._options);
+    return this.http.get<any[]>(this.API_URL+'/ventasRealizadas', this._options);
   }
 
   obtenerProductos(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URL, this._options);
+    return this.http.get<any[]>(this.API_URL+'/productos', this._options);
   }
 
   obtenerSabores(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URL, this._options);
+    return this.http.get<any[]>(this.API_URL+'/sabores', this._options);
   }
 
   registrarVenta(venta: dtoNuevaVenta):Observable<dtoNuevaVenta>{
