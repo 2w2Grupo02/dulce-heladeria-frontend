@@ -63,7 +63,10 @@ export class RegistrarUsuarioComponent implements OnInit, OnDestroy {
       this.usuario.email = this.form.value.email;
       this.usuario.userName = this.form.value.userName;
       this.usuario.password = this.form.value.password;
-      this.usuario.rol = this.form.value.rol;
+      this.usuario.rol = parseInt(this.form.value.rol);
+
+      
+      console.log(this.form.value.rol); 
       
       if(this.form.value.rol == "Administrador"){
         this.usuario.rol = 1;
@@ -71,6 +74,7 @@ export class RegistrarUsuarioComponent implements OnInit, OnDestroy {
       if(this.form.value.rol == "Vendedor"){
         this.usuario.rol = 2;
       }
+      console.log(this.usuario)
       this.sub.add(
         this.userService.create(this.usuario)
         .subscribe({
