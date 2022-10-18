@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { VendedorModule } from './vendedores/vendedor.module';
 import { RegistrarUsuarioComponent } from './administradores/components/registrar-usuario/registrar-usuario.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminModule } from './administradores/admin.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     VendedorModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
