@@ -4,22 +4,29 @@ import { RegistrarArticuloComponent } from './components/registrar-articulo/regi
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticulosService } from './services/articulos.service';
 import { ReportesComponent } from './components/reportes/reportes.component';
-
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+//import {MatInputModule} from '@angular/material/input';
+//import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
     RegistrarArticuloComponent,
-    ReportesComponent
+    ReportesComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule
   ],
   exports: [
     RegistrarArticuloComponent,
-    ReportesComponent
+    ReportesComponent,
+    MatDatepickerModule
   ],
   providers: [
     ArticulosService
