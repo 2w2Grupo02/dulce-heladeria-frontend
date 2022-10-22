@@ -9,11 +9,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 //import {MatInputModule} from '@angular/material/input';
 //import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { ReporteVentaComponent } from './components/reporte-venta/reporte-venta.component';
 
 @NgModule({
   declarations: [
     RegistrarArticuloComponent,
     ReportesComponent,
+    ReporteVentaComponent,
   ],
   imports: [
     CommonModule,
