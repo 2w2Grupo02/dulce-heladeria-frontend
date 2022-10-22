@@ -1,32 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
-import { Subject } from 'rxjs';
+
 import { range } from '../../interfaces/range';
+import { RangeService } from '../../services/range.service';
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.component.html',
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
+  private date : Date = new Date; 
   public myRange : range; 
-  private subject : Subject<range>
+
   range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
+    start: new FormControl<Date>(this.date),
+    end: new FormControl<Date>(this.date)
   });
-  constructor() { }
+  constructor(private rangeService : RangeService) { }
 
   ngOnInit(): void {
+
   }
 
-  onClose(){
-    this.myRange = {
+  dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
+         this.myRange = {
       start : this.range.value.start,
       end: this.range.value.end
     }
-    
+    console.log(this.myRange)
+    this.rangeService.nextState(this.myRange);
+
   }
 
-  
+
 
 }

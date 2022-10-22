@@ -4,9 +4,10 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Enter a date range</mat-label>
-            <mat-date-range-input [rangePicker]="picker">
-              <input matStartDate placeholder="Start date">
-              <input matEndDate placeholder="End date">
+            <mat-date-range-input [rangePicker]="picker" [(ngModel)]="myRange" required>
+              <input matStartDate placeholder="Start date" #dateRangeStart>
+              <input matEndDate placeholder="End date" #dateRangeEnd
+              (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
             </mat-date-range-input>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
@@ -24,6 +25,6 @@
             siempre que se abra este modulo se debe mostrar
             ventas seleccionadom y sus reportes
         -->
-        <app-reporte-venta></app-reporte-venta>
+        <app-reporte-venta [start]="range.value.start"></app-reporte-venta>
     </div>
 </div>
