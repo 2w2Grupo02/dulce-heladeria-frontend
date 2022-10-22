@@ -1,0 +1,34 @@
+#report-container{
+    padding: 15px;
+}
+
+#report-container-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 0.1rem solid grey;
+}
+
+.navbar-option{
+    color:black;
+    margin: 10px 10px 0px 10px;
+    text-decoration: none;
+}
+    
+
+.title{
+    font-size: 25px;
+    justify-self: flex-start;
+    
+}
+
+a:active {
+    text-decoration: underline pink;
+    text-decoration-thickness: 3px;
+}

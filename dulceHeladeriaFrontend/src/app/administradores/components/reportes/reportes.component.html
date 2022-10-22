@@ -1,6 +1,6 @@
 <div id="report-container">
-    <div>
-        <p>TITULO</p>
+    <div id="report-container-header">
+        <p class="title"><b>REPORTES</b></p>
 
         <mat-form-field appearance="fill">
             <mat-label>Enter a date range</mat-label>
@@ -8,15 +8,11 @@
               <input matStartDate placeholder="Start date">
               <input matEndDate placeholder="End date">
             </mat-date-range-input>
-            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
-
-
-
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-light">
         <a class="navbar-option" href="#"><b>Ventas</b></a>
         <a class="navbar-option" href="#"><b>Stock</b></a>
     </nav>
