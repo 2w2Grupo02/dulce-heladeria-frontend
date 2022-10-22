@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RegistrarArticuloComponent } from './components/registrar-articulo/registrar-articulo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticulosService } from './services/articulos.service';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 
 
 @NgModule({
   declarations: [
-    RegistrarArticuloComponent
+    RegistrarArticuloComponent,
+    ReportesComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { ArticulosService } from './services/articulos.service';
     ReactiveFormsModule
   ],
   exports: [
-    RegistrarArticuloComponent
+    RegistrarArticuloComponent,
+    ReportesComponent
   ],
   providers: [
     ArticulosService
