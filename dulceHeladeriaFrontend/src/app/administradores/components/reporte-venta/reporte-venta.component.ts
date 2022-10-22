@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-reporte-venta',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reporte-venta.component.css']
 })
 export class ReporteVentaComponent implements OnInit {
+  @Input() start: Date | null | undefined;
+  @Input() end: Date | null | undefined;
 
   constructor() { }
 

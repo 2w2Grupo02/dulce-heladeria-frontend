@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VendedorModule } from './vendedores/vendedor.module';
 import { RegistrarUsuarioComponent } from './administradores/components/registrar-usuario/registrar-usuario.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './administradores/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -32,7 +32,9 @@ import { NgChartsModule } from 'ng2-charts';
     MatInputModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    NgChartsModule
+    NgChartsModule,
+    FormsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
