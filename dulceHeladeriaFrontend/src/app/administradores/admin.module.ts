@@ -7,6 +7,9 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { ReporteVentaComponent } from './components/reporte-venta/reporte-venta.component';
+import { NgChartsModule } from 'ng2-charts';
+import { ReporteGraficoLineaComponent } from './components/reporte-venta/reporte-grafico-linea/reporte-grafico-linea.component';
 import { ConsultarArticuloComponent } from './components/consultar-articulo/consultar-articulo.component';
 import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
 
@@ -14,6 +17,8 @@ import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ub
   declarations: [
     RegistrarArticuloComponent,
     ReportesComponent,
+    ReporteVentaComponent,
+    ReporteGraficoLineaComponent,
     ConsultarArticuloComponent,
     ConsultarUbicacionesArticuloComponent
   ],
@@ -23,7 +28,8 @@ import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ub
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgChartsModule
   ],
   exports: [
     RegistrarArticuloComponent,
