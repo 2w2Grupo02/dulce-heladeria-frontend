@@ -2,11 +2,11 @@
     <div id="report-container-header">
         <p class="title"><b>REPORTES</b></p>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" [formGroup]="range">
             <mat-label>Enter a date range</mat-label>
-            <mat-date-range-input [rangePicker]="picker" [(ngModel)]="myRange" required>
-              <input matStartDate placeholder="Start date" #dateRangeStart>
-              <input matEndDate placeholder="End date" #dateRangeEnd
+            <mat-date-range-input [rangePicker]="picker" required>
+              <input matStartDate placeholder="Start date" formControlName="start" [(ngModel)]="myStart"#dateRangeStart>
+              <input matEndDate placeholder="End date" formControlName="end" [(ngModel)]="myEnd"#dateRangeEnd
               (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
             </mat-date-range-input>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

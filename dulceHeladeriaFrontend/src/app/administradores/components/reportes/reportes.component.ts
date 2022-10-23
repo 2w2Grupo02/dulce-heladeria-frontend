@@ -9,29 +9,38 @@ import { RangeService } from '../../services/range.service';
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
-  private date : Date = new Date; 
+  private currentDate : Date = new Date(); 
+  private firstDate : Date = new Date();
   public myRange : range; 
+  myStart : Date 
+  myEnd : Date; 
 
   range = new FormGroup({
-    start: new FormControl<Date>(this.date),
-    end: new FormControl<Date>(this.date)
+    start: new FormControl<Date>(this.firstDate),
+    end: new FormControl<Date>(this.currentDate)
   });
-  constructor(private rangeService : RangeService) { }
+
+  constructor(private rangeService : RangeService) {
+    
+    this.firstDate.setDate(this.currentDate.getDate() - 6);
+    this.myRange = {start:this.firstDate , end: this.currentDate}
+    console.log(this.myRange);
+    this.rangeService.nextState(this.myRange);
+   }
 
   ngOnInit(): void {
-
+    
   }
 
   dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
-         this.myRange = {
-      start : this.range.value.start,
-      end: this.range.value.end
+    console.log("rango" + this.range.value)
+      this.myRange = {
+        start : this.range.value.start,
+        end: this.range.value.end
     }
-    console.log(this.myRange)
+    console.log("este es el rango = " + this.myRange.end + this.myRange.start)
     this.rangeService.nextState(this.myRange);
+    console.log("binding en input = " + this.myStart + this.myEnd)
 
   }
-
-
-
 }
