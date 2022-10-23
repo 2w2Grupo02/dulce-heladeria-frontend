@@ -4,13 +4,15 @@ import { RegistrarArticuloComponent } from './components/registrar-articulo/regi
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticulosService } from './services/articulos.service';
 import { ConsultarArticuloComponent } from './components/consultar-articulo/consultar-articulo.component';
+import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
 
 
 
 @NgModule({
   declarations: [
     RegistrarArticuloComponent,
-    ConsultarArticuloComponent
+    ConsultarArticuloComponent,
+    ConsultarUbicacionesArticuloComponent
   ],
   imports: [
     CommonModule,
