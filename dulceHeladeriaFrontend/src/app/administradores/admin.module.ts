@@ -6,14 +6,16 @@ import { ArticulosService } from './services/articulos.service';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-//import {MatInputModule} from '@angular/material/input';
-//import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { ConsultarArticuloComponent } from './components/consultar-articulo/consultar-articulo.component';
+import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
 
 @NgModule({
   declarations: [
     RegistrarArticuloComponent,
     ReportesComponent,
+    ConsultarArticuloComponent,
+    ConsultarUbicacionesArticuloComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
   exports: [
     RegistrarArticuloComponent,
     ReportesComponent,
-    MatDatepickerModule
+    MatDatepickerModule,
+    ConsultarArticuloComponent
   ],
   providers: [
     ArticulosService
