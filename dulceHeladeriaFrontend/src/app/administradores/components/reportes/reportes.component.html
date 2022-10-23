@@ -1,0 +1,28 @@
+<div id="report-container">
+    <div id="report-container-header">
+        <p class="title"><b>REPORTES</b></p>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date">
+              <input matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+    </div>
+    <nav class="navbar navbar-light">
+        <a class="navbar-option" href="#"><b>Ventas</b></a>
+        <a class="navbar-option" href="#"><b>Stock</b></a>
+    </nav>
+    <div>
+        <p>Aqui van los reportes 👇 </p>
+        <!--
+            con router renderiza componente de reporte seleccionado 
+            el preseleccionado tiene queser ventas 
+            siempre que se abra este modulo se debe mostrar
+            ventas seleccionadom y sus reportes
+        -->
+    </div>
+</div>

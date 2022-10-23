@@ -8,7 +8,11 @@ import { VendedorModule } from './vendedores/vendedor.module';
 import { RegistrarUsuarioComponent } from './administradores/components/registrar-usuario/registrar-usuario.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './administradores/admin.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +24,12 @@ import { AdminModule } from './administradores/admin.module';
     VendedorModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
