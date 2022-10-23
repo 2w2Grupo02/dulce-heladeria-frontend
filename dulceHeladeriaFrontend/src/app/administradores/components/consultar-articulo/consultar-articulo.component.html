@@ -1,0 +1,25 @@
+<p>consultar-articulo works!</p>
+<app-registrar-articulo></app-registrar-articulo>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Unidad</th>
+            <th scope="col">Tipo</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let art of articulos">
+            <td >{{art.name}}</td>
+            <td>{{art.amount}}</td>
+            <td>{{art.measuringType}}</td>
+            <td>{{art.itemType}}</td>
+            <td>{{ !art.deletionDate ? "Activo" : "Inactivo"}}</td>
+            <td><i class="bi-alarm"></i><button class="btn btn-primary">Detalle</button></td>           
+        </tr>
+    </tbody>
+</table>
