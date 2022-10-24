@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common'
 import { UbicacionArticulo } from '../../interfaces/ubicacion-articulo';
 import { ArticulosService } from '../../services/articulos.service';
 
@@ -16,7 +17,8 @@ export class ConsultarUbicacionesArticuloComponent
   private sub: Subscription = new Subscription();
   constructor(
     private articuloService: ArticulosService,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnDestroy(): void {
@@ -45,5 +47,8 @@ export class ConsultarUbicacionesArticuloComponent
         error: (err) => {},
       })
     );
+  }
+  regresar() {
+    this.location.back();
   }
 }

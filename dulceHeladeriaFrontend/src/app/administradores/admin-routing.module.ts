@@ -13,7 +13,7 @@ const routes: Routes = [
       {path: 'alta-usuario', component:RegistrarUsuarioComponent},
       {path: 'reportes', component:ReportesComponent},
       {path: 'articulos', component:ConsultarArticuloComponent},
-      {path: 'articulos/:id/stock', component:ConsultarUbicacionesArticuloComponent},
+      {path: 'articulos/:id/ubicaciones', component:ConsultarUbicacionesArticuloComponent},
 
       {path:'**', redirectTo:''}
 

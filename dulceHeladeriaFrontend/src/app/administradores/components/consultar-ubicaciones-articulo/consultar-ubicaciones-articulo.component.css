@@ -1,0 +1,19 @@
+.btn-primary {
+  background-color: pink;
+  border: none;
+  color: white;
+  font-weight: 700;
+}
+.btn-primary:active {
+  background-color: lightcoral;
+  border: none;
+  color: white;
+}
+td {
+  vertical-align: middle;
+}
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
