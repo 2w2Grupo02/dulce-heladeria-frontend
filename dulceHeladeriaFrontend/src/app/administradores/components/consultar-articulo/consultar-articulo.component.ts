@@ -25,7 +25,6 @@ export class ConsultarArticuloComponent implements OnInit, OnDestroy {
   consultarArticulos() {
     this.sub.add(this.articuloService.getAll().subscribe({
       next: resp => {
-        console.log(resp);
         this.articulos = resp;
       },
       error: err => {
@@ -34,7 +33,7 @@ export class ConsultarArticuloComponent implements OnInit, OnDestroy {
     }));
   }
   verUbicaciones(id: number){
-    this.router.navigate([`articulos/${id}/ubicaciones`]);
+    this.router.navigate([`${this.router.url}/${id}/ubicaciones`]);
   }
 
 }

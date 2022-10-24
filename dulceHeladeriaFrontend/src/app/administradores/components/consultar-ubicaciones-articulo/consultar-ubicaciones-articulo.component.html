@@ -1,26 +1,30 @@
-<h3>Ubicaciones: {{ubicacionesArticulo[0].item}}</h3>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Ubicacion</th>
-            <th scope="col">Deposito</th>
-            <th scope="col">Tipo Articulo</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Capacidad</th>
-            <th scope="col">Fecha Ingreso</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let ubi of ubicacionesArticulo">
-            <td>{{ubi.location}}</td>
-            <td>{{ubi.deposit}}</td>
-            <td>{{ubi.itemType}}</td>
-            <td>{{ubi.amount}}</td>
-            <td>{{ubi.capacity}}</td>
-            <td>{{ubi.entryDate | date:'dd/MM/yyyy'}}</td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+<div id="header">
+    <h3>Ubicaciones: {{ubicacionesArticulo[0].item}}</h3>
+    <button class="btn btn-primary" (click)="regresar()">Volver</button>    
+</div>
+<div id="content">    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Ubicacion</th>
+                <th scope="col">Deposito</th>
+                <th scope="col">Tipo Articulo</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Capacidad</th>
+                <th scope="col">Fecha Ingreso</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ubi of ubicacionesArticulo">
+                <td>{{ubi.location}}</td>
+                <td>{{ubi.deposit}}</td>
+                <td>{{ubi.itemType}}</td>
+                <td>{{ubi.amount}}</td>
+                <td>{{ubi.capacity}}</td>
+                <td>{{ubi.entryDate | date:'dd/MM/yyyy'}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
