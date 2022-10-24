@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ConsultarArticuloComponent } from './components/consultar-articulo/consultar-articulo.component';
+import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 const routes: Routes = [
   {
@@ -8,7 +11,11 @@ const routes: Routes = [
     children: [
 
       {path: 'alta-usuario', component:RegistrarUsuarioComponent},
-      {path:'**', redirectTo:'alta-usuario'}
+      {path: 'reportes', component:ReportesComponent},
+      {path: 'articulos', component:ConsultarArticuloComponent},
+      {path: 'articulos/:id/stock', component:ConsultarUbicacionesArticuloComponent},
+
+      {path:'**', redirectTo:''}
 
     ]
   }

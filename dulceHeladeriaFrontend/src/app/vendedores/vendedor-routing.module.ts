@@ -8,7 +8,7 @@ const routes: Routes = [
     children: [
 
       {path: 'clientes', component:ClientesComponent},
-      {path:'**', redirectTo:'clientes'}
+      {path:'**', redirectTo:''}
 
     ]
   }

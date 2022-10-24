@@ -10,8 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   miForm: FormGroup | any= this.fb.group({
-    email:['carlo', [Validators.required, Validators.email]],
-    password:['qwd', Validators.required]
+    email:['', [Validators.required, Validators.email]],
+    password:['', Validators.required]
   })
   constructor(private router:Router, private fb:FormBuilder, private authService:AuthService) { }
 
