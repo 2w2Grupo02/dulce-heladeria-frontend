@@ -3,7 +3,7 @@
         <p class="title"><b>REPORTES</b></p>
 
         <mat-form-field appearance="fill" [formGroup]="range">
-            <mat-label>Enter a date range</mat-label>
+            <mat-label>Seleccione un rango de fecha</mat-label>
             <mat-date-range-input [rangePicker]="picker" required>
               <input matStartDate placeholder="Start date" formControlName="start" [(ngModel)]="myStart"#dateRangeStart>
               <input matEndDate placeholder="End date" formControlName="end" [(ngModel)]="myEnd"#dateRangeEnd

@@ -32,3 +32,28 @@ a:active {
     text-decoration: underline pink;
     text-decoration-thickness: 3px;
 }
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: pink !important;
+   }
+   
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: pink !important;
+   } 
+   
+   ::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: pink !important;;
+   }
+   
+   ::ng-deep .mat-form-field-label {
+    /*change color of label*/
+    color: pink !important;
+   }
+   
+   
+   mat-datepicker-toggle {
+    color: pink !important;
+   }

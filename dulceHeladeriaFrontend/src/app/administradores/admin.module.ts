@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AdminRoutingModule } from './admin-routing.module';
+import { SharedModule } from '../shared/shared.module';
+
+
 import { RegistrarArticuloComponent } from './components/registrar-articulo/registrar-articulo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticulosService } from './services/articulos.service';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { ReporteVentaComponent } from './components/reporte-venta/reporte-venta.component';
 import { NgChartsModule } from 'ng2-charts';
@@ -24,6 +28,8 @@ import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ub
   ],
   imports: [
     CommonModule,
+    AdminRoutingModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,

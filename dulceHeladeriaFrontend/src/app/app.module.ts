@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VendedorModule } from './vendedores/vendedor.module';
 import { RegistrarUsuarioComponent } from './administradores/components/registrar-usuario/registrar-usuario.component';
+import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './administradores/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +27,7 @@ import { NgChartsModule } from 'ng2-charts';
     VendedorModule,
     HttpClientModule,
     ReactiveFormsModule,
+    SharedModule,
     AdminModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
