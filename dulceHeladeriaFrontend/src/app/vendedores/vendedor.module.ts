@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VentasComponent } from './pages/ventas/ventas.component';
+import { VentasComponent } from './components/ventas/ventas.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NuevaVentaService } from './services/nueva-venta.service';
 
 
 @NgModule({
@@ -8,7 +10,15 @@ import { VentasComponent } from './pages/ventas/ventas.component';
     VentasComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  exports:[
+    VentasComponent
+  ],
+  providers:[
+    NuevaVentaService
   ]
 })
 export class VendedorModule { }

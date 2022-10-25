@@ -18,20 +18,8 @@ export class NuevaVentaService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerVentaRealizada(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URL+'/ventasRealizadas', this._options);
-  }
-
-  obtenerProductos(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URL+'/productos', this._options);
-  }
-
-  obtenerSabores(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URL+'/sabores', this._options);
-  }
-
-  registrarVenta(venta: dtoNuevaVenta):Observable<dtoNuevaVenta>{
-    return this.http.post<dtoNuevaVenta>(this.API_URL,venta)
+  registrarVenta(venta: dtoNuevaVenta):Observable<any>{
+    return this.http.post<any>('https://localhost:4200/api/Vendedor',venta)
   }
   // registrarVenta(articulo: string, unidad: number, precio: number, subTotal: number) {
   //   const comando = {

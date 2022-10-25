@@ -1,14 +1,36 @@
-// export interface productos{
-// helado1kg:string;
+//  export interface productos1{
+//  helado1kg = [nombre='helado1kg',precio=1500,cantidadMaxGustos=4];
 // heladomediokg:string;
 // heladocuartokg:string;
 // cucurucho:string;
 // unabocha:string;
-// helado1kg:string;
-// helado1kg:string;
-// helado1kg:string;
-// helado1kg:string;
-// helado1kg:string;
-// helado1kg:string;
-// helado1kg:string;
+// dosbochas:string;
+// cocacola:string;
+// fanta:string;
+// sprite:string;
+// te:string;
+// cafe:string;
+// agua:string;
+//}
+
+export interface productos{
+    nombre:string;
+    precio:number;
+    cantidadMaxGustos: number;
+    imagen: string;
+    cantidad?:number;
+//ESTO VIENE DE LA API??
+}
+
+// export class producto2{
+//      primero = {
+//         nombre: 'helado1kg',
+//         precio: 1000,
+//         cantidadMaxGustos: 4
+//     }
+//     segundo = {
+//         nombre: 'helado 1/2kg',
+//         precio: 700,
+//         cantidadMaxGustos:3
+//     }
 // }

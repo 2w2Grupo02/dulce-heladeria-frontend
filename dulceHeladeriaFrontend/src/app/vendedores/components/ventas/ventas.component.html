@@ -1,0 +1,191 @@
+<h1><b>Nueva venta</b></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col col-md-4">
+      <div class="card-group">
+        <div class="card"  *ngFor="let prod of arrayCard">
+          <img [src] ="prod.imagen"
+            class="card-img-top" alt="..." (click)="openModal(prod)" formControlName="nombre">
+          <div class="card-body">
+            <h5 class="card-title">{{prod.nombre}}</h5>
+          </div>
+        </div>
+        <!-- <div class="card">
+          <img src=
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title"> HELADO 1/2 KG</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">HELADO 1/4 KG</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-4">
+      <div class="card-group">
+        <div class="card">
+          <img src="https://thumbs.dreamstime.com/z/cucurucho-de-la-galleta-56592738.jpg" (click)="openModal()" class="card-img-top"
+            alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">Cucurucho</h5>
+
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.argentina.gridohelado.com/wp-content/uploads/2016/06/cucurucho-mini-gigante.jpg"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">1 BOCHA</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.argentina.gridohelado.com/wp-content/uploads/2017/09/cucurucho-gigante-2-bochas.jpg"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">DOS BOCHAS</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-4">
+      <div class="card-group">
+        <div class="card">
+          <img src="https://www.grupoelnene.com.ar/15065-large_default/coca-cola-lata-354cc.jpg" class="card-img-top"
+            alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">COCA COLA</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="http://d3ugyf2ht6aenh.cloudfront.net/stores/861/458/products/340371-e6a85071ccb591207815680469613726-640-0.jpg"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">SPRITE</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://granor.com.br/web/image/product.template/15089/image_1024?unique=7a4b19a"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">FANTA</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-4">
+      <div class="card-group">
+        <div class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" class="card-img-top"
+            alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">CAFE</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://okdiario.com/img/recetas/2016/10/26/beneficios-del-te-de-limon.jpg" class="card-img-top"
+            alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">TE</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://mercado.com.ar/wp/wp-content/uploads/2021/03/agua.jpg" class="card-img-top" alt="...">
+          <div class="card-body" (click)="openModal()">
+            <h5 class="card-title">AGUA</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Articulo</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Sub-total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of arrayTabla">
+      <th scope="row">{{prod.nombre}}</th>
+      <td>{{prod.cantidad}}</td>
+      <td>{{prod.precio}}</td>
+      <td>{{prod.precio && prod.cantidad ? (prod.cantidad * this.prod.precio) : '' }}</td>
+    </tr>
+  </tbody>
+  <label>total a pagar: {{total}}</label>
+</table>
+<button type="submit" class="btn btn-primary" (click)="guardar()">Cobrar</button>
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="cantidades" tabindex="-1" role="dialog" aria-labelledby="titulo" arial-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titulo">{{selected.nombre}}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+          <span arial-hidden="true">&times;</span>
+        </button> 
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="gustosForm">
+          <label><b> Precio  </b>{{selected.precio}}</label> <br>
+          <label><b> cantidad maxima de gustos:  </b>{{selected.cantidadMaxGustos}}</label>
+          <label><b> cantidad de gustos disponibles:  </b>{{contadorGustos}}</label>
+          <div class="alert alert-succes">
+            <label for="tipoGustos">Gustos</label>
+            <!-- <select class="form-control" id="tipoGustos" formControlName="tipoGustos">
+              <option [value]=1>Menta grandizada</option>
+              <option [value]=2>Chocolate</option>
+              <option [value]=3>Vainilla</option>
+              <option [value]=4>Frutilla</option>
+              <option [value]=5>Dulce de leche</option>
+            </select> -->
+            <ul class="list-group" *ngFor="let gusto of gustos">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{gusto.nombre}}
+                <span class="badge bg-primary rounded-pill"  (click)="contarGustos()">{{contadorGustos}}</span>
+              </li>
+            </ul>
+            <label for="cantidad">Cantidad</label>
+            <input class="form-control" type="number" placeholder="" id="cantidad" minlength="1"
+              formControlName="cantidad">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-danger" (click)="cerrarModal()">Cerrar</button>
+        <button type="button" class="btn btn-success" (click)="registrarGustos(this.selected)">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>

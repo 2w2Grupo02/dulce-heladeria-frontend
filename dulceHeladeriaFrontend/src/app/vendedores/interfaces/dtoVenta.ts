@@ -1,7 +1,9 @@
+import { productos } from "./productos";
+
 export interface dtoNuevaVenta{
-    articulo: string;
-    unidad: number;
-    precio: number;
-    total: number;
-    subtotal: number;
+    id:number;
+    cantidad?: number;
+    total?: number;
+    subtotal?: number;
+    producto? : productos;
 }
