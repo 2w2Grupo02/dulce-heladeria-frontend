@@ -1,0 +1,33 @@
+<div id="header">
+    <h3>Articulos</h3>
+    <app-registrar-articulo></app-registrar-articulo>
+</div>
+<div id="content">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Unidad</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let art of articulos">
+                <td >{{art.name}}</td>
+                <td>{{art.amount}}</td>
+                <td>{{art.measuringType}}</td>
+                <td>{{art.itemType}}</td>
+                <td>{{ !art.deletionDate ? "Activo" : "Inactivo"}}</td>
+                <td>
+                    <div id="acciones">
+                        <button class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>                
+                        <button class="btn btn-primary" (click)="verUbicaciones(art.id)"><i class="bi bi-info-circle"></i></button>   
+                    </div>                                
+                </td>           
+            </tr>
+        </tbody>
+    </table>
+</div>

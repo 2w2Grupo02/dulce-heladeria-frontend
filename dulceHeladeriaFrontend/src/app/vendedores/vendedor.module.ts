@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VentasComponent } from './components/ventas/ventas.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NuevaVentaService } from './services/nueva-venta.service';
+import { ClientesComponent } from './components/clientes/clientes.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClientesService } from './services/clientes.service';
+import { VendedorRoutingModule } from './vendedor-routing.module';
+
 
 
 @NgModule({
   declarations: [
-    VentasComponent
+    VentasComponent,
+    ClientesComponent
   ],
   imports: [
     CommonModule,
@@ -15,10 +20,16 @@ import { NuevaVentaService } from './services/nueva-venta.service';
     ReactiveFormsModule
   ],
   exports:[
-    VentasComponent
+    VentasComponent,
+    ClientesComponent
+
   ],
   providers:[
-    NuevaVentaService
+    NuevaVentaService,
+    ReactiveFormsModule,
+    VendedorRoutingModule,
+    ClientesService
+
   ]
 })
 export class VendedorModule { }

@@ -1,3 +1,10 @@
-<app-ventas></app-ventas>
-
-<router-outlet></router-outlet>
+ <div class="container-fluid">
+    <div class="row">
+        <div class="col-3 px-1 position-fixed" id="sticky-sidebar">
+            <app-sidenav></app-sidenav>
+        </div>
+        <div class="col offset-3" id="main">
+          <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
