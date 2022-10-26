@@ -17,6 +17,7 @@ import { ReporteGraficoLineaComponent } from './components/reporte-venta/reporte
 import { ConsultarArticuloComponent } from './components/consultar-articulo/consultar-articulo.component';
 import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
 import { ConsultarDepositoComponent } from './components/consultar-deposito/consultar-deposito.component';
+import { RegistrarDepositoComponent } from './components/registrar-deposito/registrar-deposito.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ConsultarDepositoComponent } from './components/consultar-deposito/cons
     ReporteGraficoLineaComponent,
     ConsultarArticuloComponent,
     ConsultarUbicacionesArticuloComponent,
-    ConsultarDepositoComponent
+    ConsultarDepositoComponent,
+    RegistrarDepositoComponent
   ],
   imports: [
     CommonModule,
