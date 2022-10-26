@@ -12,4 +12,10 @@ export class DepositosService {
   getAll(): Observable<Deposito[]> {
     return this.http.get<Deposito[]>('https://localhost:5001/api/deposit');
   }
+  create(deposito: Deposito): Observable<Deposito> {
+    return this.http.post<Deposito>(
+      'https://localhost:5001/api/deposit',
+      deposito
+    );
+  }
 }
