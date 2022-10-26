@@ -16,6 +16,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ReporteGraficoLineaComponent } from './components/reporte-venta/reporte-grafico-linea/reporte-grafico-linea.component';
 import { ConsultarArticuloComponent } from './components/consultar-articulo/consultar-articulo.component';
 import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
+import { ConsultarDepositoComponent } from './components/consultar-deposito/consultar-deposito.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ub
     ReporteVentaComponent,
     ReporteGraficoLineaComponent,
     ConsultarArticuloComponent,
-    ConsultarUbicacionesArticuloComponent
+    ConsultarUbicacionesArticuloComponent,
+    ConsultarDepositoComponent
   ],
   imports: [
     CommonModule,
