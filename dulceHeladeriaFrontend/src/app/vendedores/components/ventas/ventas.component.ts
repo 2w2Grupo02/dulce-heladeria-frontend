@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { dtoNuevaVenta } from '../../interfaces/dtoVenta';
@@ -17,23 +16,25 @@ declare var window: any;
 export class VentasComponent implements OnInit, OnDestroy {
 
   gustos: gustos[] = [{ nombre: 'chocolate' }, { nombre: 'menta granizada' }, { nombre: 'vainilla' }, { nombre: 'frutilla' }, { nombre: 'DDL'}];
+  gustosSelected: gustos[] = [];
   contadorGustos: number=0;
   ventas: dtoNuevaVenta;
-  producto: productos;
+  Nuevoproducto: productos={nombre:'',precio: 0, cantidad: 1, gustosS:[]};
   formModal: any;
-  selected: productos;
-  arrayTabla: productos[] = []
+  selected: productos= this.Nuevoproducto;
+  nuevaVenta: dtoNuevaVenta = {total: 0, producto : []};
+  //arrayTabla: productos[] = []
 
-  arrayCard: productos[] = [{ nombre: 'helado 1KG', precio: 1000, cantidadMaxGustos: 4, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg" },
-  { nombre: 'helado 1/2kg', precio: 700, cantidadMaxGustos: 3, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg" },
-  { nombre: 'helado 1/4kg', precio: 500, cantidadMaxGustos: 2, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg" }]
+  arrayCard: productos[] = [{ nombre: 'helado 1KG', precio: 1000, cantidadMaxGustos: 4, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg",cantidad:1 },
+  { nombre: 'helado 1/2kg', precio: 700, cantidadMaxGustos: 3, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg",cantidad:1 },
+  { nombre: 'helado 1/4kg', precio: 500, cantidadMaxGustos: 2, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg",cantidad:1 }]
 
   private subscription = new Subscription();
 
-  gustosForm = new FormGroup({
-    gustos: new FormControl('-1', Validators.required),
-    cantidad: new FormControl('',Validators.required),
-  });
+  //gustosForm = new FormGroup({
+    //gustos: new FormControl('-1', Validators.required),
+    //cantidad: new FormControl('',Validators.required),
+  //});
 
   // ventaForm = new FormGroup({
   //   nombre: new FormControl('', Validators.required),
@@ -55,7 +56,6 @@ export class VentasComponent implements OnInit, OnDestroy {
 
   guardar() {
 
-
     this.subscription.add(
       this.ventaService.registrarVenta(this.ventas).subscribe({
         next: () => {
@@ -75,30 +75,52 @@ export class VentasComponent implements OnInit, OnDestroy {
     this.selected = producto
   }
 
-  total: number;
+  total: number=0;
   totalPrecio() {
-    for (const prod of this.arrayTabla) {
-      if (prod.precio != null) {
-        this.total += prod.precio;
-      }
-    }
+    this.total=0;
+    this.nuevaVenta.producto!.forEach(producto => {
+      this.total += (producto.cantidad! * producto.precio!);
+    });
   }
 
-contarGustos(){
-  this.contadorGustos += 1
+cargarGustos(gusto: gustos, cantMax: number){
+  if(this.gustosSelected.includes(gusto) || this.gustosSelected.length>=cantMax){
+    return
+  }
+  this.gustosSelected.push(gusto);
+}
+
+quitarGustos(gusto: gustos){
+  const id=this.gustosSelected.indexOf(gusto);
+  if(id != null){
+    this.gustosSelected.splice(id,1);
+  }
+  
+}
+EliminarProducto(prod: productos){
+  const id=this.nuevaVenta.producto!.indexOf(prod);
+  if(id != null){
+    this.nuevaVenta.producto!.splice(id,1);
+  }
+  
 }
 
   cerrarModal() {
     this.formModal.hide();
   }
 
-  registrarGustos(producto: productos) {
-    if (this.gustosForm.valid) {
-      this.arrayTabla.push(producto);
+  registrarProducto(producto: productos) {
+      this.Nuevoproducto.gustosS=this.gustosSelected;
+      this.Nuevoproducto.cantidad=this.selected.cantidad;
+      this.Nuevoproducto.nombre=this.selected.nombre;
+      this.Nuevoproducto.precio= this.selected.precio!;
+      this.nuevaVenta.producto!.push(this.Nuevoproducto);
       this.totalPrecio();
-      if (this.gustosForm.value.cantidad) {
-        producto.cantidad = parseInt(this.gustosForm.value.cantidad);
-      }
+      this.cerrarModal();
+      this.gustosSelected=[];
+      //this.cantidad=0;
+      this.Nuevoproducto={nombre:'',precio: 0, cantidad: 0, gustosS:[]};
+
     }
   }
   // registrarVenta() {
@@ -126,6 +148,6 @@ contarGustos(){
   //   }
 
   //   this.cerrarModal();
-  // }
+  //}
 
-}
+//}

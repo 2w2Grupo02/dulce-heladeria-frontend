@@ -1,9 +1,7 @@
 import { productos } from "./productos";
 
 export interface dtoNuevaVenta{
-    id:number;
-    cantidad?: number;
+    id?:number;
     total?: number;
-    subtotal?: number;
-    producto? : productos;
+    producto? : productos[];
 }

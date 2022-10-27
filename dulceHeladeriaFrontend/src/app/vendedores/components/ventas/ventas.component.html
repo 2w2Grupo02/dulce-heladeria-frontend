@@ -2,15 +2,56 @@
 
 <div class="container">
   <div class="row">
+    <div class="col col-md-6">
+      <div class="row">
+        <app-clientes></app-clientes>
+      </div>
+        <div class="card border-dark mb-3" style="max-width: 45rem;">
+          <div class="card-header bg-transparent border-dark">Productos</div>
+            <div class="card-body text-dark">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Articulo</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Sub-total</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let prod of nuevaVenta.producto">
+                    <td>{{prod.nombre}}</td>
+                    <td>{{prod.cantidad}}</td>
+                    <td>{{prod.precio}}</td>
+                    <td>{{prod.cantidad! * prod.precio!}}</td>
+                    <td><button type="button" class="btn-close" aria-label="Close" (click)="EliminarProducto(prod)"></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          <div class="card-footer bg-transparent border-dark"><label>Total a pagar: <B>{{total}}</B></label></div>
+      </div>
+      <div class="row">
+        <button type="submit" class="btn btn-primary" (click)="guardar()" style="margin-top: 2vh;">Cobrar</button>
+      </div>
+      
+    </div>
     <div class="col col-md-4">
-      <div class="card-group">
-        <div class="card"  *ngFor="let prod of arrayCard">
-          <img [src] ="prod.imagen"
-            class="card-img-top" alt="..." (click)="openModal(prod)" formControlName="nombre">
-          <div class="card-body">
-            <h5 class="card-title">{{prod.nombre}}</h5>
+        <div class="row">
+          <div class="card-group">
+            <div class="card" *ngFor="let producto of arrayCard">
+              <img [src] ="producto.imagen" class="card-img-top" alt="..." (click)="openModal(producto)">
+              <div class="card-body">
+                <h5 class="card-title">{{producto.nombre}}</h5>
+              </div>
+            </div>
           </div>
         </div>
+    </div>
+  </div>
+</div>
+ 
         <!-- <div class="card">
           <img src=
             class="card-img-top" alt="..." (click)="openModal()">
@@ -115,28 +156,6 @@
   </div>
 </div> -->
 
-<br><br>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Articulo</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Sub-total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let prod of arrayTabla">
-      <th scope="row">{{prod.nombre}}</th>
-      <td>{{prod.cantidad}}</td>
-      <td>{{prod.precio}}</td>
-      <td>{{prod.precio && prod.cantidad ? (prod.cantidad * this.prod.precio) : '' }}</td>
-    </tr>
-  </tbody>
-  <label>total a pagar: {{total}}</label>
-</table>
-<button type="submit" class="btn btn-primary" (click)="guardar()">Cobrar</button>
 
 
 
@@ -151,40 +170,31 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="titulo">{{selected.nombre}}</h5>
-        <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
-          <span arial-hidden="true">&times;</span>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal()">
         </button> 
       </div>
       <div class="modal-body">
-        <form [formGroup]="gustosForm">
           <label><b> Precio  </b>{{selected.precio}}</label> <br>
-          <label><b> cantidad maxima de gustos:  </b>{{selected.cantidadMaxGustos}}</label>
-          <label><b> cantidad de gustos disponibles:  </b>{{contadorGustos}}</label>
+          <label><b> cantidad maxima de gustos:  </b>{{selected.cantidadMaxGustos}}</label><br>
+          <label><b> cantidad de gustos disponibles:  </b>{{selected.cantidadMaxGustos!-gustosSelected.length}}</label>
           <div class="alert alert-succes">
             <label for="tipoGustos">Gustos</label>
-            <!-- <select class="form-control" id="tipoGustos" formControlName="tipoGustos">
-              <option [value]=1>Menta grandizada</option>
-              <option [value]=2>Chocolate</option>
-              <option [value]=3>Vainilla</option>
-              <option [value]=4>Frutilla</option>
-              <option [value]=5>Dulce de leche</option>
-            </select> -->
             <ul class="list-group" *ngFor="let gusto of gustos">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
+              <li class="list-group-item d-flex justify-content-between align-items-center" (click)="cargarGustos(gusto, selected.cantidadMaxGustos!)" style="cursor: pointer;">
                 {{gusto.nombre}}
-                <span class="badge bg-primary rounded-pill"  (click)="contarGustos()">{{contadorGustos}}</span>
               </li>
             </ul>
+            <label for="tipoGustos">Gustos Seleccionados</label><br>
+            <div *ngFor="let gusto of gustosSelected">
+              <span class="badge bg-danger" style="cursor: pointer;" (click)="quitarGustos(gusto)">{{gusto.nombre}}</span>
+            </div><br>
             <label for="cantidad">Cantidad</label>
-            <input class="form-control" type="number" placeholder="" id="cantidad" minlength="1"
-              formControlName="cantidad">
+            <input class="form-control" type="number" placeholder="" id="cantidad" [(ngModel)]="selected.cantidad">
           </div>
-        </form>
       </div>
 
       <div class="modal-footer">
-        <button type="button" data-dismiss="modal" class="btn btn-danger" (click)="cerrarModal()">Cerrar</button>
-        <button type="button" class="btn btn-success" (click)="registrarGustos(this.selected)">Agregar</button>
+        <button type="button" class="btn btn-primary" (click)="registrarProducto(this.selected)">Agregar</button>
       </div>
     </div>
   </div>

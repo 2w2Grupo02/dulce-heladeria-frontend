@@ -13,12 +13,15 @@
 // agua:string;
 //}
 
+import { gustos } from "./gustos";
+
 export interface productos{
-    nombre:string;
-    precio:number;
-    cantidadMaxGustos: number;
-    imagen: string;
+    nombre?:string;
+    precio?:number;
+    cantidadMaxGustos?: number;
+    imagen?: string;
     cantidad?:number;
+    gustosS?:gustos[];
 //ESTO VIENE DE LA API??
 }
 

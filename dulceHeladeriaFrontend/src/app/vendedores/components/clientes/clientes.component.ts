@@ -30,7 +30,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
     this.sub.unsubscribe();
   }
 
-  cliente?: Cliente;
+  cliente: Cliente= {} as Cliente;
   buscador: string='';
   elegido: number=0;
 

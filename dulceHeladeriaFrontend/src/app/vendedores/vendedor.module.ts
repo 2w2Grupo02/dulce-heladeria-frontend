@@ -17,7 +17,8 @@ import { VendedorRoutingModule } from './vendedor-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    VendedorRoutingModule
   ],
   exports:[
     VentasComponent,
@@ -27,7 +28,6 @@ import { VendedorRoutingModule } from './vendedor-routing.module';
   providers:[
     NuevaVentaService,
     ReactiveFormsModule,
-    VendedorRoutingModule,
     ClientesService
 
   ]
