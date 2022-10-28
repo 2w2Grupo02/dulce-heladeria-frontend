@@ -19,4 +19,7 @@ export class ClientesService {
   create(cliente:Cliente): Observable<any>{
       return this.http.post<any>('https://localhost:5001/api/Client',cliente); 
   }
+  getClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(`https://localhost:5001/api/Client`);
+  }
   }

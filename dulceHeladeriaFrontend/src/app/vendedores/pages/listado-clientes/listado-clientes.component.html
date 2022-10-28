@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="form-group">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Nro de Identificador" aria-label="Nro de Identificador" aria-describedby="button-addon2" [(ngModel)]="buscador">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarClientes()">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Tipo de Identificador</th>
+                <th scope="col">Nro de Identificador</th>
+                <th scope="col">Razón Social</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of ResultBusqueda">
+                <td scope="row">{{TiposIdentifiers[client.identifierTypeId!]}}</td>
+                <td>{{client.identifier}}</td>
+                <td>{{client.businessName}}</td>
+                <td>{{client.homeAdress}}</td>
+                <td>{{client.email}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

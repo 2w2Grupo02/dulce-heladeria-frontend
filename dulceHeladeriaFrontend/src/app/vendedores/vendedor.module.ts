@@ -6,13 +6,15 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientesService } from './services/clientes.service';
 import { VendedorRoutingModule } from './vendedor-routing.module';
+import { ListadoClientesComponent } from './pages/listado-clientes/listado-clientes.component';
 
 
 
 @NgModule({
   declarations: [
     VentasComponent,
-    ClientesComponent
+    ClientesComponent,
+    ListadoClientesComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { VendedorRoutingModule } from './vendedor-routing.module';
   ],
   exports:[
     VentasComponent,
-    ClientesComponent
+    ClientesComponent,
+    ListadoClientesComponent
 
   ],
   providers:[
