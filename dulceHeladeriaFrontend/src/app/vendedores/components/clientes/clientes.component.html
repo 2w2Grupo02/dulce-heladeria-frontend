@@ -77,15 +77,19 @@
                   <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarClientes()">Buscar</button>
                 </div>
             </div>
-            <select class="form-select" multiple aria-label="multiple select example" [(ngModel)]="elegido">
-                <option value="1">Jere Cristante - 20320650</option>
-                <option value="2">Miguel Caceres - 45104680</option>
-                <option value="3">Jere Quevedo - 20-209509-6</option>
-              </select>
+            <ul class="list-group"  *ngFor="let client of ResultBusqueda ">
+              <li class="list-group-item d-flex justify-content-between align-items-center" (click)="selectCliente(client)" style="cursor: pointer;">
+                {{client.businessName}} - {{client.identifier}}
+              </li>
+            </ul>
+            <div *ngIf="clienteSelected">
+              <label for="tipoGustos">Cliente Seleccionado</label><br>
+              <span class="badge bg-danger" style="cursor: pointer;">{{clienteSelected.businessName}}</span>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeElegirCliente()">Cancelar</button>
-          <button type="button" class="btn btn-primary" (click)="cargarElegido()">Seleccionar</button>
+          <button type="button" class="btn btn-primary" (click)="cargarElegido()" [disabled]="!clienteSelected">Seleccionar</button>
         </div>
       </div>
     </div>

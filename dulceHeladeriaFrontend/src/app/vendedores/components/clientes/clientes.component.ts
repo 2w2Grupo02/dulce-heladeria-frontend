@@ -17,6 +17,11 @@ export class ClientesComponent implements OnInit , OnDestroy {
   private sub: Subscription = new Subscription();
   formNuevo:any;
   formElegir:any;
+  ResultClientes: Cliente[]=[{businessName: 'jere', identifierTypeId: 1, identifier:'65406546', homeAdress: 'ayacucho 545', email: 'jere@gmail.com'},
+                            {businessName: 'juan', identifierTypeId: 2, identifier:'3210540', homeAdress: 'illia 87', email: 'juan@gmail.com'},
+                            {businessName: 'jorge', identifierTypeId: 3, identifier:'87959454', homeAdress: 'san juan 1234', email: 'jorge@gmail.com'}];
+  ResultBusqueda: Cliente[]=[];
+  TiposIdentifiers: string[]=['','DNI','CUIT','CUIL']
   nuevoClienteForm = new FormGroup({
     businessName: new FormControl('', Validators.required),
     identifierTypeId: new FormControl('1', Validators.required),
@@ -30,9 +35,9 @@ export class ClientesComponent implements OnInit , OnDestroy {
     this.sub.unsubscribe();
   }
 
-  cliente: Cliente= {} as Cliente;
+  cliente: Cliente;
+  clienteSelected: Cliente;
   buscador: string='';
-  elegido: number=0;
 
   ngOnInit(): void {
     this.formNuevo = new window.bootstrap.Modal(
@@ -50,6 +55,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
     this.formNuevo.hide();
   }
   openElegirCliente(){
+    this.cargarClientes();
     this.formElegir.show();
   }
   closeElegirCliente(){
@@ -80,9 +86,28 @@ export class ClientesComponent implements OnInit , OnDestroy {
   }
   buscarClientes(){
     console.log(this.buscador)
+    this.ResultBusqueda = this.ResultClientes.filter((x:Cliente) => {
+      return x.identifier?.includes(this.buscador);
+  });
+  }
+  cargarClientes() {
+    this.sub.add(this.clienteService.getClientes().subscribe({
+            next: (resp) => {
+              console.log(resp);
+              this.ResultClientes = resp;
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          })
+    );
   }
   cargarElegido(){
-    console.log(this.elegido)
+
+    this.cliente=this.clienteSelected;
     this.closeElegirCliente();
+  }
+  selectCliente(cliente:Cliente){
+    this.clienteSelected=cliente;
   }
 }
