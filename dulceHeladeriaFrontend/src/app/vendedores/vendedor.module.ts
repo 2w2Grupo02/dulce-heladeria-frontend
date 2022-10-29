@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientesService } from './services/clientes.service';
 import { VendedorRoutingModule } from './vendedor-routing.module';
 import { ListadoClientesComponent } from './pages/listado-clientes/listado-clientes.component';
+import { FacturaComponent } from './components/factura/factura.component';
 
 
 
@@ -14,7 +15,8 @@ import { ListadoClientesComponent } from './pages/listado-clientes/listado-clien
   declarations: [
     VentasComponent,
     ClientesComponent,
-    ListadoClientesComponent
+    ListadoClientesComponent,
+    FacturaComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ListadoClientesComponent } from './pages/listado-clientes/listado-clien
   exports:[
     VentasComponent,
     ClientesComponent,
-    ListadoClientesComponent
+    ListadoClientesComponent,
+    FacturaComponent
 
   ],
   providers:[
