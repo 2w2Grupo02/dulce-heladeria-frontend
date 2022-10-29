@@ -81,7 +81,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   }
   cargarConsumidorF(){
     this.cliente={businessName:'Consumidor Final'} as Cliente;
-    console.log(this.cliente)
+    console.log(this.cliente);
   }
   buscarClientes(){
     console.log(this.buscador)

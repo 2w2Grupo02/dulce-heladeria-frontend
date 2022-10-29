@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
   ingresar(){
     this.router.navigate(['./administrador/'])
+    window.open('http://localhost:4200/vendedor')
   }
 
 }
