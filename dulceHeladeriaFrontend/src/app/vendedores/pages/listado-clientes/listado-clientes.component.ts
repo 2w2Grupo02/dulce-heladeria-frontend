@@ -12,15 +12,16 @@ import { ClientesService } from '../../services/clientes.service';
 export class ListadoClientesComponent implements OnInit, OnDestroy {
 
   buscador: string='';
-  ResultClientes: Cliente[]=[{businessName: 'jere', identifierTypeId: 1, identifier:'65406546', homeAdress: 'ayacucho 545', email: 'jere@gmail.com'},
-                            {businessName: 'juan', identifierTypeId: 2, identifier:'3210540', homeAdress: 'illia 87', email: 'juan@gmail.com'},
-                            {businessName: 'jorge', identifierTypeId: 3, identifier:'87959454', homeAdress: 'san juan 1234', email: 'jorge@gmail.com'}];
+  ResultClientes: Cliente[]=[];
   ResultBusqueda: Cliente[]=[];
   TiposIdentifiers: string[]=['','DNI','CUIT','CUIL']
   private sub: Subscription = new Subscription();
   constructor(private clientService:ClientesService) { }
-
+  //{businessName: 'jere', identifierTypeId: 1, identifier:'65406546', homeAdress: 'ayacucho 545', email: 'jere@gmail.com'},
+  //{businessName: 'juan', identifierTypeId: 2, identifier:'3210540', homeAdress: 'illia 87', email: 'juan@gmail.com'},
+  //{businessName: 'jorge', identifierTypeId: 3, identifier:'87959454', homeAdress: 'san juan 1234', email: 'jorge@gmail.com'}
   ngOnInit(): void {
+    this.cargarClientes();
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();

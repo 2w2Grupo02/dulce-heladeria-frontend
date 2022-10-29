@@ -72,8 +72,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
       this.sub.add(
         this.clienteService.create(this.cliente)
         .subscribe({
-          next: (resp : any) => { alert(resp)},
-          error : () => {alert("error")}
+          error : () => {alert("error al registrar al cliente")}
         }
       ))
     }
