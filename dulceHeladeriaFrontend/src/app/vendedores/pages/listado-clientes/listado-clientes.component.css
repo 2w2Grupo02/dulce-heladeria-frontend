@@ -9,7 +9,13 @@ input[type="email"]:focus,input[type="password"]:focus,input[type="text"]:focus,
     color: white;
     font-weight: 700;
 }
-.btn-group{
-    margin-left: 3vw;
-    margin-top: 3vh;
+.thead-light{
+    background-color: pink;
+    color: white;
+}
+.table{
+    border-radius: 5px;
+    border-color: pink;
+    border-style: solid;
+    border-width: 1px;
 }

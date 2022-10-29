@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiUrlBase : '',
   userUrl: 'https://localhost:44350/api/User'
 };
 

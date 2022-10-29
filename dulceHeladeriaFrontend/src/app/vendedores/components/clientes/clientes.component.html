@@ -1,18 +1,26 @@
-<button type="button" class="btn btn-primary" (click)="openNuevoCliente()" [disabled]="cliente">Nuevo Cliente</button>
-<br>
-<br>
-<button type="button" class="btn btn-primary" (click)="openElegirCliente()">Seleccionar Cliente</button>
-<br>
-<br>
-<button type="button" class="btn btn-secondary" (click)="cargarConsumidorF()">Consumidor Final</button>
+<div class="card border-dark mb-3" style="max-width: 45rem;">
+  <div class="card-header bg-transparent border-dark">Cliente <br></div>
+  <div class="card-body text-dark" *ngIf="cliente">
+      <h6>Nombre Cliente: {{cliente.businessName}}</h6>
+      <h6>Documento: {{cliente.identifier}}</h6>
+  </div>
+  <div class="card-footer bg-transparent border-dark"><div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary" (click)="openNuevoCliente()">Nuevo Cliente</button>
+    <button type="button" class="btn btn-primary" (click)="openElegirCliente()">Seleccionar Cliente</button>
+    <button type="button" class="btn btn-secondary" (click)="cargarConsumidorF()">Consumidor Final</button>
+  </div></div>
+</div>
+
+
+
+
 
 <div class="modal fade" id="NuevoCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Cliente</h5>
-          <button type="button" class="close" aria-label="Close" (click)="closeNuevoCliente()">
-            <span aria-hidden="true">&times;</span>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeNuevoCliente()">
           </button>
         </div>
         <div class="modal-body">
@@ -58,9 +66,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Cliente</h5>
-          <button type="button" class="close" aria-label="Close" (click)="closeElegirCliente()">
-            <span aria-hidden="true">&times;</span>
+          <h5 class="modal-title" id="exampleModalLongTitle">Seleccionar Cliente</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeElegirCliente()">
           </button>
         </div>
         <div class="modal-body">
@@ -70,15 +77,19 @@
                   <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarClientes()">Buscar</button>
                 </div>
             </div>
-            <select class="form-select" multiple aria-label="multiple select example" [(ngModel)]="elegido">
-                <option value="1">Jere Cristante - 20320650</option>
-                <option value="2">Miguel Caceres - 45104680</option>
-                <option value="3">Jere Quevedo - 20-209509-6</option>
-              </select>
+            <ul class="list-group"  *ngFor="let client of ResultBusqueda ">
+              <li class="list-group-item d-flex justify-content-between align-items-center" (click)="selectCliente(client)" style="cursor: pointer;">
+                {{client.businessName}} - {{client.identifier}}
+              </li>
+            </ul>
+            <div *ngIf="clienteSelected">
+              <label for="tipoGustos">Cliente Seleccionado</label><br>
+              <span class="badge bg-danger" style="cursor: pointer;">{{clienteSelected.businessName}}</span>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeElegirCliente()">Cancelar</button>
-          <button type="button" class="btn btn-primary" (click)="cargarElegido()">Seleccionar</button>
+          <button type="button" class="btn btn-primary" (click)="cargarElegido()" [disabled]="!clienteSelected">Seleccionar</button>
         </div>
       </div>
     </div>
