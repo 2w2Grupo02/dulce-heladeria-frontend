@@ -5,6 +5,7 @@ import { productos } from '../../interfaces/productos';
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
 import { identifierName } from '@angular/compiler';
+import { NuevaVentaService } from '../../services/nueva-venta.service';
 
 @Component({
   selector: 'app-factura',
@@ -20,9 +21,12 @@ export class FacturaComponent implements OnInit {
   
     TiposIdentifiers: string[]=['','DNI','CUIT','CUIL'];
 
-  constructor() {}
+  constructor(private ventaService: NuevaVentaService) {}
   
   ngOnInit(): void {
+    this.ventaService.selectedVenta$.subscribe((value) => {
+      this.Factura = value;
+    });
   }
 
   
@@ -35,10 +39,25 @@ export class FacturaComponent implements OnInit {
       x:margin,
       html2canvas: {scale:scale},
       callback:(pdf) => {
-        pdf.save("factura-" + this.Factura.id!.toString() +  ".pdf")
+        pdf.save("factura-" + this.Factura.id!.toString() +  ".pdf");
+        pdf.output('dataurlnewwindow', {filename:'factura.pdf'});
       }
     });
   }
+  openPDF(){
+    let pdf = new jsPDF()
+    var margin =10;
+    var scale = (pdf.internal.pageSize.width *1.3)/ document.body.scrollWidth;
+    pdf.html(this.el.nativeElement,{
+      y:margin,
+      x:margin,
+      html2canvas: {scale:scale},
+      callback:(pdf) => {
+        pdf.output('dataurlnewwindow', {filename:"factura-" + this.Factura.id!.toString() +  ".pdf"});
+      }
+    });
+  }
+
   //downloadPDF() {
     // Extraemos el
     //const doc = new jsPDF('p', 'pt', 'a4');

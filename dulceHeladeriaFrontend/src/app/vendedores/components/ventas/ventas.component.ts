@@ -1,10 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Cliente } from '../../interfaces/cliente-interface';
 import { dtoNuevaVenta } from '../../interfaces/dtoVenta';
 import { gustos } from '../../interfaces/gustos';
 import { productos } from '../../interfaces/productos';
 import { NuevaVentaService } from '../../services/nueva-venta.service';
+import { ClientesComponent } from '../clientes/clientes.component';
+import {formatDate} from '@angular/common';
 
 declare var window: any;
 
@@ -13,8 +16,10 @@ declare var window: any;
   templateUrl: './ventas.component.html',
   styleUrls: ['./ventas.component.css']
 })
-export class VentasComponent implements OnInit, OnDestroy {
+export class VentasComponent implements OnInit, OnDestroy , AfterViewInit{
+  @ViewChild(ClientesComponent) clientescomp: any;
 
+  cliente: Cliente;
   gustos: gustos[] = [{ nombre: 'chocolate' }, { nombre: 'menta granizada' }, { nombre: 'vainilla' }, { nombre: 'frutilla' }, { nombre: 'DDL'}];
   gustosSelected: gustos[] = [];
   contadorGustos: number=0;
@@ -30,7 +35,9 @@ export class VentasComponent implements OnInit, OnDestroy {
   { nombre: 'helado 1/4kg', precio: 500, cantidadMaxGustos: 2, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg",cantidad:1 }]
 
   private subscription = new Subscription();
-
+  ngAfterViewInit() {
+    //this.cliente = this.clientescomp.cliente;
+  }
   //gustosForm = new FormGroup({
     //gustos: new FormControl('-1', Validators.required),
     //cantidad: new FormControl('',Validators.required),
@@ -43,7 +50,7 @@ export class VentasComponent implements OnInit, OnDestroy {
   // });
 
   constructor(
-    private ventaService: NuevaVentaService) { }
+    private ventaService: NuevaVentaService, private router: Router) { }
 
   ngOnInit(): void {
     this.formModal = new window.bootstrap.Modal(
@@ -55,17 +62,19 @@ export class VentasComponent implements OnInit, OnDestroy {
   }
 
   guardar() {
-
-    this.subscription.add(
-      this.ventaService.registrarVenta(this.ventas).subscribe({
-        next: () => {
-          alert('exito')
-        },
-        error: () => {
-          alert('error al guardar la venta');
-        }
-      })
-    );
+    console.log(this.nuevaVenta)
+    this.subscription.add(this.ventaService.setVenta(this.nuevaVenta));
+    this.router.navigateByUrl('/vendedor/factura')
+    //this.subscription.add(
+    //  this.ventaService.registrarVenta(this.ventas).subscribe({
+    //    next: () => {
+    //      alert('exito')
+    //    },
+    //    error: () => {
+    //      alert('error al guardar la venta');
+     //   }
+     // })
+    //);
   }
 
 
@@ -115,6 +124,11 @@ EliminarProducto(prod: productos){
       this.Nuevoproducto.nombre=this.selected.nombre;
       this.Nuevoproducto.precio= this.selected.precio!;
       this.nuevaVenta.producto!.push(this.Nuevoproducto);
+      this.nuevaVenta.fecha = new Date().toLocaleDateString();
+      this.nuevaVenta.total=this.total;
+      this.nuevaVenta.Cliente= this.clientescomp.cliente;
+      //cambiar ID de venta
+      this.nuevaVenta.id=1;
       this.totalPrecio();
       this.cerrarModal();
       this.gustosSelected=[];

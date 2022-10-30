@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { dtoNuevaVenta } from '../interfaces/dtoVenta';
 
@@ -8,7 +8,8 @@ import { dtoNuevaVenta } from '../interfaces/dtoVenta';
   providedIn: 'root'
 })
 export class NuevaVentaService {
-
+  private venta$ = new BehaviorSubject<any>({});
+  selectedVenta$ = this.venta$.asObservable();
 
   private API_URL: string = environment.apiUrlBase;
 
@@ -34,6 +35,8 @@ export class NuevaVentaService {
   //   console.log(body);
   //   return this.http.post(this.API_URL, body, this._options);
   // }
-
+  setVenta(venta: dtoNuevaVenta) {
+    this.venta$.next(venta);
+  }
 
 }
