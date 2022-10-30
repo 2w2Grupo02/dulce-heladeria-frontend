@@ -18,7 +18,11 @@ import { ConsultarArticuloComponent } from './components/consultar-articulo/cons
 import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
 import { ConsultarDepositoComponent } from './components/consultar-deposito/consultar-deposito.component';
 import { RegistrarDepositoComponent } from './components/registrar-deposito/registrar-deposito.component';
-
+import { RankingItemsComponent } from './components/reporte-venta/ranking-items/ranking-items.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { RankingTableComponent } from './components/reporte-venta/ranking-table/ranking-table.component';
 @NgModule({
   declarations: [
     RegistrarArticuloComponent,
@@ -28,7 +32,9 @@ import { RegistrarDepositoComponent } from './components/registrar-deposito/regi
     ConsultarArticuloComponent,
     ConsultarUbicacionesArticuloComponent,
     ConsultarDepositoComponent,
-    RegistrarDepositoComponent
+    RegistrarDepositoComponent,
+    RankingItemsComponent,
+    RankingTableComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +45,10 @@ import { RegistrarDepositoComponent } from './components/registrar-deposito/regi
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    NgChartsModule
+    NgChartsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     RegistrarArticuloComponent,
