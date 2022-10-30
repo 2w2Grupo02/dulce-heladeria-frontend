@@ -6,6 +6,8 @@ import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ub
 import { ListadoClientesComponent } from 'src/app/vendedores/pages/listado-clientes/listado-clientes.component';
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
+import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
+
 
 const routes: Routes = [
   {
@@ -18,6 +20,7 @@ const routes: Routes = [
       {path: 'articulos/:id/ubicaciones', component:ConsultarUbicacionesArticuloComponent},
       {path: 'depositos', component:ConsultarDepositoComponent},
       {path: 'clientes', component:ListadoClientesComponent},
+      {path: 'ubicacion', component:RegistrarUbicacionDepositoComponent},
       {path:'**', redirectTo:''}
 
     ]

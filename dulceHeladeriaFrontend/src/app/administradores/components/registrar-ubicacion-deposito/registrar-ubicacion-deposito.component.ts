@@ -1,0 +1,82 @@
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Deposito } from '../../interfaces/deposito';
+import { UbicacionDeposito } from '../../interfaces/ubicacion-deposito';
+import { DepositosService } from '../../services/depositos.service';
+import { UbicacionDepositoService } from '../../services/ubicacion-deposito.service';
+
+declare var window: any;
+
+@Component({
+  selector: 'app-registrar-ubicacion-deposito',
+  templateUrl: './registrar-ubicacion-deposito.component.html',
+  styleUrls: ['./registrar-ubicacion-deposito.component.css']
+})
+export class RegistrarUbicacionDepositoComponent implements OnInit, OnDestroy {
+  private sub: Subscription = new Subscription();
+  ubicacion : UbicacionDeposito;
+  formNuevo: any;
+  depositos: Deposito[];
+
+  nuevaUbicacionForm = new FormGroup({
+    column: new FormControl('', Validators.required),
+    row: new FormControl('', Validators.required),
+    capacity: new FormControl('', Validators.required),
+    depositId: new FormControl('', Validators.required),
+    itemTypeId: new FormControl('', Validators.required),
+  });
+
+  constructor(private ubicacionService : UbicacionDepositoService, private depositoService:DepositosService) { }
+
+  ngOnInit(): void {
+    this.formNuevo = new window.bootstrap.Modal(
+      document.getElementById('nuevaUbicacion')
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
+  openNuevaUbicacion(){
+    this.formNuevo.show();
+  }
+  
+  closeNuevaUbicacion(){
+    this.formNuevo.hide();
+  }
+  
+  consultarDepositos(){
+    this.sub.add(this.depositoService.getAll().subscribe({
+      next: resp => {
+        this.depositos = resp;
+      },
+      error: err => {
+        console.log(err);
+      }
+    }));
+  }
+
+  registrarNuevaUbicacion(){
+    if (this.nuevaUbicacionForm.valid) {
+      this.ubicacion = this.nuevaUbicacionForm.value as UbicacionDeposito;
+      console.log("component",this.ubicacion);
+
+      this.sub.add(
+        this.ubicacionService.create(this.ubicacion).subscribe({
+          next: (resp: any) => {
+            console.log(resp);
+            alert('guardado exitoso!');
+          },
+          error: () => {
+            alert('error');
+          },
+        })
+      );
+    }
+
+    this.closeNuevaUbicacion();
+  }
+  
+}
