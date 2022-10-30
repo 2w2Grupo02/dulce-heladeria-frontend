@@ -33,7 +33,7 @@
           <div class="card-footer bg-transparent border-dark"><label>Total a pagar: <B>{{total}}</B></label></div>
       </div>
       <div class="row">
-        <button type="submit" class="btn btn-primary" (click)="guardar()" style="margin-top: 2vh;">Cobrar</button>
+        <button type="submit" class="btn btn-primary" (click)="guardar()" style="margin-top: 2vh;" [disabled]="!nuevaVenta.Cliente || !nuevaVenta.producto">Cobrar</button>
       </div>
       
     </div>

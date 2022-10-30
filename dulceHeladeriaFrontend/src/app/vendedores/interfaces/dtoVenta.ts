@@ -1,7 +1,10 @@
+import { Cliente } from "./cliente-interface";
 import { productos } from "./productos";
 
 export interface dtoNuevaVenta{
     id?:number;
     total?: number;
-    producto? : productos[];
+    fecha?: string;
+    producto?: productos[];
+    Cliente?: Cliente;
 }

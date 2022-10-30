@@ -16,11 +16,11 @@
 import { gustos } from "./gustos";
 
 export interface productos{
-    nombre?:string;
-    precio?:number;
+    nombre:string;
+    precio:number;
     cantidadMaxGustos?: number;
     imagen?: string;
-    cantidad?:number;
+    cantidad:number;
     gustosS?:gustos[];
 //ESTO VIENE DE LA API??
 }

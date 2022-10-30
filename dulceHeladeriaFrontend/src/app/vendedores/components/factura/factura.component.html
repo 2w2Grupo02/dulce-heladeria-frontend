@@ -5,7 +5,7 @@
                 <div class="toolbar hidden-print">
                     <div class="text-end">
                         <button type="button" class="btn btn-dark"><i class="fa fa-print"></i> Ver PDF</button>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Enviar por email</button>
+                        <button type="button" class="btn btn-danger">Enviar por email<i class="fa fa-file-pdf-o"></i></button>
                     </div>
                     <hr>
                 </div>
@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class="col">
                                     <a href="javascript:;">
-    												<img src="assets/img/logo.png" width="80" alt="">
+    												<img src="assets/img/logo.png" width="120" alt="">
 												</a>
                                 </div>
                                 <div class="col company-details">
@@ -33,15 +33,15 @@
                             <div class="row contacts">
                                 <div class="col invoice-to">
                                     <div class="text-gray-light">Cliente:</div>
-                                    <h2 class="to">Juan Perez</h2>
-                                    <div class="address">Illia 2345, Córdoba</div>
-                                    <div class="address">DNI - 23021065</div>
-                                    <div class="email"><a href="mailto:john@example.com">juanP@ejemplo.com</a>
+                                    <h2 class="to">{{Factura.Cliente!.businessName}}</h2>
+                                    <div class="address">{{Factura.Cliente!.homeAdress}}, Córdoba</div>
+                                    <div class="address">{{TiposIdentifiers[Factura.Cliente!.identifierTypeId!]}} - {{Factura.Cliente!.identifier}}</div>
+                                    <div class="email"><a href="mailto:{{Factura.Cliente!.email}}">{{Factura.Cliente!.email}}</a>
                                     </div>
                                 </div>
                                 <div class="col invoice-details">
-                                    <h1 class="invoice-id">Factura #1</h1>
-                                    <div class="date">Fecha: 01/11/2022</div>
+                                    <h1 class="invoice-id">Factura #{{Factura.id}}</h1>
+                                    <div class="date">Fecha: {{Factura.fecha}}</div>
                                 </div>
                             </div>
                             <table>
@@ -55,23 +55,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="no">04</td>
+                                    <tr *ngFor="let prod of Factura.producto; let i = index">
+                                        <td class="no">{{i+1}}</td>
                                         <td class="text-left">
                                             <h3>
-										KILO 
+										{{prod.nombre}} 
                                             </h3>
-                                            Frutilla, Chocolate, Limon</td>
-                                        <td class="unit">$1,000.0</td>
-                                        <td class="qty">2</td>
-                                        <td class="total">$2,000.00</td>
+                                            <span *ngFor="let gusto of prod.gustosS">
+                                             {{gusto.nombre}} 
+                                            </span>
+                                            </td>
+                                        <td class="unit">{{prod.precio | currency}}</td>
+                                        <td class="qty">{{prod.cantidad}}</td>
+                                        <td class="total">{{prod.precio*prod.cantidad | currency}}</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">TOTAL</td>
-                                        <td>$2,000.00</td>
+                                        <td>{{Factura.total | currency}}</td>
                                     </tr>
                                 </tfoot>
                             </table>
