@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Cliente } from '../../interfaces/cliente-interface';
 import { dtoNuevaVenta } from '../../interfaces/dtoVenta';
 import { productos } from '../../interfaces/productos';
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
+import { identifierName } from '@angular/compiler';
 
 @Component({
   selector: 'app-factura',
@@ -9,7 +12,7 @@ import { productos } from '../../interfaces/productos';
   styleUrls: ['./factura.component.css']
 })
 export class FacturaComponent implements OnInit {
-
+  @ViewChild('factura',{static:false}) el!: ElementRef
   Factura: dtoNuevaVenta= {id:1,total: 2700, fecha: '31/10/2022', 
     producto : [{ nombre: 'Helado de 1 kilo', precio:1000, cantidad:2, gustosS :[{nombre:'Limón'},{nombre:'Chocolate'},{nombre:'Crema Americana'}]},
                 { nombre: 'Helado de 1/2 kilo', precio:700, cantidad:1, gustosS :[{nombre:'Frutilla'},{nombre:'Tramontana'},{nombre:'Banana con DDL'}]}], 
@@ -17,9 +20,50 @@ export class FacturaComponent implements OnInit {
   
     TiposIdentifiers: string[]=['','DNI','CUIT','CUIL'];
 
-  constructor() { }
+  constructor() {}
   
   ngOnInit(): void {
   }
 
+  
+  generatePDF(){
+    let pdf = new jsPDF()
+    var margin =10;
+    var scale = (pdf.internal.pageSize.width *1.3)/ document.body.scrollWidth;
+    pdf.html(this.el.nativeElement,{
+      y:margin,
+      x:margin,
+      html2canvas: {scale:scale},
+      callback:(pdf) => {
+        pdf.save("factura-" + this.Factura.id!.toString() +  ".pdf")
+      }
+    });
+  }
+  //downloadPDF() {
+    // Extraemos el
+    //const doc = new jsPDF('p', 'pt', 'a4');
+    //var margin =10;
+    //var scale = (doc.internal.pageSize.width - margin * 2)/ document.body.scrollWidth;
+    //doc.html(document.body,{
+    //  x:margin,
+    //  y:margin,
+    //  html2canvas: {scale:scale},
+    //  callback: function(doc){doc.output('dataurlnewwindow', {filename:'factura.pdf'})}
+    //});
+    //html2canvas(DATA, options).then((canvas) => {
+
+    //  const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+     // const bufferX = 15;
+     // const bufferY = 15;
+     // const imgProps = (doc as any).getImageProperties(img);
+     // const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+     //const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      //doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+     //return doc;
+   // }).then((docResult) => {
+    //  docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+    //});
+  //}
 }
