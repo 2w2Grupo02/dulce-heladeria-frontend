@@ -18,10 +18,12 @@ export class ReporteVentaComponent implements OnInit {
   total:number = 1000; 
   date:range; 
 
-  constructor(private rangeService:RangeService, private matDialog: MatDialog) { }
+  constructor(private rangeService:RangeService, private matDialog: MatDialog) {
+
+   }
 
   ngOnInit(): void {
-    this.rangeService.rangeEmit()
+       this.rangeService.rangeEmit()
     .subscribe({
       next: (resp:range) => {
         this.date = resp
