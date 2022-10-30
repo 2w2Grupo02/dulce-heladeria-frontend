@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { range } from '../../interfaces/range';
 import { RangeService } from '../../services/range.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { VentaFinalDiaComponent } from './venta-final-dia/venta-final-dia.component';
+
 
 @Component({
   selector: 'app-reporte-venta',
@@ -8,13 +11,14 @@ import { RangeService } from '../../services/range.service';
   styleUrls: ['./reporte-venta.component.css']
 })
 export class ReporteVentaComponent implements OnInit {
+
   @Input() start: Date | null | undefined;
   @Input() end: Date | null | undefined;
 
   total:number = 1000; 
   date:range; 
 
-  constructor(private rangeService:RangeService) { }
+  constructor(private rangeService:RangeService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.rangeService.rangeEmit()
@@ -27,4 +31,13 @@ export class ReporteVentaComponent implements OnInit {
     }); 
   }
 
+  ventaFinal() {
+    console.log("click");
+
+    let dialogRef = this.matDialog.open(VentaFinalDiaComponent)
+
+    dialogRef.afterClosed().subscribe(result => {
+      alert("hola cerro");
+    });
+    }
 }

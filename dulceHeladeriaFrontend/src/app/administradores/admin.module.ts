@@ -18,7 +18,10 @@ import { ConsultarArticuloComponent } from './components/consultar-articulo/cons
 import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
 import { ConsultarDepositoComponent } from './components/consultar-deposito/consultar-deposito.component';
 import { RegistrarDepositoComponent } from './components/registrar-deposito/registrar-deposito.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { VentaFinalDiaComponent } from './components/reporte-venta/venta-final-dia/venta-final-dia.component';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     RegistrarArticuloComponent,
@@ -28,8 +31,10 @@ import { RegistrarDepositoComponent } from './components/registrar-deposito/regi
     ConsultarArticuloComponent,
     ConsultarUbicacionesArticuloComponent,
     ConsultarDepositoComponent,
-    RegistrarDepositoComponent
+    RegistrarDepositoComponent,
+    VentaFinalDiaComponent
   ],
+  entryComponents : [VentaFinalDiaComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -39,13 +44,19 @@ import { RegistrarDepositoComponent } from './components/registrar-deposito/regi
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    NgChartsModule
+    NgChartsModule,
+    MatDialogModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   exports: [
     RegistrarArticuloComponent,
     ReportesComponent,
     MatDatepickerModule,
-    ConsultarArticuloComponent
+    ConsultarArticuloComponent,
+    MatDialogModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ArticulosService
