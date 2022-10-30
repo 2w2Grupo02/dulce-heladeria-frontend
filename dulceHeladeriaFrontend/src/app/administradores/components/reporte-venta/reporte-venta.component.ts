@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { range } from '../../interfaces/range';
 import { RangeService } from '../../services/range.service';
 
+
 @Component({
   selector: 'app-reporte-venta',
   templateUrl: './reporte-venta.component.html',
