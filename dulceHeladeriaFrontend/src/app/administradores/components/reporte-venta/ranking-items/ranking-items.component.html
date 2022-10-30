@@ -8,12 +8,11 @@
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let a of dataSource, let i">
-          <td>{{i}}</td>
-            <td>{{a.posicion}}</td>
-            <td>{{a.producto}}</td>
-            <td>{{a.totalVenta}}</td>
-            <td>{{a.cantVendido}}</td>
+        <tr *ngFor="let r of dataSource">
+          <td>{{r.posicion}}</td>
+          <td>{{r.producto}}</td>
+          <td>{{r.totalVenta}}</td>
+          <td>{{r.cantVendido}</td>
         </tr>
     </tbody>
   </table>
