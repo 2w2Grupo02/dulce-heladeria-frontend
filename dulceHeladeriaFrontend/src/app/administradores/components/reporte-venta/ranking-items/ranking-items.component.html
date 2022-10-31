@@ -1,4 +1,9 @@
-<table class="table">
+<div class="ranking-container">
+  <div class="ranking-container-header">
+    <h3>RANKING DE VENTAS</h3>
+  <button type="submit" class="btn btn-light">Descargar Reporte</button>  
+  </div>
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">posicion</th>
@@ -12,7 +17,8 @@
           <td>{{r.posicion}}</td>
           <td>{{r.producto}}</td>
           <td>{{r.totalVenta}}</td>
-          <td>{{r.cantVendido}</td>
+          <td>{{r.cantVendido}}</td>
         </tr>
     </tbody>
   </table>
+</div>

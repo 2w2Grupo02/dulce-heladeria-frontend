@@ -20,6 +20,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { VentaFinalDiaComponent } from './components/reporte-venta/venta-final-dia/venta-final-dia.component';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RankingItemsComponent } from './components/reporte-venta/ranking-items/ranking-items.component';
+import { RankingTableComponent } from './components/reporte-venta/ranking-table/ranking-table.component';
 @NgModule({
   declarations: [
     RegistrarArticuloComponent,
@@ -30,7 +32,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ConsultarUbicacionesArticuloComponent,
     ConsultarDepositoComponent,
     RegistrarDepositoComponent,
-    VentaFinalDiaComponent
+    VentaFinalDiaComponent,
+    RankingItemsComponent,
+    RankingTableComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [

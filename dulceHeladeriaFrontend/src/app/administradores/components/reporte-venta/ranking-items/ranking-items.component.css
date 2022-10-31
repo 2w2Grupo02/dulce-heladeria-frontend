@@ -1,0 +1,19 @@
+.ranking-container{
+    display:flex; 
+    flex-direction: column;
+}
+
+.ranking-container-header{
+    display:flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.btn{
+    width: 30vw; 
+    margin-left: 10px;
+    background-color: pink;
+    color: white;
+    font-weight: 700;
+}
