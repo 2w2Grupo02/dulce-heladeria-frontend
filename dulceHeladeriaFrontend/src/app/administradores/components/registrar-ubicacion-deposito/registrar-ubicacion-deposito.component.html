@@ -28,11 +28,20 @@
                             formControlName="capacity">
                     </div>
                     <div class="form-group">
+                        <div></div>
                         <label for="depositId">Elija un deposito</label>
-                        <select *ngFor="let depo of depositos" class="form-select form-select-md mb-3" aria-label=".from.select-md Rol de usuario" formControlName="depositId">
-                          <option value="1">{{depo.name}}</option>
+                        <select class="form-select form-select-md mb-3" aria-label=".from.select-md Rol de usuario" formControlName="depositId">
+                            <option *ngFor="let depo of depositos" [value]="depo.id">{{depo.name}}</option>   
                         </select>
-                      </div>           
+                      </div>    
+                      <div class="form-group">
+                        <label for="itemType">Tipo de Articulo</label>
+                        <select class="form-control" id="itemType" formControlName="itemTypeId">
+                            <option [value]=1>Helado Litro</option>
+                            <option [value]=2>Helado Paquete</option>
+                            <option [value]=3>Gaseosa</option>
+                        </select>
+                    </div>
                     <div class="alert alert-danger" role="alert"
                         *ngIf="nuevaUbicacionForm.touched && nuevaUbicacionForm.invalid">
                         Faltan Campos

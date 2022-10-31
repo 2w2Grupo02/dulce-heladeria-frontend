@@ -20,11 +20,11 @@ export class RegistrarUbicacionDepositoComponent implements OnInit, OnDestroy {
   depositos: Deposito[];
 
   nuevaUbicacionForm = new FormGroup({
-    column: new FormControl('', Validators.required),
-    row: new FormControl('', Validators.required),
-    capacity: new FormControl('', Validators.required),
-    depositId: new FormControl('', Validators.required),
-    itemTypeId: new FormControl('', Validators.required),
+    column: new FormControl('',Validators.required),
+    row: new FormControl('',Validators.required),
+    capacity: new FormControl('',Validators.required),
+    depositId: new FormControl('',Validators.required),
+    itemTypeId: new FormControl('',Validators.required),
   });
 
   constructor(private ubicacionService : UbicacionDepositoService, private depositoService:DepositosService) { }
@@ -33,6 +33,7 @@ export class RegistrarUbicacionDepositoComponent implements OnInit, OnDestroy {
     this.formNuevo = new window.bootstrap.Modal(
       document.getElementById('nuevaUbicacion')
     );
+    this.consultarDepositos();
   }
 
   ngOnDestroy(): void {
@@ -46,7 +47,7 @@ export class RegistrarUbicacionDepositoComponent implements OnInit, OnDestroy {
   closeNuevaUbicacion(){
     this.formNuevo.hide();
   }
-  
+
   consultarDepositos(){
     this.sub.add(this.depositoService.getAll().subscribe({
       next: resp => {
@@ -54,6 +55,7 @@ export class RegistrarUbicacionDepositoComponent implements OnInit, OnDestroy {
       },
       error: err => {
         console.log(err);
+        alert('error');
       }
     }));
   }
@@ -61,16 +63,33 @@ export class RegistrarUbicacionDepositoComponent implements OnInit, OnDestroy {
   registrarNuevaUbicacion(){
     if (this.nuevaUbicacionForm.valid) {
       this.ubicacion = this.nuevaUbicacionForm.value as UbicacionDeposito;
-      console.log("component",this.ubicacion);
+      console.log(this.ubicacion);
 
+      if (this.nuevaUbicacionForm.controls.itemTypeId.value) {
+        this.ubicacion.itemTypeId = parseInt(
+          this.nuevaUbicacionForm.controls.itemTypeId.value
+        );
+      }
+      if (this.nuevaUbicacionForm.controls.depositId.value) {
+        this.ubicacion.depositId = parseInt(
+          this.nuevaUbicacionForm.controls.depositId.value
+        );
+      }
+      if (this.nuevaUbicacionForm.controls.capacity.value) {
+        this.ubicacion.capacity = parseInt(
+          this.nuevaUbicacionForm.controls.capacity.value
+        );
+      }
+      
       this.sub.add(
         this.ubicacionService.create(this.ubicacion).subscribe({
           next: (resp: any) => {
             console.log(resp);
             alert('guardado exitoso!');
           },
-          error: () => {
-            alert('error');
+          error: err=> {
+            console.log(err)
+            alert('fallo')
           },
         })
       );
