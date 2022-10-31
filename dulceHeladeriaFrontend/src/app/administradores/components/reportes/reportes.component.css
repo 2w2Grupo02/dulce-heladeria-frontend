@@ -1,17 +1,26 @@
 #report-container{
     padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 #report-container-header{
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.report-container-picker{
+    display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .navbar{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
     border-bottom: 0.1rem solid grey;
 }
 

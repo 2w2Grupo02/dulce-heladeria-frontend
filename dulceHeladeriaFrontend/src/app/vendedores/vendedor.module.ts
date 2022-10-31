@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientesService } from './services/clientes.service';
 import { VendedorRoutingModule } from './vendedor-routing.module';
 import { ListadoClientesComponent } from './pages/listado-clientes/listado-clientes.component';
+import { ReporteVentaComponent } from '../administradores/components/reporte-venta/reporte-venta.component';
 
 
 

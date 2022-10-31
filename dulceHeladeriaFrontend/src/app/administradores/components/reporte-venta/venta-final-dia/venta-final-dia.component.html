@@ -1,0 +1,59 @@
+
+    <div class="reporte-final-container">
+        <h3 class="title">INFORME FINAL DEL DIA</h3>
+        <h6 class="title">RESUMEN DIARIO</h6>
+        <div class="container-row">
+            <select class="form-select" aria-label="seleccione el dia">
+                <option selected>HOY!</option>
+                <option value="1">Ayer</option>
+              </select>
+            <button type="submit" class="btn btn-light">Descargar Reporte</button>    
+        </div>
+        
+        <div>
+            <h3 class="title">INGRESOS</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Tipo de ingreso</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Monto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <!--<tr *ngFor="let i of ingresos">
+                    <td>{{i.tipo}}</td>
+                    <td>{{i.cantidad}}</td>
+                    <td>{{i.monto}}</td>
+                  </tr>-->
+                  <tr>
+                    <td><h6>EFECTIVO</h6></td>
+                    <td>1</td>
+                    <td>1500$</td>
+                  </tr>
+                  <tr>
+                    <td><h6>TARJETA</h6></td>
+                    <td>4</td>
+                    <td>4500$</td>
+                  </tr>
+                  <tr>
+                    <td><h6>MERCADO PAGO</h6></td>
+                    <td>2</td>
+                    <td>2000$</td>
+                  </tr>
+                  <tr>
+                    <td><h6>TOTAL</h6></td>
+                    <td></td>
+                    <td><b>8000$</b></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        </div>
+
+  <button (click)="closeDialog()">Cancel</button>
+
+
+
+
+
