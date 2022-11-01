@@ -24,6 +24,7 @@ import { RankingItemsComponent } from './components/reporte-venta/ranking-items/
 import { RankingTableComponent } from './components/reporte-venta/ranking-table/ranking-table.component';
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
 import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,6 @@ import { RegistrarMovimientoArtComponent } from './components/registrar-movimien
     NgChartsModule,
     MatDialogModule,
     MatButtonModule,
-    BrowserAnimationsModule
   ],
   exports: [
     RegistrarArticuloComponent,
@@ -63,7 +63,7 @@ import { RegistrarMovimientoArtComponent } from './components/registrar-movimien
     ConsultarArticuloComponent,
     MatDialogModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    //BrowserAnimationsModule
   ],
   providers: [
     ArticulosService
