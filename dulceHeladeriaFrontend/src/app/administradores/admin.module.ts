@@ -19,6 +19,7 @@ import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ub
 import { ConsultarDepositoComponent } from './components/consultar-deposito/consultar-deposito.component';
 import { RegistrarDepositoComponent } from './components/registrar-deposito/registrar-deposito.component';
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
+import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubic
     ConsultarUbicacionesArticuloComponent,
     ConsultarDepositoComponent,
     RegistrarDepositoComponent,
-    RegistrarUbicacionDepositoComponent
+    RegistrarUbicacionDepositoComponent,
+    RegistrarMovimientoArtComponent
   ],
   imports: [
     CommonModule,
