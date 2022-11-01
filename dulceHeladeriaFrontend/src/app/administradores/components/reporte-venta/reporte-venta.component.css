@@ -1,0 +1,17 @@
+.report-data-container-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.report-data-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn{
+    background-color: pink;
+    color: white;
+    height: 50%;
+}

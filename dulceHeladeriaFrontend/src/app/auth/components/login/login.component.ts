@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   ingresar(){
-    this.router.navigate(['./administrador/'])
+    this.router.navigate(['./administrador'])
     window.open('http://localhost:4200/vendedor')
   }
 

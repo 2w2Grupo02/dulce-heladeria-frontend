@@ -36,7 +36,6 @@ import { NgChartsModule } from 'ng2-charts';
     MatNativeDateModule,
     NgChartsModule,
     FormsModule
-  
   ],
   providers: [],
   bootstrap: [AppComponent]
