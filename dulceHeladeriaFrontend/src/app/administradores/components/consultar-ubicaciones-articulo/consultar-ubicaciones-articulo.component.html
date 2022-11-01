@@ -1,5 +1,5 @@
 <div id="header">
-    <h3>Ubicaciones: {{ubicacionesArticulo[0].item}}</h3>
+    <h3>Ubicaciones: {{nombreArticulo}}</h3>
     <button class="btn btn-primary" (click)="regresar()">Volver</button>    
 </div>
 <div id="content">    
@@ -23,7 +23,9 @@
                 <td>{{ubi.amount}}</td>
                 <td>{{ubi.capacity}}</td>
                 <td>{{ubi.entryDate | date:'dd/MM/yyyy'}}</td>
-                <td></td>
+                <td>
+                    <app-registrar-movimiento-art (recargar)="onRecargar()" [ubicArticulo]="{itemStockId: ubi.id, locationName: ubi.location, locationId: ubi.locationId}"></app-registrar-movimiento-art>
+                </td>
             </tr>
         </tbody>
     </table>

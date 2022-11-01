@@ -8,6 +8,7 @@ import { ClientesService } from './services/clientes.service';
 import { VendedorRoutingModule } from './vendedor-routing.module';
 import { ListadoClientesComponent } from './pages/listado-clientes/listado-clientes.component';
 import { ReporteVentaComponent } from '../administradores/components/reporte-venta/reporte-venta.component';
+import { FacturaComponent } from './components/factura/factura.component';
 
 
 
@@ -15,7 +16,8 @@ import { ReporteVentaComponent } from '../administradores/components/reporte-ven
   declarations: [
     VentasComponent,
     ClientesComponent,
-    ListadoClientesComponent
+    ListadoClientesComponent,
+    FacturaComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { ReporteVentaComponent } from '../administradores/components/reporte-ven
   exports:[
     VentasComponent,
     ClientesComponent,
-    ListadoClientesComponent
+    ListadoClientesComponent,
+    FacturaComponent
 
   ],
   providers:[

@@ -22,6 +22,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RankingItemsComponent } from './components/reporte-venta/ranking-items/ranking-items.component';
 import { RankingTableComponent } from './components/reporte-venta/ranking-table/ranking-table.component';
+import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
+import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
+
 @NgModule({
   declarations: [
     RegistrarArticuloComponent,
@@ -34,7 +37,9 @@ import { RankingTableComponent } from './components/reporte-venta/ranking-table/
     RegistrarDepositoComponent,
     VentaFinalDiaComponent,
     RankingItemsComponent,
-    RankingTableComponent
+    RankingTableComponent,
+    RegistrarUbicacionDepositoComponent,
+    RegistrarMovimientoArtComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [

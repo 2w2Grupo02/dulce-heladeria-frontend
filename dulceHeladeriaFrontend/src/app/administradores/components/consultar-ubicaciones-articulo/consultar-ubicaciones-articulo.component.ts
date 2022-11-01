@@ -13,6 +13,7 @@ import { ArticulosService } from '../../services/articulos.service';
 export class ConsultarUbicacionesArticuloComponent
   implements OnInit, OnDestroy
 {
+  nombreArticulo: string;
   ubicacionesArticulo: UbicacionArticulo[];
   private sub: Subscription = new Subscription();
   constructor(
@@ -36,8 +37,8 @@ export class ConsultarUbicacionesArticuloComponent
           const id = params['id'];
           this.articuloService.getUbicacionesArticulo(id).subscribe({
             next: (resp) => {
-              console.log(resp);
               this.ubicacionesArticulo = resp;
+              this.nombreArticulo = this.ubicacionesArticulo[0].item;
             },
             error: (err) => {
               console.log(err);
@@ -50,5 +51,8 @@ export class ConsultarUbicacionesArticuloComponent
   }
   regresar() {
     this.location.back();
+  }
+  onRecargar() {
+    this.consultarUbicaciones();
   }
 }
