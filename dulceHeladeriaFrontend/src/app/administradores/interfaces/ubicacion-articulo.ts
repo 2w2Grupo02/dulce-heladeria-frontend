@@ -1,5 +1,6 @@
 export interface UbicacionArticulo {
     location: string;
+    locationId: number;
     deposit: string;
     amount: number;
     capacity: number;
@@ -7,4 +8,5 @@ export interface UbicacionArticulo {
     deletionDate: Date;
     item: string;
     itemType: string;
+    id: number
 }

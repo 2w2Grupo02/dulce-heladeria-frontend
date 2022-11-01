@@ -23,4 +23,11 @@ export class ArticulosService {
   getUbicacionesArticulo(idArticulo: number): Observable<UbicacionArticulo[]> {
     return this.http.get<UbicacionArticulo[]>(`https://localhost:5001/api/item/${idArticulo}/stock`);
   }
+  
+  buscarUbicacionesDisponibles(depositId: number, itemId: number): Observable<any>{
+    return this.http.get(`https://localhost:5001/api/ItemStock/available?itemId=${itemId}&depositId=${depositId}`);
+  }
+  createMovimientoStock(depositId: {}): Observable<any>{
+    return this.http.post(`https://localhost:5001/api/ItemStock/movement`,depositId);
+  }
 }
