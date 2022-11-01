@@ -60,7 +60,8 @@ export class RegistrarArticuloComponent implements OnInit, OnDestroy {
             console.log(resp);
             alert("guardado exitoso!")
           },
-          error: () => {
+          error: (err:any) => {
+            console.log(err);
             alert('error');
           },
         })

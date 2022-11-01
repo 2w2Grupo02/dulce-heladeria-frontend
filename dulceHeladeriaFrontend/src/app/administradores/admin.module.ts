@@ -18,6 +18,8 @@ import { ConsultarArticuloComponent } from './components/consultar-articulo/cons
 import { ConsultarUbicacionesArticuloComponent } from './components/consultar-ubicaciones-articulo/consultar-ubicaciones-articulo.component';
 import { ConsultarDepositoComponent } from './components/consultar-deposito/consultar-deposito.component';
 import { RegistrarDepositoComponent } from './components/registrar-deposito/registrar-deposito.component';
+import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
+import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RegistrarDepositoComponent } from './components/registrar-deposito/regi
     ConsultarArticuloComponent,
     ConsultarUbicacionesArticuloComponent,
     ConsultarDepositoComponent,
-    RegistrarDepositoComponent
+    RegistrarDepositoComponent,
+    RegistrarUbicacionDepositoComponent,
+    RegistrarMovimientoArtComponent
   ],
   imports: [
     CommonModule,
