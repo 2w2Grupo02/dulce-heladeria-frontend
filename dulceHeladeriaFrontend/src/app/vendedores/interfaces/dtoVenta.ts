@@ -7,4 +7,5 @@ export interface dtoNuevaVenta{
     fecha?: string;
     producto?: productos[];
     Cliente?: Cliente;
+    formaPago?: string;
 }

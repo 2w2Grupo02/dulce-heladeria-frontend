@@ -8,6 +8,7 @@ import { productos } from '../../interfaces/productos';
 import { NuevaVentaService } from '../../services/nueva-venta.service';
 import { ClientesComponent } from '../clientes/clientes.component';
 import {formatDate} from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 declare var window: any;
 
@@ -19,7 +20,6 @@ declare var window: any;
 export class VentasComponent implements OnInit, OnDestroy , AfterViewInit{
   @ViewChild(ClientesComponent) clientescomp: any;
 
-  cliente: Cliente;
   gustos: gustos[] = [{ nombre: 'chocolate' }, { nombre: 'menta granizada' }, { nombre: 'vainilla' }, { nombre: 'frutilla' }, { nombre: 'DDL'}];
   gustosSelected: gustos[] = [];
   contadorGustos: number=0;
@@ -28,27 +28,19 @@ export class VentasComponent implements OnInit, OnDestroy , AfterViewInit{
   formModal: any;
   selected: productos= this.Nuevoproducto;
   nuevaVenta: dtoNuevaVenta = {total: 0, producto : []};
+  formasPago: string[]=['Efectivo','Tarjeta Debito','Tarjeta Credito','Mercado Pago']
   //arrayTabla: productos[] = []
-
+  formaPagoGroup = new FormGroup({formaPago: new FormControl('Efectivo', Validators.required)});
   arrayCard: productos[] = [{ nombre: 'helado 1KG', precio: 1000, cantidadMaxGustos: 4, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg",cantidad:1 },
   { nombre: 'helado 1/2kg', precio: 700, cantidadMaxGustos: 3, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg",cantidad:1 },
   { nombre: 'helado 1/4kg', precio: 500, cantidadMaxGustos: 2, imagen: "https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg",cantidad:1 }]
 
   private subscription = new Subscription();
   ngAfterViewInit() {
-    //this.cliente = this.clientescomp.cliente;
   }
-  //gustosForm = new FormGroup({
-    //gustos: new FormControl('-1', Validators.required),
-    //cantidad: new FormControl('',Validators.required),
-  //});
-
-  // ventaForm = new FormGroup({
-  //   nombre: new FormControl('', Validators.required),
-  //   precio: new FormControl(''),
-  //   cantidad: new FormControl(Validators.min(1)),
-  // });
-
+  ngOnChange() {
+    this.nuevaVenta.Cliente=this.clientescomp
+  }
   constructor(
     private ventaService: NuevaVentaService, private router: Router) { }
 
@@ -76,7 +68,6 @@ export class VentasComponent implements OnInit, OnDestroy , AfterViewInit{
      // })
     //);
   }
-
 
 
   openModal(producto: productos) {
@@ -111,7 +102,7 @@ EliminarProducto(prod: productos){
   if(id != null){
     this.nuevaVenta.producto!.splice(id,1);
   }
-  
+  this.totalPrecio();
 }
 
   cerrarModal() {
@@ -120,10 +111,14 @@ EliminarProducto(prod: productos){
 
   registrarProducto(producto: productos) {
       this.Nuevoproducto.gustosS=this.gustosSelected;
-      this.Nuevoproducto.cantidad=this.selected.cantidad;
+      this.Nuevoproducto.cantidad= parseInt(this.selected.cantidad.toString());
       this.Nuevoproducto.nombre=this.selected.nombre;
       this.Nuevoproducto.precio= this.selected.precio!;
       this.nuevaVenta.producto!.push(this.Nuevoproducto);
+      if(this.formaPagoGroup.controls.formaPago.value){
+        this.nuevaVenta.formaPago = this.formaPagoGroup.controls.formaPago.value;
+      }
+      console.log(this.nuevaVenta.formaPago)
       this.nuevaVenta.fecha = new Date().toLocaleDateString();
       this.nuevaVenta.total=this.total;
       this.nuevaVenta.Cliente= this.clientescomp.cliente;
