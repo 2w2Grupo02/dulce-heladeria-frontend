@@ -19,8 +19,11 @@ export class VentaService {
     })
   };
 
-  getAllVenta(range:range) {
-    return this.http.post<any[]>('https://localhost:44350/range',range, this.httpOptions);
+  getAllVenta(range:range): Observable<any> {
+    return this.http.post<any>('https://localhost:44350/api/range',{
+      start : range.start,
+      end: range.end
+    });
   }
 
 }
