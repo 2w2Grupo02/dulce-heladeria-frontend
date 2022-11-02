@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChartData, ChartOptions} from 'chart.js'
 import { range } from 'src/app/administradores/interfaces/range';
 import { RangeService } from 'src/app/administradores/services/range.service';
+import { VentaService } from 'src/app/administradores/services/venta.service';
 @Component({
   selector: 'app-reporte-grafico-linea',
   templateUrl: './reporte-grafico-linea.component.html',
@@ -19,13 +20,26 @@ export class ReporteGraficoLineaComponent implements OnInit {
       title: {text:"nombre del chart", display:true, font:{size:30}}
     }
   }
-  constructor(private rangeService:RangeService) { }
+  constructor(private rangeService:RangeService, private ventaService:VentaService) { }
 
   ngOnInit(): void {
     this.rangeService.rangeEmit().subscribe({
       next: (range:range) => {
         this.range = range; 
         this.obtenerDias(range.start!,range.end!);
+        let ventas; 
+        this.ventaService.getAllVenta({
+          "start" : range.start?.toLocaleDateString(), 
+          "end" : range.end?.toLocaleDateString()
+        } as range).subscribe(
+          {
+            next: (resp:any) =>{
+              ventas = resp  
+            }
+          }
+        );
+        console.log("ventas!!!")
+        console.log(ventas)
         this.datos = this.getOneChart();
       },
       error: () => {

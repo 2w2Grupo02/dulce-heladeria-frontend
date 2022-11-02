@@ -19,7 +19,8 @@ export class ReporteVentaComponent implements OnInit {
   total:number = 1000; 
   date:range; 
 
-  constructor(private rangeService:RangeService, private matDialog: MatDialog) {
+  constructor(private rangeService:RangeService, 
+    private matDialog: MatDialog) {
 
    }
 
