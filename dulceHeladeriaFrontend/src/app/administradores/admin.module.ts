@@ -25,6 +25,7 @@ import { RankingTableComponent } from './components/reporte-venta/ranking-table/
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
 import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { BrowserModule } from '@angular/platform-browser';
     NgChartsModule,
     MatDialogModule,
     MatButtonModule,
+    MatTableModule
   ],
   exports: [
     RegistrarArticuloComponent,

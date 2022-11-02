@@ -16,13 +16,10 @@ export class RangeService {
    }
 
   rangeEmit(){
-    return this.Behaviorsub.asObservable();
-    this.subject.asObservable(); 
+    return this.Behaviorsub.asObservable(); 
   }
 
   nextState(range: range){
-    //this.subject.next(range); 
     this.Behaviorsub.next(range);
-    console.log("se agrego a el pipe")
   }
 }

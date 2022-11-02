@@ -24,7 +24,6 @@ export class ReportesComponent implements OnInit {
     
     this.firstDate.setDate(this.currentDate.getDate() - 6);
     this.myRange = {start:this.firstDate , end: this.currentDate}
-    console.log(this.myRange);
     this.rangeService.nextState(this.myRange);
    }
 
@@ -33,14 +32,11 @@ export class ReportesComponent implements OnInit {
   }
 
   dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
-    console.log("rango" + this.range.value)
       this.myRange = {
         start : this.range.value.start,
         end: this.range.value.end
     }
-    console.log("este es el rango = " + this.myRange.end + this.myRange.start)
     this.rangeService.nextState(this.myRange);
-    console.log("binding en input = " + this.myStart + this.myEnd)
 
   }
 }

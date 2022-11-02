@@ -28,19 +28,15 @@ export class ReporteVentaComponent implements OnInit {
     .subscribe({
       next: (resp:range) => {
         this.date = resp
-        console.log("desde reporte de ventas : " + this.date.start + " " + this.date.end)
       },
       error: () => {alert("error al recibir el rango de fechas")}
     }); 
   }
 
   ventaFinal() {
-    console.log("click");
-
     let dialogRef = this.matDialog.open(VentaFinalDiaComponent)
 
     dialogRef.afterClosed().subscribe(result => {
-      alert("hola cerro");
     });
     }
 }

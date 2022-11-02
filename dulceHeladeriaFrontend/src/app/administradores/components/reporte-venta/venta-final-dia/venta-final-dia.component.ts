@@ -19,7 +19,6 @@ ingresos: ingreso[];
   }
 
  closeDialog(){
-  console.log("cerrar!")
   this.dialogRef.close();
  }
 
