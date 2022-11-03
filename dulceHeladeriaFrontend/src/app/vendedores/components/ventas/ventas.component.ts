@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Cliente } from '../../interfaces/cliente-interface';
@@ -18,7 +18,8 @@ declare var window: any;
   styleUrls: ['./ventas.component.css']
 })
 export class VentasComponent implements OnInit, OnDestroy , AfterViewInit{
-  @ViewChild(ClientesComponent) clientescomp: any;
+  //@ViewChild(ClientesComponent) clientescomp: any;
+  @Input() cliente:Cliente;
 
   gustos: gustos[] = [{ nombre: 'chocolate' }, { nombre: 'menta granizada' }, { nombre: 'vainilla' }, { nombre: 'frutilla' }, { nombre: 'DDL'}];
   gustosSelected: gustos[] = [];
@@ -38,9 +39,6 @@ export class VentasComponent implements OnInit, OnDestroy , AfterViewInit{
   private subscription = new Subscription();
   ngAfterViewInit() {
   }
-  ngOnChange() {
-    this.nuevaVenta.Cliente=this.clientescomp
-  }
   constructor(
     private ventaService: NuevaVentaService, private router: Router) { }
 
@@ -52,7 +50,10 @@ export class VentasComponent implements OnInit, OnDestroy , AfterViewInit{
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+  clientChange(event: Cliente) {
 
+    this.nuevaVenta.Cliente=this.cliente;
+  }
   guardar() {
     console.log(this.nuevaVenta)
     this.subscription.add(this.ventaService.setVenta(this.nuevaVenta));
@@ -121,7 +122,7 @@ EliminarProducto(prod: productos){
       console.log(this.nuevaVenta.formaPago)
       this.nuevaVenta.fecha = new Date().toLocaleDateString();
       this.nuevaVenta.total=this.total;
-      this.nuevaVenta.Cliente= this.clientescomp.cliente;
+      this.nuevaVenta.Cliente= this.cliente;
       //cambiar ID de venta
       this.nuevaVenta.id=1;
       this.totalPrecio();

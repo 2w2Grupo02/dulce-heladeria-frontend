@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Cliente } from '../../interfaces/cliente-interface';
@@ -13,6 +13,7 @@ declare var window:any;
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent implements OnInit , OnDestroy {
+  @Output() cambio = new EventEmitter<Cliente>();
 
   private sub: Subscription = new Subscription();
   formNuevo:any;
@@ -35,7 +36,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
     this.sub.unsubscribe();
   }
 
-  cliente: Cliente={businessName:'Consumidor Final'} as Cliente;
+  cliente: Cliente;
   clienteSelected: Cliente;
   buscador: string='';
 
@@ -47,7 +48,9 @@ export class ClientesComponent implements OnInit , OnDestroy {
       document.getElementById("ElegirCliente")
     );
   }
-
+  cambioCliente(){
+    this.cambio.emit(this.cliente);
+  }
   openNuevoCliente(){
     this.formNuevo.show();
   }
@@ -56,6 +59,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   }
   openElegirCliente(){
     this.cargarClientes();
+    this.buscarClientes();
     this.formElegir.show();
   }
   closeElegirCliente(){
@@ -69,6 +73,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
       }
       console.log(this.cliente);
       console.log(JSON.stringify(this.cliente));
+      this.cambioCliente();
       this.sub.add(
         this.clienteService.create(this.cliente)
         .subscribe({
@@ -82,6 +87,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   cargarConsumidorF(){
     this.cliente={businessName:'Consumidor Final'} as Cliente;
     console.log(this.cliente);
+    this.cambioCliente();
   }
   buscarClientes(){
     console.log(this.buscador)
@@ -104,9 +110,11 @@ export class ClientesComponent implements OnInit , OnDestroy {
   cargarElegido(){
 
     this.cliente=this.clienteSelected;
+    this.cambioCliente();
     this.closeElegirCliente();
   }
   selectCliente(cliente:Cliente){
     this.clienteSelected=cliente;
+    this.cambioCliente();
   }
 }
