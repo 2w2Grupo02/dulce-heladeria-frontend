@@ -25,6 +25,7 @@ import { RankingTableComponent } from './components/reporte-venta/ranking-table/
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
 import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ConsultarProductosComponent } from './components/consultar-productos/consultar-productos.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { BrowserModule } from '@angular/platform-browser';
     RankingItemsComponent,
     RankingTableComponent,
     RegistrarUbicacionDepositoComponent,
-    RegistrarMovimientoArtComponent
+    RegistrarMovimientoArtComponent,
+    ConsultarProductosComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [
