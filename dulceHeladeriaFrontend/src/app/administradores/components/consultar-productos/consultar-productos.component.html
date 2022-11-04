@@ -1,0 +1,30 @@
+<div id="header">
+    <h3>Productos</h3>
+    <button type="button" class="btn btn-primary" routerLink="/administrador/productos/nuevo">Nuevo Producto</button>
+</div>
+<div id="content">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad Maxima Articulos</th>
+                <th scope="col">Cantidad Articulos</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let art of productos">
+                <td >{{art.nombre}}</td>
+                <td>{{art.precio | currency }}</td>
+                <td>{{art.cantMaxArticulos}}</td>
+                <td>{{art.articulos.length}}</td>
+                <td>
+                    <div id="acciones">
+                        <button class="btn btn-primary" (click)="editarProducto(art.id)"><i class="bi bi-pencil-square"></i></button>
+                    </div>                                
+                </td>           
+            </tr>
+        </tbody>
+    </table>
+</div>
