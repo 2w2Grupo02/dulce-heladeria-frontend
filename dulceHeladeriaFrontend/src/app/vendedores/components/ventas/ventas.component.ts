@@ -18,6 +18,7 @@ import { Producto } from '../../interfaces/producto';
 import { Articulo } from '../../interfaces/articulo';
 import { productoResponse } from '../../interfaces/productoResponse';
 import { VentaRequestDto } from '../../interfaces/ventaRequestDto';
+import swal from'sweetalert2';
 
 declare var window: any;
 
@@ -61,7 +62,6 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription.unsubscribe();
   }
   clientChange(event: Cliente) {
-
     //this.nuevaVenta.Cliente=this.cliente;
   }
   cargarProductos() {
@@ -119,11 +119,11 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription.add(
       this.ventaService.registrarVenta(this.venta).subscribe({
         next: () => {
-          alert('exito');
+          swal.fire("Éxito!", "Venta Registrada Correctamente!", "success");
           this.router.navigateByUrl('/vendedor/factura');
         },
         error: () => {
-          alert('error al guardar la venta');
+          swal.fire("Error!", "Error al registrar la Venta!", "error");
         },
       })
     );
@@ -167,27 +167,6 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
     this.formModal.hide();
   }
 
-  // registrarProducto(producto: productos) {
-  //     this.Nuevoproducto.gustosS=this.gustosSelected;
-  //     this.Nuevoproducto.cantidad= parseInt(this.selected.cantidad.toString());
-  //     this.Nuevoproducto.nombre=this.selected.nombre;
-  //     this.Nuevoproducto.precio= this.selected.precio!;
-  //     this.nuevaVenta.producto!.push(this.Nuevoproducto);
-  //     if(this.formaPagoGroup.controls.formaPago.value){
-  //       this.nuevaVenta.formaPago = this.formaPagoGroup.controls.formaPago.value;
-  //     }
-  //     console.log(this.nuevaVenta.formaPago)
-  //     this.nuevaVenta.fecha = new Date().toLocaleDateString();
-  //     this.nuevaVenta.total=this.total;
-  //     this.nuevaVenta.Cliente= this.cliente;
-  //     cambiar ID de venta
-  //     this.nuevaVenta.id=1;
-  //     this.totalPrecio();
-  //     this.cerrarModal();
-  //     this.gustosSelected=[];
-  //     this.cantidad=0;
-  //     this.Nuevoproducto={nombre:'',precio: 0, cantidad: 0, gustosS:[]};
-  //   }
   agregarProducto(prodSeleccionado: Producto) {
     this.productosVenta.push(prodSeleccionado);
     this.totalPrecio();

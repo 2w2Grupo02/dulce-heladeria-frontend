@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import swal from 'sweetalert2';
 import { Cliente } from '../../interfaces/cliente-interface';
 import { ClientesService } from '../../services/clientes.service';
 
@@ -27,7 +28,7 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
   nuevoClienteForm = new FormGroup({
     businessName: new FormControl('', Validators.required),
     identifierTypeId: new FormControl('1', Validators.required),
-    identifier: new FormControl('', Validators.required),
+    identifier: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
     homeAdress: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required])
   });
@@ -65,7 +66,7 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
       this.sub.add(
         this.clientService.create(this.cliente)
         .subscribe({
-          error : () => {alert("error al registrar al cliente")}
+          error : () => {swal.fire("Error!", "Error al registrar al Cliente!", "error");}
         }
       ))
     }

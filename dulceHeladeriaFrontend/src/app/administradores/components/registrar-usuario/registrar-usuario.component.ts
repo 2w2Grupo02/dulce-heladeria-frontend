@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MustMatch } from 'src/app/validators/MustMatch';
+import swal from 'sweetalert2';
 import { usuario } from '../../interfaces/Usuario';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -78,13 +79,13 @@ export class RegistrarUsuarioComponent implements OnInit, OnDestroy {
       this.sub.add(
         this.userService.create(this.usuario)
         .subscribe({
-          next: (resp : any) => { alert(resp)},
-          error : () => {alert("error")}
+          next: (resp : any) => { swal.fire("Éxito!", "Usuario Cargado Correctamente!", "success");},
+          error : () => {swal.fire("Error!", "Error al registrar al usuario!", "error");}
         }
       ))
 
     } else {
-      alert("form invalido verifique los datos porfavor")
+      swal.fire("Formulario Inválido!", "El formulario no esta cargado correctamente!", "error");
     }
   }
 }

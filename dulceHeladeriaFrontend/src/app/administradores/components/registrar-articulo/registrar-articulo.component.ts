@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import swal from 'sweetalert2';
 import { Articulo } from '../../interfaces/articulo';
 import { ArticulosService } from '../../services/articulos.service';
 
@@ -58,11 +59,11 @@ export class RegistrarArticuloComponent implements OnInit, OnDestroy {
         this.articuloService.create(this.articulo).subscribe({
           next: (resp: any) => {
             console.log(resp);
-            alert("guardado exitoso!")
+            swal.fire("Éxito!", "Artículo cargado correctamente!", "success");
           },
           error: (err:any) => {
             console.log(err);
-            alert('error');
+            swal.fire("Error!", "Error al cargar el artículo!", "error");
           },
         })
       );

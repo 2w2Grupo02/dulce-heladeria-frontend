@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Cliente } from '../../interfaces/cliente-interface';
 import { ClientesService } from '../../services/clientes.service';
+import swal from'sweetalert2';
 
 
 declare var window:any;
@@ -26,7 +27,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   nuevoClienteForm = new FormGroup({
     businessName: new FormControl('', Validators.required),
     identifierTypeId: new FormControl('1', Validators.required),
-    identifier: new FormControl('', Validators.required),
+    identifier: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
     homeAdress: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required])
   });
@@ -77,7 +78,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
       this.sub.add(
         this.clienteService.create(this.cliente)
         .subscribe({
-          error : () => {alert("error al registrar al cliente")}
+          error : () => {swal.fire("Error!", "Error al registrar al Cliente!", "error");}
         }
       ))
     }
