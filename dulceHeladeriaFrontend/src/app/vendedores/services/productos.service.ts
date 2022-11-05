@@ -10,6 +10,6 @@ export class ProductosService {
 
   constructor(private http: HttpClient) { }
   getProductos(): Observable<productoResponse[]> {
-    return this.http.get<productoResponse[]>(`https://localhost:5001/api/product`);
+    return this.http.get<productoResponse[]>(`https://localhost:5001/api/product/available`);
   }
 }
