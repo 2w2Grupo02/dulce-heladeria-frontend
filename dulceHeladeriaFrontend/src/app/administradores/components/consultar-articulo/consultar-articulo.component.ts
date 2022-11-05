@@ -47,7 +47,7 @@ export class ConsultarArticuloComponent implements OnInit, OnDestroy {
   }
   buscarArticulos(){
     this.ResultBusqueda = this.articulos.filter((x:Articulos) => {
-     return x.name?.includes(this.busquedaForm.controls.name.value!) && x.amount?.toString().includes(this.busquedaForm.controls.cantidad.value!.toString()) 
+     return x.name?.toLowerCase().includes(this.busquedaForm.controls.name.value!.toLowerCase()) && x.amount?.toString().includes(this.busquedaForm.controls.cantidad.value!.toString()) 
      && x.measuringType?.toLowerCase().includes(this.busquedaForm.controls.measuringType.value!.toLowerCase()) && x.itemType?.toLowerCase().includes(this.busquedaForm.controls.itemType.value!.toLowerCase());
   });
   }
