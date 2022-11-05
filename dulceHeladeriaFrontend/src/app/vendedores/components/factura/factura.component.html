@@ -29,14 +29,15 @@
                                 <div class="col invoice-to">
                                     <div class="text-gray-light">Cliente:</div>
                                     <h2 class="to">{{Factura.Cliente!.businessName}}</h2>
-                                    <div class="address">{{Factura.Cliente!.homeAdress}}, Córdoba</div>
-                                    <div class="address">{{TiposIdentifiers[Factura.Cliente!.identifierTypeId!]}} - {{Factura.Cliente!.identifier}}</div>
+                                    <div class="address">{{Factura.Cliente!.homeAdress}}</div>
+                                    <div class="address">{{TiposIdentifiers[Factura.Cliente!.identifierTypeId!]}} {{Factura.Cliente!.identifier}}</div>
                                     <div class="email"><a href="mailto:{{Factura.Cliente!.email}}">{{Factura.Cliente!.email}}</a>
                                     </div>
                                 </div>
                                 <div class="col invoice-details">
                                     <h1 class="invoice-id">Factura #{{Factura.id}}</h1>
                                     <div class="date">Fecha: {{Factura.fecha}}</div>
+                                    <div class="fp">Forma de Pago: {{Factura.formaPago}}</div>
                                 </div>
                             </div>
                             <table>

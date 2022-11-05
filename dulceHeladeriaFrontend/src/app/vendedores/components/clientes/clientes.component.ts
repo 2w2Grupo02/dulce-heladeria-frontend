@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Cliente } from '../../interfaces/cliente-interface';
 import { ClientesService } from '../../services/clientes.service';
+import swal from'sweetalert2';
 
 
 declare var window:any;
@@ -13,6 +14,7 @@ declare var window:any;
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent implements OnInit , OnDestroy {
+  @Output() cambio = new EventEmitter<Cliente>();
 
   private sub: Subscription = new Subscription();
   formNuevo:any;
@@ -25,7 +27,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   nuevoClienteForm = new FormGroup({
     businessName: new FormControl('', Validators.required),
     identifierTypeId: new FormControl('1', Validators.required),
-    identifier: new FormControl('', Validators.required),
+    identifier: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
     homeAdress: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required])
   });
@@ -47,7 +49,9 @@ export class ClientesComponent implements OnInit , OnDestroy {
       document.getElementById("ElegirCliente")
     );
   }
-
+  cambioCliente(){
+    this.cambio.emit(this.cliente);
+  }
   openNuevoCliente(){
     this.formNuevo.show();
   }
@@ -56,6 +60,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   }
   openElegirCliente(){
     this.cargarClientes();
+    this.buscarClientes();
     this.formElegir.show();
   }
   closeElegirCliente(){
@@ -69,10 +74,11 @@ export class ClientesComponent implements OnInit , OnDestroy {
       }
       console.log(this.cliente);
       console.log(JSON.stringify(this.cliente));
+      this.cambioCliente();
       this.sub.add(
         this.clienteService.create(this.cliente)
         .subscribe({
-          error : () => {alert("error al registrar al cliente")}
+          error : () => {swal.fire("Error!", "Error al registrar al Cliente!", "error");}
         }
       ))
     }
@@ -82,6 +88,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   cargarConsumidorF(){
     this.cliente={businessName:'Consumidor Final'} as Cliente;
     console.log(this.cliente);
+    this.cambioCliente();
   }
   buscarClientes(){
     console.log(this.buscador)
@@ -104,9 +111,11 @@ export class ClientesComponent implements OnInit , OnDestroy {
   cargarElegido(){
 
     this.cliente=this.clienteSelected;
+    this.cambioCliente();
     this.closeElegirCliente();
   }
   selectCliente(cliente:Cliente){
     this.clienteSelected=cliente;
+    this.cambioCliente();
   }
 }

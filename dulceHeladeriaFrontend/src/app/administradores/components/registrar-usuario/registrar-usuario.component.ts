@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MustMatch } from 'src/app/validators/MustMatch';
+import swal from 'sweetalert2';
 import { usuario } from '../../interfaces/Usuario';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -33,20 +34,19 @@ export class RegistrarUsuarioComponent implements OnInit, OnDestroy {
         Validators.maxLength(100)
       ]),
       dni : new FormControl("",Validators.required),
-      userName : new FormControl("",[
-        Validators.required
-      ]),
       email : new FormControl("",[
         Validators.required,
         Validators.email
       ]),
       password : new FormControl("",[
         Validators.required,
-        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
+        Validators.minLength(8)
+        //Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
       ]),
       confirmarContraseña : new FormControl("",[
         Validators.required,
-        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
+        Validators.minLength(8)
+        //Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
       ]),
       rol : new FormControl("",Validators.required)
     });
@@ -61,7 +61,6 @@ export class RegistrarUsuarioComponent implements OnInit, OnDestroy {
       this.usuario.lastName = this.form.value.lastName;
       this.usuario.dni = this.form.value.dni;
       this.usuario.email = this.form.value.email;
-      this.usuario.userName = this.form.value.userName;
       this.usuario.password = this.form.value.password;
       this.usuario.rol = parseInt(this.form.value.rol);
 
@@ -69,22 +68,22 @@ export class RegistrarUsuarioComponent implements OnInit, OnDestroy {
       console.log(this.form.value.rol); 
       
       if(this.form.value.rol == "Administrador"){
-        this.usuario.rol = 1;
+        this.usuario.rol = 0;
       }
       if(this.form.value.rol == "Vendedor"){
-        this.usuario.rol = 2;
+        this.usuario.rol = 1;
       }
       console.log(this.usuario)
       this.sub.add(
         this.userService.create(this.usuario)
         .subscribe({
-          next: (resp : any) => { alert(resp)},
-          error : () => {alert("error")}
+          next: (resp : any) => { swal.fire("Éxito!", "Usuario Cargado Correctamente!", "success");},
+          error : () => {swal.fire("Error!", "Error al registrar al usuario!", "error");}
         }
       ))
 
     } else {
-      alert("form invalido verifique los datos porfavor")
+      swal.fire("Formulario Inválido!", "El formulario no esta cargado correctamente!", "error");
     }
   }
 }

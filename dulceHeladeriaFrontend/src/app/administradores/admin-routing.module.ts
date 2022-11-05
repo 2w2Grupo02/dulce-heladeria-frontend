@@ -9,13 +9,14 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
 import { ConsultarProductosComponent } from './components/consultar-productos/consultar-productos.component';
 import { RegistrarProductoComponent } from './components/registrar-producto/registrar-producto.component';
+import { BienvenidaComponent } from '../shared/components/bienvenida/bienvenida.component';
 
 
 const routes: Routes = [
   {
     path: '',
     children: [
-
+      {path: '', component:BienvenidaComponent},
       {path: 'alta-usuario', component:RegistrarUsuarioComponent},
       {path: 'reportes', component:ReportesComponent},
       {path: 'articulos', component:ConsultarArticuloComponent},

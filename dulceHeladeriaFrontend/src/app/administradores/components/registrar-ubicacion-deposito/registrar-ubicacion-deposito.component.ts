@@ -1,6 +1,7 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import swal from 'sweetalert2';
 import { Deposito } from '../../interfaces/deposito';
 import { UbicacionDeposito } from '../../interfaces/ubicacion-deposito';
 import { DepositosService } from '../../services/depositos.service';
@@ -55,7 +56,7 @@ export class RegistrarUbicacionDepositoComponent implements OnInit, OnDestroy {
       },
       error: err => {
         console.log(err);
-        alert('error');
+        swal.fire("Error!", "Error al consultar los Depósito", "error");
       }
     }));
   }
@@ -85,11 +86,11 @@ export class RegistrarUbicacionDepositoComponent implements OnInit, OnDestroy {
         this.ubicacionService.create(this.ubicacion).subscribe({
           next: (resp: any) => {
             console.log(resp);
-            alert('guardado exitoso!');
+            swal.fire("Éxito!", "Ubicación cargado correctamente!", "success");
           },
           error: err=> {
             console.log(err)
-            alert('fallo')
+            swal.fire("Error!", "Error al cargar la ubicación", "error");
           },
         })
       );

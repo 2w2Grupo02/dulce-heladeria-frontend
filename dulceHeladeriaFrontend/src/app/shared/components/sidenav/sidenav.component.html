@@ -3,28 +3,22 @@
   <div *ngIf="router.url.includes('/administrador')">
     <button type="button" class="btn btn-outline-dark" routerLink="/administrador/reportes">REPORTES</button>
     <button type="button" class="btn btn-outline-dark" routerLink="/administrador/clientes">CLIENTES</button>
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        INVENTARIO
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" routerLink="/administrador/articulos">ARTÍCULOS</a></li>
-        <li><a class="dropdown-item" routerLink="/administrador/depositos">DEPÓSITOS</a></li>
-        <li><a class="dropdown-item" routerLink="/administrador/productos">PRODUCTOS</a></li>
-        <li><a class="dropdown-item" routerLink="/administrador/ubicacion">UBICACIONES</a></li>
-      </ul>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            INVENTARIO
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/administrador/articulos">ARTÍCULOS</a></li>
+            <li><a class="dropdown-item" routerLink="/administrador/depositos">DEPÓSITOS</a></li>
+            <li><a class="dropdown-item" routerLink="/administrador/ubicacion">UBICACIONES</a></li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-outline-dark" routerLink="/administrador/alta-usuario">USUARIOS</button>
+        <button type="button" class="btn btn-light" style="margin-top: 40vh;" (click)="cerrarSesion()">Cerrar Sesión</button>
     </div>
-    <button type="button" class="btn btn-outline-dark" routerLink="/administrador/alta-usuario">USUARIOS</button>
-    <button type="button" class="btn btn-outline-dark">AYUDA</button>
-    <button type="button" class="btn btn-light" style="margin-top: 40vh;" routerLink="./auth/login">Cerrar
-      Sesión</button>
-  </div>
-  <div *ngIf="router.url.includes('/vendedor')">
-    <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/venta">VENTA</button>
-    <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/clientes">CLIENTES</button>
-    <button type="button" class="btn btn-outline-dark">AYUDA</button>
-    <button type="button" class="btn btn-light" style="margin-top: 45vh;" routerLink="./auth/login">Cerrar
-      Sesión</button>
-  </div>
+    <div *ngIf="router.url.includes('/vendedor')">
+        <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/venta">VENTA</button>
+        <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/clientes">CLIENTES</button>
+        <button type="button" class="btn btn-light" style="margin-top: 45vh;" (click)="cerrarSesion()">Cerrar Sesión</button>
+    </div>
 </div>

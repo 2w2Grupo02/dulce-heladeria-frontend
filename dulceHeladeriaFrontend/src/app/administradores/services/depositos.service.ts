@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Deposito } from '../interfaces/deposito';
@@ -9,13 +9,18 @@ import { Deposito } from '../interfaces/deposito';
 export class DepositosService {
 
   constructor(private http: HttpClient) { }
+  private jwt: string =localStorage.getItem('token')!
+
+  private _options = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true', 'Authorization' : 'Bearer '+ this.jwt }),
+  };
   getAll(): Observable<Deposito[]> {
-    return this.http.get<Deposito[]>('https://localhost:5001/api/deposit');
+    return this.http.get<Deposito[]>('https://localhost:5001/api/deposit', this._options);
   }
   create(deposito: Deposito): Observable<Deposito> {
     return this.http.post<Deposito>(
       'https://localhost:5001/api/deposit',
-      deposito
+      deposito, this._options
     );
   }
 }
