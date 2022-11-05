@@ -3,6 +3,7 @@ import { range } from '../../interfaces/range';
 import { RangeService } from '../../services/range.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { VentaFinalDiaComponent } from './venta-final-dia/venta-final-dia.component';
+import swal from 'sweetalert2';
 
 
 
@@ -30,7 +31,7 @@ export class ReporteVentaComponent implements OnInit {
         this.date = resp
         console.log("desde reporte de ventas : " + this.date.start + " " + this.date.end)
       },
-      error: () => {alert("error al recibir el rango de fechas")}
+      error: () => {swal.fire("Error!", "Error al recibir el rango de fechas!", "error");}
     }); 
   }
 
@@ -40,7 +41,6 @@ export class ReporteVentaComponent implements OnInit {
     let dialogRef = this.matDialog.open(VentaFinalDiaComponent)
 
     dialogRef.afterClosed().subscribe(result => {
-      alert("hola cerro");
     });
     }
 }

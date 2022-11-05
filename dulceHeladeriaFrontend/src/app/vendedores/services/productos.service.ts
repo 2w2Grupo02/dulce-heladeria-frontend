@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { productoResponse } from '../interfaces/productoResponse';
@@ -9,7 +9,12 @@ import { productoResponse } from '../interfaces/productoResponse';
 export class ProductosService {
 
   constructor(private http: HttpClient) { }
+  private jwt: string =localStorage.getItem('token')!
+
+  private _options = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true', 'Authorization' : 'Bearer '+ this.jwt }),
+  };
   getProductos(): Observable<productoResponse[]> {
-    return this.http.get<productoResponse[]>(`https://localhost:5001/api/product`);
+    return this.http.get<productoResponse[]>(`https://localhost:5001/api/product`, this._options);
   }
 }

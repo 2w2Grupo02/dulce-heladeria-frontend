@@ -13,15 +13,16 @@ export class NuevaVentaService {
   selectedVenta$ = this.venta$.asObservable();
 
   private API_URL: string = environment.apiUrlBase;
+  private jwt: string =localStorage.getItem('token')!
 
   private _options = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true', 'Authorization' : 'Bearer '+ this.jwt }),
   };
 
   constructor(private http: HttpClient) { }
 
   registrarVenta(venta: VentaRequestDto):Observable<any>{
-    return this.http.post<any>('https://localhost:5001/api/sale',venta)
+    return this.http.post<any>('https://localhost:5001/api/sale',venta, this._options)
   }
   // registrarVenta(articulo: string, unidad: number, precio: number, subTotal: number) {
   //   const comando = {

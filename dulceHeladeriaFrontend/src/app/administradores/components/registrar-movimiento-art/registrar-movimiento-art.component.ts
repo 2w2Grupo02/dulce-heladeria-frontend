@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { mixinDisableRipple } from '@angular/material/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import swal from 'sweetalert2';
 import { Deposito } from '../../interfaces/deposito';
 import { ArticulosService } from '../../services/articulos.service';
 import { DepositosService } from '../../services/depositos.service';
@@ -104,13 +105,13 @@ export class RegistrarMovimientoArtComponent implements OnInit, OnDestroy {
       this.sub.add(
         this.articuloService.createMovimientoStock(this.movimiento).subscribe({
           next: (resp) => {
-            alert('movimiento exitoso!');
+            swal.fire("Éxito!", "Movimiento cargado correctamente!", "success");
             this.movimiento = undefined;
             this.cerrarModal();
             this.recargar.emit();
           },
           error: (err) => {
-            alert(err.error);
+            swal.fire("Error!", "Error al cargar el movimiento!", "error");
           },
           complete: () => {
 

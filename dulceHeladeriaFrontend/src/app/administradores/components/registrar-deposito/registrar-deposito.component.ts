@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Deposito } from '../../interfaces/deposito';
 import { DepositosService } from '../../services/depositos.service';
+import swal from 'sweetalert2';
 
 declare var window: any;
 
@@ -46,10 +47,10 @@ export class RegistrarDepositoComponent implements OnInit, OnDestroy {
         this.depositoService.create(this.deposito).subscribe({
           next: (resp: any) => {
             console.log(resp);
-            alert('guardado exitoso!');
+            swal.fire("Éxito!", "Depósito cargado correctamente!", "success");
           },
           error: () => {
-            alert('error');
+            swal.fire("Error!", "Error al cargar el depósito!", "error");
           },
         })
       );

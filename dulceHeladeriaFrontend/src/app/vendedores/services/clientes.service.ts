@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Cliente } from '../interfaces/cliente-interface';
@@ -10,16 +10,21 @@ import { Cliente } from '../interfaces/cliente-interface';
 export class ClientesService {
 
   constructor(private http: HttpClient) { }
+  private jwt: string =localStorage.getItem('token')!
+
+  private _options = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true', 'Authorization' : 'Bearer '+ this.jwt }),
+  };
 
   addCliente(cliente: Cliente) {
       //return this.http.post<any>('https://localhost:5001/api/Client',cliente); 
-      return this.http.post<Cliente>('https://localhost:5001/api/Client',JSON.stringify(cliente));
+      return this.http.post<Cliente>('https://localhost:5001/api/Client',JSON.stringify(cliente), this._options);
     }
 
   create(cliente:Cliente): Observable<any>{
-      return this.http.post<any>('https://localhost:5001/api/Client',cliente); 
+      return this.http.post<any>('https://localhost:5001/api/Client',cliente, this._options); 
   }
   getClientes(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(`https://localhost:5001/api/Client`);
+    return this.http.get<Cliente[]>(`https://localhost:5001/api/Client`, this._options);
   }
   }

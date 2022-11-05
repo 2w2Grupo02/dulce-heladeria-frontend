@@ -11,11 +11,14 @@ import { Cliente } from '../../interfaces/cliente-interface';
 import { dtoNuevaVenta } from '../../interfaces/dtoVenta';
 import { NuevaVentaService } from '../../services/nueva-venta.service';
 import { ClientesComponent } from '../clientes/clientes.component';
+import {formatDate} from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductosService } from '../../services/productos.service';
 import { Producto } from '../../interfaces/producto';
 import { Articulo } from '../../interfaces/articulo';
 import { productoResponse } from '../../interfaces/productoResponse';
 import { VentaRequestDto } from '../../interfaces/ventaRequestDto';
+import swal from'sweetalert2';
 
 declare var window: any;
 
@@ -58,7 +61,9 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
+  clientChange(event: Cliente) {
+    //this.nuevaVenta.Cliente=this.cliente;
+  }
   cargarProductos() {
     this.subscription.add(
       this.productoService.getProductos().subscribe({
@@ -84,7 +89,6 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   registrarVenta() {
-
     this.nuevaFactura = {
       Cliente: this.cliente,
       fecha: Date.now.toString(),
@@ -115,11 +119,11 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription.add(
       this.ventaService.registrarVenta(this.venta).subscribe({
         next: () => {
-          alert('exito');
+          swal.fire("Éxito!", "Venta Registrada Correctamente!", "success");
           this.router.navigateByUrl('/vendedor/factura');
         },
         error: () => {
-          alert('error al guardar la venta');
+          swal.fire("Error!", "Error al registrar la Venta!", "error");
         },
       })
     );
@@ -172,7 +176,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
     this.cliente = this.clientescomp.clienteSelected;
   }
 
-  esVentaValida(): boolean {
+esVentaValida(): boolean {
     if (this.cliente && this.productosVenta) {
       return true;
     } else {

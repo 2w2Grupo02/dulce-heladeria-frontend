@@ -12,18 +12,20 @@ const routes: Routes=[
   {
     path: 'administrador',
     loadChildren: () => import('./administradores/admin.module').then( m => m.AdminModule ),
+    canLoad:[AuthGuard],
     canActivate: [AuthGuard, RoleGuard],
     data:{
-      ExpectedRole:['Administrador']
+      ExpectedRole:['0']
     }
   
   },
   {
     path: 'vendedor',
     loadChildren: () => import('./vendedores/vendedor.module').then( m => m.VendedorModule ),
+    canLoad:[AuthGuard],
     canActivate: [AuthGuard, RoleGuard],
     data:{
-      ExpectedRole:['Vendedor']
+      ExpectedRole:['1']
     }
   },
   {
