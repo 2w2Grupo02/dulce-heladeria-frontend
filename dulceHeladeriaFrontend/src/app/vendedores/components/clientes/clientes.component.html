@@ -80,12 +80,17 @@
           </button>
         </div>
         <div class="modal-body">
-            <div class="form-group">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Nro de Identificador" aria-label="Nro de Identificador" aria-describedby="button-addon2" [(ngModel)]="buscador">
-                  <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarClientes()">Buscar</button>
+            <form [formGroup]="busquedaForm">
+              <div class="row">
+                <div class="col mb-3">
+                  <input type="text" class="form-control" placeholder="Nro de Documento" formControlName="identifier" (keyup)="buscarClientes()">
                 </div>
-            </div>
+                <div class="col mb-3">
+                  <input type="text" class="form-control" placeholder="Razón Social" formControlName="businessName" (keyup)="buscarClientes()">
+                </div>
+              </div>
+            </form>
+            <hr>
             <ul class="list-group"  *ngFor="let client of ResultBusqueda ">
               <li class="list-group-item d-flex justify-content-between align-items-center" (click)="selectCliente(client)" style="cursor: pointer;">
                 {{client.businessName}} - {{client.identifier}}

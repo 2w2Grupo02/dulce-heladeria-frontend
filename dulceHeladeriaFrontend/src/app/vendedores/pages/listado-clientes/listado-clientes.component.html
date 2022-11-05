@@ -1,15 +1,29 @@
 
 <div class="container">
-    <button type="button" class="btn btn-primary" (click)="openNuevoCliente()" style="margin-left: 60vw; margin-bottom: 5px;">Nuevo Cliente</button>
-    <div class="row">
-        <div class="form-group">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Nro de Documento" aria-label="Nro de Documento" aria-describedby="button-addon2" [(ngModel)]="buscador">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarClientes()">Buscar</button> 
-            </div>
-            
+    
+    <form [formGroup]="busquedaForm">
+      <div class="row">
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Nro de Documento" formControlName="identifier" (keyup)="buscarClientes()">
         </div>
-    </div>
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Razón Social" formControlName="businessName" (keyup)="buscarClientes()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Dirección" formControlName="homeAdress" (keyup)="buscarClientes()">
+        </div>
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Email" formControlName="email" (keyup)="buscarClientes()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mb-6">
+          <button type="button" class="btn btn-primary mb-3" (click)="openNuevoCliente()" >Nuevo Cliente</button>
+        </div>
+      </div>
+    </form>
     <div class="row">
         <table class="table">
             <thead class="thead-light">
