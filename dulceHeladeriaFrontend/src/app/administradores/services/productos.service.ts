@@ -16,8 +16,6 @@ export class ProductosService {
   private _options = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true', 'Authorization' : 'Bearer '+ this.jwt }),
   };
-
-
   getProductos(): Observable<productoResponse[]> {
     return this.http.get<productoResponse[]>(`https://localhost:5001/api/product`, this._options);
   }

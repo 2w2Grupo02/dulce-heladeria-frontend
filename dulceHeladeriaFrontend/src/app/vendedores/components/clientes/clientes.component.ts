@@ -19,9 +19,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   private sub: Subscription = new Subscription();
   formNuevo:any;
   formElegir:any;
-  ResultClientes: Cliente[]=[{businessName: 'jere', identifierTypeId: 1, identifier:'65406546', homeAdress: 'ayacucho 545', email: 'jere@gmail.com'},
-                            {businessName: 'juan', identifierTypeId: 2, identifier:'3210540', homeAdress: 'illia 87', email: 'juan@gmail.com'},
-                            {businessName: 'jorge', identifierTypeId: 3, identifier:'87959454', homeAdress: 'san juan 1234', email: 'jorge@gmail.com'}];
+  ResultClientes: Cliente[]=[];
   ResultBusqueda: Cliente[]=[];
   TiposIdentifiers: string[]=['','DNI','CUIT','CUIL']
   nuevoClienteForm = new FormGroup({
@@ -31,6 +29,10 @@ export class ClientesComponent implements OnInit , OnDestroy {
     homeAdress: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required])
   });
+  busquedaForm = new FormGroup({
+    businessName: new FormControl(''),
+    identifier: new FormControl('')
+  });
   constructor(private clienteService:ClientesService) { }
 
   ngOnDestroy(): void {
@@ -39,7 +41,6 @@ export class ClientesComponent implements OnInit , OnDestroy {
 
   cliente: Cliente;
   clienteSelected: Cliente;
-  buscador: string='';
 
   ngOnInit(): void {
     this.formNuevo = new window.bootstrap.Modal(
@@ -48,6 +49,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
     this.formElegir = new window.bootstrap.Modal(
       document.getElementById("ElegirCliente")
     );
+    
   }
   cambioCliente(){
     this.cambio.emit(this.cliente);
@@ -60,7 +62,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   }
   openElegirCliente(){
     this.cargarClientes();
-    this.buscarClientes();
+    
     this.formElegir.show();
   }
   closeElegirCliente(){
@@ -91,9 +93,8 @@ export class ClientesComponent implements OnInit , OnDestroy {
     this.cambioCliente();
   }
   buscarClientes(){
-    console.log(this.buscador)
     this.ResultBusqueda = this.ResultClientes.filter((x:Cliente) => {
-      return x.identifier?.includes(this.buscador);
+      return x.identifier?.includes(this.busquedaForm.controls.identifier.value!) && x.businessName?.toLowerCase().includes(this.busquedaForm.controls.businessName.value!.toLowerCase())
   });
   }
   cargarClientes() {
@@ -101,6 +102,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
             next: (resp) => {
               console.log(resp);
               this.ResultClientes = resp;
+              this.buscarClientes();
             },
             error: (err) => {
               console.log(err);

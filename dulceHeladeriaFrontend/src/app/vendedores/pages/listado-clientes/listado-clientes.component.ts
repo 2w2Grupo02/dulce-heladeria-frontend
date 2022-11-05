@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +15,6 @@ declare var window:any;
 })
 export class ListadoClientesComponent implements OnInit, OnDestroy {
   formNuevo:any;
-  buscador: string='';
   ResultClientes: Cliente[];
   ResultBusqueda: Cliente[]=[];
   TiposIdentifiers: string[]=['','DNI','CUIT','CUIL']
@@ -29,6 +29,12 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
     identifier: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
     homeAdress: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required])
+  });
+  busquedaForm = new FormGroup({
+    businessName: new FormControl(''),
+    identifier: new FormControl(''),
+    homeAdress: new FormControl(''),
+    email: new FormControl('')
   });
 
   ngOnInit(): void {
@@ -46,11 +52,13 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
   }
   closeNuevoCliente(){
     this.formNuevo.hide();
+    this.cliente={} as Cliente;
   }
   buscarClientes(){
-    console.log(this.buscador)
+    console.log(this.busquedaForm.value)
     this.ResultBusqueda = this.ResultClientes.filter((x:Cliente) => {
-      return x.identifier?.includes(this.buscador);
+      return x.identifier?.includes(this.busquedaForm.controls.identifier.value!) && x.businessName?.toLowerCase().includes(this.busquedaForm.controls.businessName.value!.toLowerCase()) 
+      && x.homeAdress?.toLowerCase().includes(this.busquedaForm.controls.homeAdress.value!.toLowerCase()) && x.email?.toLowerCase().includes(this.busquedaForm.controls.email.value!.toLowerCase());
   });
   }
   registrarCliente(){
@@ -66,6 +74,8 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
         .subscribe({
           next: () => {
             swal.fire("Éxito!", "Cliente Registrado Correctamente!", "success");
+            this.cliente={} as Cliente;
+            this.nuevoClienteForm.reset();
             this.cargarClientes();
           },
           error: () => {

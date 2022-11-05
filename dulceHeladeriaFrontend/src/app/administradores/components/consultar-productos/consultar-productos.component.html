@@ -3,13 +3,36 @@
     <button type="button" class="btn btn-primary" routerLink="/administrador/productos/nuevo">Nuevo Producto</button>
 </div>
 <div id="content">
+    <form [formGroup]="busquedaForm">
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" (keyup)="buscarProductos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Precio" formControlName="precio" (keyup)="buscarProductos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Cantidad de Artículos" formControlName="cantidadArticulos" (keyup)="buscarProductos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Cantidad Máxima de Artículos" formControlName="cantMaxArticulos" (keyup)="buscarProductos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-6">
+            
+          </div>
+        </div>
+      </form>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Cant. Max. Articulos a Vender</th>
-                <th scope="col">Cantidad Articulos</th>
+                <th scope="col">Cantidad de Artículos</th>
                 <th scope="col"></th>
             </tr>
         </thead>
