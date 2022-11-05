@@ -19,7 +19,7 @@ export class ConsultarArticuloComponent implements OnInit, OnDestroy {
 
   busquedaForm = new FormGroup({
     name: new FormControl(''),
-    id: new FormControl(''),
+    cantidad: new FormControl(''),
     measuringType: new FormControl(''),
     itemType: new FormControl('')
   });
@@ -47,8 +47,8 @@ export class ConsultarArticuloComponent implements OnInit, OnDestroy {
   }
   buscarArticulos(){
     this.ResultBusqueda = this.articulos.filter((x:Articulos) => {
-     // return x.name?.includes(this.busquedaForm.controls.name.value!) && x.id?.toLowerCase().includes(this.busquedaForm.controls.id.value!.toLowerCase()) 
-     // && x.measuringType?.toLowerCase().includes(this.busquedaForm.controls.measuringType.value!.toLowerCase()) && x.itemType?.toLowerCase().includes(this.busquedaForm.controls.itemType.value!.toLowerCase());
+     return x.name?.includes(this.busquedaForm.controls.name.value!) && x.amount?.toString().includes(this.busquedaForm.controls.cantidad.value!.toString()) 
+     && x.measuringType?.toLowerCase().includes(this.busquedaForm.controls.measuringType.value!.toLowerCase()) && x.itemType?.toLowerCase().includes(this.busquedaForm.controls.itemType.value!.toLowerCase());
   });
   }
 }

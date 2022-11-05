@@ -21,8 +21,7 @@ export class ConsultarDepositoComponent implements OnInit, OnDestroy {
   busquedaForm = new FormGroup({
     name: new FormControl(''),
     address: new FormControl(''),
-    capacity: new FormControl(''),
-    id: new FormControl('')
+    capacity: new FormControl('')
   });
 
   ngOnInit(): void {
@@ -42,7 +41,7 @@ export class ConsultarDepositoComponent implements OnInit, OnDestroy {
   buscarDepositos(){
     console.log(this.busquedaForm.value)
     this.ResultBusqueda = this.depositos.filter((x:Deposito) => {
-      return x.name?.toLowerCase().includes(this.busquedaForm.controls.name.value!.toLowerCase()) && x.id?.toString().toLowerCase().includes(this.busquedaForm.controls.id.value!.toString().toLowerCase()) 
+      return x.name?.toLowerCase().includes(this.busquedaForm.controls.name.value!.toLowerCase()) 
       && x.address?.toLowerCase().includes(this.busquedaForm.controls.address.value!.toLowerCase()) && x.capacity?.toString().toLowerCase().includes(this.busquedaForm.controls.capacity.value!.toString().toLowerCase());
   });
 }
