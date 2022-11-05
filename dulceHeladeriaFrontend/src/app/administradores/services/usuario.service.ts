@@ -13,6 +13,6 @@ export class UsuarioService {
   constructor(private http:HttpClient) { }
 
   create(usuario:usuario): Observable<any>{
-    return this.http.post<any>('https://localhost:44350/api/User',usuario); 
+    return this.http.post<any>('https://localhost:5001/api/User/Register',usuario); 
   }
 }

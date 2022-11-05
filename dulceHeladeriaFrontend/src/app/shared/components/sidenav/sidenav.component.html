@@ -14,11 +14,11 @@
           </ul>
         </div>
         <button type="button" class="btn btn-outline-dark" routerLink="/administrador/alta-usuario">USUARIOS</button>
-        <button type="button" class="btn btn-light" style="margin-top: 40vh;" routerLink="./auth/login">Cerrar Sesión</button>
+        <button type="button" class="btn btn-light" style="margin-top: 40vh;" (click)="cerrarSesion()">Cerrar Sesión</button>
     </div>
     <div *ngIf="router.url.includes('/vendedor')">
         <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/venta">VENTA</button>
         <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/clientes">CLIENTES</button>
-        <button type="button" class="btn btn-light" style="margin-top: 45vh;" routerLink="./auth/login">Cerrar Sesión</button>
+        <button type="button" class="btn btn-light" style="margin-top: 45vh;" (click)="cerrarSesion()">Cerrar Sesión</button>
     </div>
 </div>
