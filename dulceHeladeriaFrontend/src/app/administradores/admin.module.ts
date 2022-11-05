@@ -26,6 +26,7 @@ import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubic
 import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ConsultarProductosComponent } from './components/consultar-productos/consultar-productos.component';
+import { RegistrarProductoComponent } from './components/registrar-producto/registrar-producto.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ConsultarProductosComponent } from './components/consultar-productos/co
     RankingTableComponent,
     RegistrarUbicacionDepositoComponent,
     RegistrarMovimientoArtComponent,
-    ConsultarProductosComponent
+    ConsultarProductosComponent,
+    RegistrarProductoComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [
