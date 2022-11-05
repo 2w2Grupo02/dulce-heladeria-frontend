@@ -8,6 +8,7 @@ import { RegistrarUsuarioComponent } from './components/registrar-usuario/regist
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
 import { ConsultarProductosComponent } from './components/consultar-productos/consultar-productos.component';
+import { RegistrarProductoComponent } from './components/registrar-producto/registrar-producto.component';
 import { BienvenidaComponent } from '../shared/components/bienvenida/bienvenida.component';
 
 
@@ -24,6 +25,7 @@ const routes: Routes = [
       {path: 'clientes', component:ListadoClientesComponent},
       {path: 'ubicacion', component:RegistrarUbicacionDepositoComponent},
       {path: 'productos', component:ConsultarProductosComponent},
+      {path: 'productos/nuevo', component:RegistrarProductoComponent},
       {path:'**', redirectTo:''}
 
     ]

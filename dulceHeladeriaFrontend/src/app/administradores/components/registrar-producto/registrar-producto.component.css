@@ -1,0 +1,55 @@
+.btn-primary {
+  background-color: pink;
+  border: none;
+  color: white;
+  font-weight: 700;
+}
+
+.btn-primary:active {
+  background-color: lightcoral;
+  border: none;
+  color: white;
+}
+
+td {
+  vertical-align: middle;
+}
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  height: 400px;
+}
+#form {
+  flex-basis: 30%;  
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+#table {
+  flex-grow: 1;
+  
+}
+#list{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+input{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+li{
+  margin-bottom: 5px;
+}
+.footer{
+  display: flex;
+  justify-content: end;
+}
+
+.footer .btn{
+  width: 10vw;
+}
