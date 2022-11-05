@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Producto } from '../../interfaces/producto';
@@ -13,8 +14,16 @@ import { ProductosService } from '../../services/productos.service';
 export class ConsultarProductosComponent implements OnInit, OnDestroy {
 
   productos: Producto[]=[];
+  ResultBusqueda: Producto[]=[];
   private sub: Subscription = new Subscription();
   constructor(private productoService: ProductosService, public router: Router) { }
+  
+  busquedaForm = new FormGroup({
+    nombre: new FormControl(''),
+    precio: new FormControl(''),
+    cantidadArticulos: new FormControl(''),
+    cantMaxArticulos: new FormControl('')
+  });
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
@@ -37,6 +46,7 @@ export class ConsultarProductosComponent implements OnInit, OnDestroy {
               cantMaxArticulos: element.maxItemAmount,
             };
             this.productos.push(prod);
+            this.buscarProductos();
           });
         },
         error: (err) => {
@@ -45,6 +55,13 @@ export class ConsultarProductosComponent implements OnInit, OnDestroy {
       })
     );
   }
+  buscarProductos(){
+    console.log(this.busquedaForm.value)
+    this.ResultBusqueda = this.productos.filter((x:Producto) => {
+      return x.nombre?.toLowerCase().includes(this.busquedaForm.controls.nombre.value!.toLowerCase()) && x.cantMaxArticulos?.toString().toLowerCase().includes(this.busquedaForm.controls.cantMaxArticulos.value!.toString().toLowerCase()) 
+      && x.precio?.toString().toLowerCase().includes(this.busquedaForm.controls.precio.value!.toString().toLowerCase()) && x.articulos.length?.toString().toLowerCase().includes(this.busquedaForm.controls.cantidadArticulos.value!.toString().toLowerCase());
+  });
+}
 
   editarProducto(id: number){
     this.router.navigate([`${this.router.url}/${id}`]);

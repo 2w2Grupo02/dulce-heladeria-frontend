@@ -1,22 +1,45 @@
 <div id="header">
-    <h3>Depositos</h3>
+    <h3>Depósitos</h3>
     <app-registrar-deposito></app-registrar-deposito>
 </div>
 <div id="content">
+    <form [formGroup]="busquedaForm">
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" formControlName="name" (keyup)="buscarDepositos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Número" formControlName="id" (keyup)="buscarDepositos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Dirección" formControlName="address" (keyup)="buscarDepositos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Capacidad" formControlName="capacity" (keyup)="buscarDepositos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-6">
+            
+          </div>
+        </div>
+      </form>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Capacidad</th>
-                <th scope="col">Direccion</th>
+                <th scope="col">Dirección</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
             </tr>            
         </thead>
         <tbody>
-            <tr *ngFor="let dep of depositos">
+            <tr *ngFor="let dep of ResultBusqueda">
                 <td>{{dep.name}}</td>
-                <td>{{dep.capacity}} Articulos</td>
+                <td>{{dep.capacity}} Artículos</td>
                 <td>{{dep.address}}</td>
                 <td>{{ !dep.deletionDate ? "Activo" : "Inactivo"}}</td>
                 <td>
