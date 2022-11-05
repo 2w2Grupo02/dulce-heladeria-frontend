@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ChartData, ChartOptions} from 'chart.js'
 import { range } from 'src/app/administradores/interfaces/range';
+import { ventaPorDia } from 'src/app/administradores/interfaces/ventaPordia';
 import { RangeService } from 'src/app/administradores/services/range.service';
 import { VentaService } from 'src/app/administradores/services/venta.service';
 @Component({
@@ -10,10 +11,14 @@ import { VentaService } from 'src/app/administradores/services/venta.service';
 })
 export class ReporteGraficoLineaComponent implements OnInit {
   @ViewChild('input') input:HTMLInputElement;
+  @Input() start : Date | null | undefined; 
+  @Input() end : Date | null | undefined; 
   verPeriodoAnterior :boolean = false;
   cantDineroPorDia: number[]; 
   range: range; 
-  dias: string[];
+  dias: string[] = [];
+  montos: number[] = [];
+  ventas : any; 
   datos: ChartData<'bar'>; 
   options: ChartOptions = {
     plugins: {
@@ -23,23 +28,21 @@ export class ReporteGraficoLineaComponent implements OnInit {
   constructor(private rangeService:RangeService, private ventaService:VentaService) { }
 
   ngOnInit(): void {
+    console.log("se llamo")
     this.rangeService.rangeEmit().subscribe({
       next: (range:range) => {
-        this.range = range; 
-        this.obtenerDias(range.start!,range.end!);
-        let ventas; 
-        this.ventaService.getAllVenta({
-          "start" : range.start?.toLocaleDateString(), 
-          "end" : range.end?.toLocaleDateString()
-        } as range).subscribe(
-          {
-            next: (resp:any) =>{
-              ventas = resp  
-            }
+        this.ventaService.getAllVenta2(range.start!,range.end!)
+        .subscribe(
+        {
+          next: (resp:any) =>{
+              //this.obtenerDias(range.start!,range.end!);
+              this.ventas = resp  
+              this.montos = this.ventas.map((x:ventaPorDia) => x.total)
+              this.dias = this.ventas.map((x:ventaPorDia) => x.date);
+              console.log("this.ventas");
+              console.log(this.ventas);
           }
-        );
-        console.log("ventas!!!")
-        console.log(ventas)
+        });
         this.datos = this.getOneChart();
       },
       error: () => {
@@ -72,7 +75,7 @@ export class ReporteGraficoLineaComponent implements OnInit {
       labels : this.dias,
       datasets: [
         {
-        data:[20,23,24],
+        data:this.montos,
         backgroundColor: '#4dc9f6',
         tension: 0.1,
         borderWidth: 3.5

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { RegistrarArticuloComponent } from './components/registrar-articulo/registrar-articulo.component';
@@ -21,7 +21,6 @@ import { VentaFinalDiaComponent } from './components/reporte-venta/venta-final-d
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RankingItemsComponent } from './components/reporte-venta/ranking-items/ranking-items.component';
-import { RankingTableComponent } from './components/reporte-venta/ranking-table/ranking-table.component';
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
 import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -39,7 +38,6 @@ import { MatTableModule } from '@angular/material/table';
     RegistrarDepositoComponent,
     VentaFinalDiaComponent,
     RankingItemsComponent,
-    RankingTableComponent,
     RegistrarUbicacionDepositoComponent,
     RegistrarMovimientoArtComponent
   ],
@@ -68,7 +66,8 @@ import { MatTableModule } from '@angular/material/table';
     //BrowserAnimationsModule
   ],
   providers: [
-    ArticulosService
+    ArticulosService,
+    DatePipe
   ]
 })
 export class AdminModule { }
