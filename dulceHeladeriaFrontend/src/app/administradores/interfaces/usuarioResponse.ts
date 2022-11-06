@@ -4,5 +4,6 @@ export interface UsuarioResponse {
     lastName:string;
     dni:string;
     email:string;
-    rol:string
+    rol:string;
+    rolId?: number
 }

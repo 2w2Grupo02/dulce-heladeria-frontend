@@ -25,4 +25,7 @@ export class UsuarioService {
   getUsers(): Observable<UsuarioResponse[]>{
     return this.http.get<UsuarioResponse[]>("https://localhost:5001/api/user",this._options)
   }
+  getUserById(id: number): Observable<UsuarioResponse>{
+    return this.http.get<UsuarioResponse>(`https://localhost:5001/api/user/${id}`,this._options);
+  }
 }

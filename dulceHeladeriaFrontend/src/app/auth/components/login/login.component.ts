@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy{
             console.log(resp);
             localStorage.setItem('token',resp.accessToken);
             localStorage.setItem('rol',resp.role);
+            localStorage.setItem('userId',resp.userId);
             if(parseInt(localStorage.getItem('rol')!) == 0){
               this.router.navigate(['./administrador'])
             }
