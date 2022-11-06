@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { dtoNuevaVenta } from '../interfaces/dtoVenta';
+import { GetVentaDto } from '../interfaces/GetVentaDto';
 import { VentaRequestDto } from '../interfaces/ventaRequestDto';
 
 @Injectable({
@@ -24,13 +25,9 @@ export class NuevaVentaService {
   registrarVenta(venta: VentaRequestDto):Observable<any>{
     return this.http.post<any>('https://localhost:5001/api/sale',venta, this._options)
   }
-  // registrarVenta(articulo: string, unidad: number, precio: number, subTotal: number) {
-  //   const comando = {
-  //     "articulo": articulo,
-  //     "unidad": unidad,
-  //     "precio": precio,
-  //     "subTotal": subTotal
-  //   };
+  getVentas(): Observable<GetVentaDto[]>{
+    return this.http.get<GetVentaDto[]>("https://localhost:5001/api/sale",this._options)
+  }
 
   //   const headers = { 'content-type': 'application/json' }
   //   const body = JSON.stringify(comando);
