@@ -10,6 +10,8 @@ import { ListadoClientesComponent } from './pages/listado-clientes/listado-clien
 import { ReporteVentaComponent } from '../administradores/components/reporte-venta/reporte-venta.component';
 import { FacturaComponent } from './components/factura/factura.component';
 import { ConsultarVentasComponent } from './components/consultar-ventas/consultar-ventas.component';
+import { ModificarContrasenaComponent } from './components/modificar-contrasena/modificar-contrasena.component';
+import { ConsultarPerfilComponent } from './components/consultar-perfil/consultar-perfil.component';
 
 
 
@@ -19,7 +21,9 @@ import { ConsultarVentasComponent } from './components/consultar-ventas/consulta
     ClientesComponent,
     ListadoClientesComponent,
     FacturaComponent,
-    ConsultarVentasComponent
+    ConsultarVentasComponent,
+    ModificarContrasenaComponent,
+    ConsultarPerfilComponent
   ],
   imports: [
     CommonModule,
