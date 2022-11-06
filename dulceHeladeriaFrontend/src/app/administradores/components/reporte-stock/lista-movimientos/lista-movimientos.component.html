@@ -1,0 +1,28 @@
+<div class="movimientos-container">
+    <div class="movimeintos-container-header">
+      <h3>Movimientos</h3>
+      <select class="form-select" #select aria-label="seleccione el dia"  [(ngModel)]="selectValue" (change)="onChangeItem($event)">
+        <option value="0" selected>Selecciona un item!</option>
+        <option *ngFor="let item of items, let i" value={{i.id}}>{{i.name}}</option>
+      </select>
+   <!--<button type="submit" class="btn btn-light">Descargar Reporte</button>-->
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Motivo</th>
+          <th scope="col">Fecha del traslado</th>
+          <th scope="col">item</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let m of movimientos">
+            <td>{{m.cant}}</td>
+            <td>{{m.motivo}}</td>
+            <td>{{m.fecha}}</td>
+            <td>{{m.item}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>

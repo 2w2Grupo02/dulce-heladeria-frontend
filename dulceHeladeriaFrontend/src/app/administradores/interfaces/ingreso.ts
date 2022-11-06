@@ -1,5 +1,6 @@
 export interface ingreso{
-    tipo:string,
-    cantidad:number,
-    monto:number;
+    paymentMethod:number,
+    cant:number,
+    total:number;
+    title?:string;
 }

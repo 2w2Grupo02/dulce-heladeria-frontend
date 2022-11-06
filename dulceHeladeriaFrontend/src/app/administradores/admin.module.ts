@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { RegistrarArticuloComponent } from './components/registrar-articulo/registrar-articulo.component';
@@ -21,10 +21,14 @@ import { VentaFinalDiaComponent } from './components/reporte-venta/venta-final-d
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RankingItemsComponent } from './components/reporte-venta/ranking-items/ranking-items.component';
-import { RankingTableComponent } from './components/reporte-venta/ranking-table/ranking-table.component';
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
 import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatTableModule } from '@angular/material/table';
+import { PaymentMethodPipePipe } from '../payment-method-pipe.pipe';
+import { ReporteStockComponent } from './components/reporte-stock/reporte-stock.component';
+import { ListaMovimientosComponent } from './components/reporte-stock/lista-movimientos/lista-movimientos.component';
+import { GraficoDonaComponent } from './components/reporte-stock/grafico-dona/grafico-dona.component';
 import { ConsultarProductosComponent } from './components/consultar-productos/consultar-productos.component';
 import { RegistrarProductoComponent } from './components/registrar-producto/registrar-producto.component';
 import { ConsultarUsuariosComponent } from './components/consultar-usuarios/consultar-usuarios.component';
@@ -44,7 +48,6 @@ import { ModificarProductoComponent } from './components/modificar-producto/modi
     RegistrarDepositoComponent,
     VentaFinalDiaComponent,
     RankingItemsComponent,
-    RankingTableComponent,
     RegistrarUbicacionDepositoComponent,
     RegistrarMovimientoArtComponent,
     ConsultarProductosComponent,
@@ -52,7 +55,10 @@ import { ModificarProductoComponent } from './components/modificar-producto/modi
     ConsultarUsuariosComponent,
     ConsultarPerfilComponent,
     ModificarContrasenaComponent,
-    ModificarProductoComponent
+    ModificarProductoComponent,
+    GraficoDonaComponent,
+    ListaMovimientosComponent,
+    ReporteStockComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [
@@ -67,6 +73,8 @@ import { ModificarProductoComponent } from './components/modificar-producto/modi
     NgChartsModule,
     MatDialogModule,
     MatButtonModule,
+    MatTableModule,
+    FormsModule
   ],
   exports: [
     RegistrarArticuloComponent,
@@ -75,10 +83,14 @@ import { ModificarProductoComponent } from './components/modificar-producto/modi
     ConsultarArticuloComponent,
     MatDialogModule,
     MatButtonModule,
-    //BrowserAnimationsModule
+    //BrowserAnimationsModule,
+    GraficoDonaComponent,
+    ListaMovimientosComponent
   ],
   providers: [
-    ArticulosService
+    ArticulosService,
+    DatePipe,
+    PaymentMethodPipePipe
   ]
 })
 export class AdminModule { }
