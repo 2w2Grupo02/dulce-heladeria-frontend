@@ -5,6 +5,7 @@ import { MustMatch } from 'src/app/validators/MustMatch';
 import swal from 'sweetalert2';
 import { usuario } from '../../interfaces/Usuario';
 import { UsuarioService } from '../../services/usuario.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -15,7 +16,7 @@ export class RegistrarUsuarioComponent implements OnInit, OnDestroy {
   form : FormGroup;
   usuario:usuario = {}; 
   private sub: Subscription = new Subscription();
-  constructor(private userService:UsuarioService) { }
+  constructor(private userService:UsuarioService, private location: Location) { }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
@@ -85,5 +86,9 @@ export class RegistrarUsuarioComponent implements OnInit, OnDestroy {
     } else {
       swal.fire("Formulario Inválido!", "El formulario no esta cargado correctamente!", "error");
     }
+  }
+
+  regresar(){
+    this.location.back();
   }
 }

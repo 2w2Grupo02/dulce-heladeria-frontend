@@ -13,3 +13,12 @@ button:disabled{
     background-color: gray;
     color: red;
 }
+#content{
+    display: flex;
+}
+.card{
+    flex-basis: calc(100%/3);
+}
+#mainContent{
+    margin-right: 30px;
+}

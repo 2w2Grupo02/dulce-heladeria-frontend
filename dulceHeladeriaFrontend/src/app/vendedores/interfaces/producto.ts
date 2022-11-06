@@ -5,6 +5,7 @@ export interface Producto {
     nombre: string, 
     precio: number, 
     articulos: Articulo[],
-    cantidad?: number
-    cantMaxArticulos: number
+    cantidad?: number,
+    cantMaxArticulos: number,
+    imagen: string
 }

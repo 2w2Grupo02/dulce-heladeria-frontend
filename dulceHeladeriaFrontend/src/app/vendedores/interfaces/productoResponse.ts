@@ -5,5 +5,6 @@ export interface productoResponse{
     name: string,
     price: number,
     items: productoArticuloResponse[],
-    maxItemAmount: number
+    maxItemAmount: number,
+    imageUrl: string
 }

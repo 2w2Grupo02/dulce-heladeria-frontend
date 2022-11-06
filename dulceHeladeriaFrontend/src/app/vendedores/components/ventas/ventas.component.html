@@ -1,7 +1,7 @@
 
 <div class="container">
-  <div class="row">
-    <div class="col col-md-6">
+  <div id="content">
+    <div id="mainContent" class="col">
       <div class="row">
         <app-clientes (change)="clientChange(cliente)"></app-clientes>
       </div>
@@ -38,11 +38,11 @@
       </div>
 
     </div>
-    <div class="col col-md-4">
+    <div class="col">
       <div class="row">
         <div class="card-group">
           <div class="card" *ngFor="let producto of productos">
-            <img [src]="imagen" class="card-img-top" alt="..." (click)="openModal(producto)">
+            <img [src]="producto.imagen" class="card-img-top" alt="..." (click)="openModal(producto)">
             <div class="card-body">
               <h5 class="card-title">{{producto.nombre}}</h5>
             </div>

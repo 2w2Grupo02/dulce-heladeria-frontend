@@ -77,6 +77,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
                 return { id: x.id, nombre: x.name, seleccionado: false };
               }),
               cantMaxArticulos: element.maxItemAmount,
+              imagen: element.imageUrl
             };
             this.productos.push(prod);
           });
