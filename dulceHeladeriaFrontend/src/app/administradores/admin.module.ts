@@ -53,7 +53,10 @@ import { ModificarContrasenaComponent } from './components/modificar-contrasena/
     RegistrarProductoComponent,
     ConsultarUsuariosComponent,
     ConsultarPerfilComponent,
-    ModificarContrasenaComponent
+    ModificarContrasenaComponent,
+    GraficoDonaComponent,
+    ListaMovimientosComponent,
+    ReporteStockComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [
@@ -68,7 +71,8 @@ import { ModificarContrasenaComponent } from './components/modificar-contrasena/
     NgChartsModule,
     MatDialogModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ],
   exports: [
     RegistrarArticuloComponent,
@@ -77,7 +81,9 @@ import { ModificarContrasenaComponent } from './components/modificar-contrasena/
     ConsultarArticuloComponent,
     MatDialogModule,
     MatButtonModule,
-    //BrowserAnimationsModule
+    //BrowserAnimationsModule,
+    GraficoDonaComponent,
+    ListaMovimientosComponent
   ],
   providers: [
     ArticulosService,
