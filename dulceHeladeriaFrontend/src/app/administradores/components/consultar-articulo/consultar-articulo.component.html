@@ -2,8 +2,31 @@
     <h3>Articulos</h3>
     <app-registrar-articulo></app-registrar-articulo>
 </div>
-<div id="content">
-    <table class="table">
+<div id="content" class="mt-3">
+    <form [formGroup]="busquedaForm">
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" formControlName="name" (keyup)="buscarArticulos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Cantidad" formControlName="cantidad" (keyup)="buscarArticulos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Tipo de Artículo" formControlName="itemType" (keyup)="buscarArticulos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Unidad de Medida" formControlName="measuringType" (keyup)="buscarArticulos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-6">
+            
+          </div>
+        </div>
+      </form>
+    <table class="table mt-3">
         <thead>
             <tr>
                 <th scope="col">Nombre</th>
@@ -15,7 +38,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let art of articulos">
+            <tr *ngFor="let art of ResultBusqueda">
                 <td >{{art.name}}</td>
                 <td>{{art.amount}}</td>
                 <td>{{art.measuringType}}</td>

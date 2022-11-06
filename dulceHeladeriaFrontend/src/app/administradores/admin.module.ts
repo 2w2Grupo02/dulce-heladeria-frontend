@@ -29,6 +29,11 @@ import { PaymentMethodPipePipe } from '../payment-method-pipe.pipe';
 import { ReporteStockComponent } from './components/reporte-stock/reporte-stock.component';
 import { ListaMovimientosComponent } from './components/reporte-stock/lista-movimientos/lista-movimientos.component';
 import { GraficoDonaComponent } from './components/reporte-stock/grafico-dona/grafico-dona.component';
+import { ConsultarProductosComponent } from './components/consultar-productos/consultar-productos.component';
+import { RegistrarProductoComponent } from './components/registrar-producto/registrar-producto.component';
+import { ConsultarUsuariosComponent } from './components/consultar-usuarios/consultar-usuarios.component';
+import { ConsultarPerfilComponent } from './components/consultar-perfil/consultar-perfil.component';
+import { ModificarContrasenaComponent } from './components/modificar-contrasena/modificar-contrasena.component';
 
 @NgModule({
   declarations: [
@@ -44,10 +49,11 @@ import { GraficoDonaComponent } from './components/reporte-stock/grafico-dona/gr
     RankingItemsComponent,
     RegistrarUbicacionDepositoComponent,
     RegistrarMovimientoArtComponent,
-    PaymentMethodPipePipe,
-    ReporteStockComponent,
-    ListaMovimientosComponent,
-    GraficoDonaComponent
+    ConsultarProductosComponent,
+    RegistrarProductoComponent,
+    ConsultarUsuariosComponent,
+    ConsultarPerfilComponent,
+    ModificarContrasenaComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [

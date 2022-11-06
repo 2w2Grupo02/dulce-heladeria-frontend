@@ -4,6 +4,7 @@ import { RangeService } from '../../services/range.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { VentaFinalDiaComponent } from './venta-final-dia/venta-final-dia.component';
 import { ReporteGraficoLineaComponent } from './reporte-grafico-linea/reporte-grafico-linea.component';
+import swal from 'sweetalert2';
 
 
 
@@ -39,7 +40,7 @@ export class ReporteVentaComponent implements OnInit {
         console.log(resp);
         this.date = resp
       },
-      error: () => {alert("error al recibir el rango de fechas")}
+      error: () => {swal.fire("Error!", "Error al recibir el rango de fechas!", "error");}
     }); 
   }
 

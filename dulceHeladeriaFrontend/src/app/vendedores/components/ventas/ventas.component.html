@@ -1,58 +1,59 @@
-<h1><b>Nueva venta</b></h1>
 
 <div class="container">
-  <div class="row">
-    <div class="col col-md-6">
+  <div id="content">
+    <div id="mainContent" class="col">
       <div class="row">
-        <app-clientes></app-clientes>
+        <app-clientes (change)="clientChange(cliente)"></app-clientes>
       </div>
-        <div class="card border-dark mb-3" style="max-width: 45rem;">
-          <div class="card-header bg-transparent border-dark">Productos</div>
-            <div class="card-body text-dark">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Articulo</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Sub-total</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let prod of nuevaVenta.producto">
-                    <td>{{prod.nombre}}</td>
-                    <td>{{prod.cantidad}}</td>
-                    <td>{{prod.precio}}</td>
-                    <td>{{prod.cantidad! * prod.precio!}}</td>
-                    <td><button type="button" class="btn-close" aria-label="Close" (click)="EliminarProducto(prod)"></button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          <div class="card-footer bg-transparent border-dark"><label>Total a pagar: <B>{{total}}</B></label></div>
+      <div class="card border-dark mb-3" style="max-width: 45rem;">
+        <div class="card-header bg-transparent border-dark">Productos</div>
+        <div class="card-body text-dark">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Articulo</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Sub-total</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prod of productosVenta">
+                <td>{{prod.nombre}}</td>
+                <td>{{prod.cantidad}}</td>
+                <td>{{prod.precio | currency}}</td>
+                <td>{{prod.cantidad! * prod.precio! | currency}}</td>
+                <td><button type="button" class="btn-close" aria-label="Close"
+                    (click)="EliminarProducto(prod)"></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer bg-transparent border-dark"><label>Total a pagar: <B>{{total | currency}}</B></label></div>
       </div>
       <div class="row">
-        <button type="submit" class="btn btn-primary" (click)="guardar()" style="margin-top: 2vh;" [disabled]="!nuevaVenta.Cliente || !nuevaVenta.producto">Cobrar</button>
+        <button type="submit" class="btn btn-primary" (click)="registrarVenta()" style="margin-top: 2vh;"
+          [disabled]="!esVentaValida()">Cobrar</button>
       </div>
-      
+
     </div>
-    <div class="col col-md-4">
-        <div class="row">
-          <div class="card-group">
-            <div class="card" *ngFor="let producto of arrayCard">
-              <img [src] ="producto.imagen" class="card-img-top" alt="..." (click)="openModal(producto)">
-              <div class="card-body">
-                <h5 class="card-title">{{producto.nombre}}</h5>
-              </div>
+    <div class="col">
+      <div class="row">
+        <div class="card-group">
+          <div class="card" *ngFor="let producto of productos">
+            <img [src]="producto.imagen" class="card-img-top" alt="..." (click)="openModal(producto)">
+            <div class="card-body">
+              <h5 class="card-title">{{producto.nombre}}</h5>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
- 
-        <!-- <div class="card">
+
+<!-- <div class="card">
           <img src=
             class="card-img-top" alt="..." (click)="openModal()">
           <div class="card-body">
@@ -169,32 +170,45 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="titulo">{{selected.nombre}}</h5>
+        <h5 class="modal-title" id="titulo">{{prodSeleccionado.nombre}}</h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal()">
-        </button> 
+        </button>
       </div>
       <div class="modal-body">
-          <label><b> Precio  </b>{{selected.precio}}</label> <br>
-          <label><b> cantidad maxima de gustos:  </b>{{selected.cantidadMaxGustos}}</label><br>
-          <label><b> cantidad de gustos disponibles:  </b>{{selected.cantidadMaxGustos!-gustosSelected.length}}</label>
-          <div class="alert alert-succes">
+        <label><b> Precio: </b>{{prodSeleccionado.precio | currency}}</label> <br>
+        <label><b> Cantidad maxima de gustos: </b>{{prodSeleccionado.cantMaxArticulos}}</label><br>
+        <label><b> Cantidad de gustos disponibles: </b>{{prodSeleccionado.cantMaxArticulos!-artSeleccionados.length}}</label>
+        <hr>
+        <div class="alert alert-succes">
+          <div *ngIf="prodSeleccionado.cantMaxArticulos > 1">
             <label for="tipoGustos">Gustos</label>
-            <ul class="list-group" *ngFor="let gusto of gustos">
-              <li class="list-group-item d-flex justify-content-between align-items-center" (click)="cargarGustos(gusto, selected.cantidadMaxGustos!)" style="cursor: pointer;">
-                {{gusto.nombre}}
+            <ul class="list-group" *ngFor="let art of prodSeleccionado.articulos">
+              <li class="list-group-item d-flex justify-content-between align-items-center" (click)="cargarGustos(art)"
+                style="cursor: pointer;">
+                {{art.nombre}} 
+                <div *ngIf="art.seleccionado">
+                  <i class="bi bi-check-lg"></i>
+                </div>
               </li>
             </ul>
+            <br>
+            <hr>
             <label for="tipoGustos">Gustos Seleccionados</label><br>
-            <div *ngFor="let gusto of gustosSelected">
-              <span class="badge bg-danger" style="cursor: pointer;" (click)="quitarGustos(gusto)">{{gusto.nombre}}</span>
-            </div><br>
-            <label for="cantidad">Cantidad</label>
-            <input class="form-control" type="number" placeholder="" id="cantidad" [(ngModel)]="selected.cantidad">
+            <div *ngFor="let art of artSeleccionados">
+              <span class="badge bg-danger" style="cursor: pointer;"
+                (click)="quitarGustos(art)">{{art.nombre}} <button type="button" class="btn-close btn-close-white" aria-label="Close"></button></span>
+            </div>
           </div>
+          <br>
+          <hr>
+          <label for="cantidad">Cantidad</label>
+          <input class="form-control" type="number" placeholder="" id="cantidad" [(ngModel)]="prodSeleccionado.cantidad">
+        </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="registrarProducto(this.selected)" [disabled]="!gustosSelected.length">Agregar</button>
+        <button type="button" class="btn btn-primary" (click)="agregarProducto(this.prodSeleccionado)"
+          [disabled]="!artSeleccionados.length">Agregar</button>
       </div>
     </div>
   </div>

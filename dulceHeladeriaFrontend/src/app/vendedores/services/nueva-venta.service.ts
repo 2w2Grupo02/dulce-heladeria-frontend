@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { dtoNuevaVenta } from '../interfaces/dtoVenta';
+import { GetVentaDto } from '../interfaces/GetVentaDto';
+import { VentaRequestDto } from '../interfaces/ventaRequestDto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +14,20 @@ export class NuevaVentaService {
   selectedVenta$ = this.venta$.asObservable();
 
   private API_URL: string = environment.apiUrlBase;
+  private jwt: string =localStorage.getItem('token')!
 
   private _options = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true', 'Authorization' : 'Bearer '+ this.jwt }),
   };
 
   constructor(private http: HttpClient) { }
 
-  registrarVenta(venta: dtoNuevaVenta):Observable<any>{
-    return this.http.post<any>('https://localhost:4200/api/Vendedor',venta)
+  registrarVenta(venta: VentaRequestDto):Observable<any>{
+    return this.http.post<any>('https://localhost:5001/api/sale',venta, this._options)
   }
-  // registrarVenta(articulo: string, unidad: number, precio: number, subTotal: number) {
-  //   const comando = {
-  //     "articulo": articulo,
-  //     "unidad": unidad,
-  //     "precio": precio,
-  //     "subTotal": subTotal
-  //   };
+  getVentas(): Observable<GetVentaDto[]>{
+    return this.http.get<GetVentaDto[]>("https://localhost:5001/api/sale",this._options)
+  }
 
   //   const headers = { 'content-type': 'application/json' }
   //   const body = JSON.stringify(comando);

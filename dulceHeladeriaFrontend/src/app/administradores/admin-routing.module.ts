@@ -7,20 +7,31 @@ import { ListadoClientesComponent } from 'src/app/vendedores/pages/listado-clien
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubicacion-deposito/registrar-ubicacion-deposito.component';
+import { ConsultarProductosComponent } from './components/consultar-productos/consultar-productos.component';
+import { RegistrarProductoComponent } from './components/registrar-producto/registrar-producto.component';
+import { BienvenidaComponent } from '../shared/components/bienvenida/bienvenida.component';
+import { ConsultarUsuariosComponent } from './components/consultar-usuarios/consultar-usuarios.component';
+import { ConsultarPerfilComponent } from './components/consultar-perfil/consultar-perfil.component';
+import { ModificarContrasenaComponent } from './components/modificar-contrasena/modificar-contrasena.component';
 
 
 const routes: Routes = [
   {
     path: '',
     children: [
-
-      {path: 'alta-usuario', component:RegistrarUsuarioComponent},
+      {path: '', component:BienvenidaComponent},
+      {path: 'usuarios', component:ConsultarUsuariosComponent},
+      {path: 'usuarios/nuevo', component:RegistrarUsuarioComponent},
       {path: 'reportes', component:ReportesComponent},
       {path: 'articulos', component:ConsultarArticuloComponent},
       {path: 'articulos/:id/ubicaciones', component:ConsultarUbicacionesArticuloComponent},
       {path: 'depositos', component:ConsultarDepositoComponent},
       {path: 'clientes', component:ListadoClientesComponent},
       {path: 'ubicacion', component:RegistrarUbicacionDepositoComponent},
+      {path: 'productos', component:ConsultarProductosComponent},
+      {path: 'productos/nuevo', component:RegistrarProductoComponent},
+      {path: 'perfil', component:ConsultarPerfilComponent},
+      {path: 'perfil/cambiarContrasenia', component:ModificarContrasenaComponent},
       {path:'**', redirectTo:''}
 
     ]

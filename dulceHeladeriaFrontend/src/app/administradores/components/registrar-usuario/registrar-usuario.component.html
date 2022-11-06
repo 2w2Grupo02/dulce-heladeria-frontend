@@ -1,8 +1,11 @@
-<div class="form-container">
-    <img src="../../../../assets/img/logo.png" alt="logo de la organizacion, dulce heladeria, una bocha de helado en un cucharon" class="logo">
-    <div class="title">
+<!-- <div class="form-container"> -->
+  <div id="header">
+    <h3>Registrar Usuario</h3>
+    <button type="button" class="btn btn-primary" (click)="regresar()">Volver</button>
+</div>
+    <!-- <div class="title">
       <p><b>AGREGAR USUARIO</b></p>
-    </div>
+    </div> -->
     <form class="container-fluid form" [formGroup]="form">
       <div class="row"> 
         <div class="form-group col-sm-6">
@@ -23,11 +26,6 @@
           <!-- <label for="inputEmail">Email</label> -->
           <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email">
         </div>
-
-        <div class="form-group col-sm-6">
-          <!-- <label for="inputEmail">Email</label> -->
-          <input type="text" class="form-control" id="inputUserName" placeholder="Nombre de usuario" formControlName="userName">
-        </div>
       </div>
     
       <div class="row">
@@ -43,11 +41,10 @@
     
       <div class="row">
         <select class="form-select form-select-md mb-3" aria-label=".from.select-md Rol de usuario" formControlName="rol">
-          <option selected>Selecciona un rol...</option>
-          <option value="1">Administrador</option>
-          <option value="2">Vendedor</option>
+          <option value="0">Administrador</option>
+          <option value="1">Vendedor</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="enviar()">Agregar</button>
+      <button type="submit" class="btn btn-primary" (click)="enviar()" [disabled]="form.invalid">Agregar</button>
     </form>
-  </div>
+  <!-- </div> -->

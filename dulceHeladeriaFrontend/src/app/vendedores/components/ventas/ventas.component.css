@@ -9,3 +9,16 @@ input[type="email"]:focus,input[type="password"]:focus,input[type="text"]:focus,
     color: white;
     font-weight: 700;
 }
+button:disabled{
+    background-color: gray;
+    color: red;
+}
+#content{
+    display: flex;
+}
+.card{
+    flex-basis: calc(100%/3);
+}
+#mainContent{
+    margin-right: 30px;
+}
