@@ -58,13 +58,16 @@
             
         </div>
         <nav class="navbar navbar-light">
-            <a class="navbar-option" href="#"><b>Ventas</b></a>
-            <a class="navbar-option" href="#"><b>Stock</b></a>
+            <a class="navbar-option" (click)="changeReport()"><b>Ventas</b></a>
+            <a class="navbar-option" (click)="changeReport()"><b>Stock</b></a>
         </nav>
     </div>
     
-    <div>
+    <div *ngIf="!isStock">
         <app-reporte-venta [start]="myStart" [end]="myEnd"></app-reporte-venta>
     </div>
-
+   
+   <div *ngIf="isStock">
+      <app-reporte-stock></app-reporte-stock>
+  </div>
 </div>

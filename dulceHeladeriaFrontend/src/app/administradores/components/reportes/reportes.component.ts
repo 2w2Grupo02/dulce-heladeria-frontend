@@ -9,11 +9,13 @@ import { RangeService } from '../../services/range.service';
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
+
   @ViewChild('start') start : HTMLInputElement; 
   @ViewChild('end') end : HTMLInputElement; 
   public myRange : range = {start : null, end : null}; 
   myStart : Date 
   myEnd : Date; 
+  isStock:boolean = false; 
 
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -29,6 +31,10 @@ export class ReportesComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  changeReport() {
+    this.isStock = !this.isStock;
   }
 
   // dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {

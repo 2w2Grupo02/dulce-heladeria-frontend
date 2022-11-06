@@ -26,6 +26,9 @@ import { RegistrarMovimientoArtComponent } from './components/registrar-movimien
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTableModule } from '@angular/material/table';
 import { PaymentMethodPipePipe } from '../payment-method-pipe.pipe';
+import { ReporteStockComponent } from './components/reporte-stock/reporte-stock.component';
+import { ListaMovimientosComponent } from './components/reporte-stock/lista-movimientos/lista-movimientos.component';
+import { GraficoDonaComponent } from './components/reporte-stock/grafico-dona/grafico-dona.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { PaymentMethodPipePipe } from '../payment-method-pipe.pipe';
     RankingItemsComponent,
     RegistrarUbicacionDepositoComponent,
     RegistrarMovimientoArtComponent,
-    PaymentMethodPipePipe
+    PaymentMethodPipePipe,
+    ReporteStockComponent,
+    ListaMovimientosComponent,
+    GraficoDonaComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [
