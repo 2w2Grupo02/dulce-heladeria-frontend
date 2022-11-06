@@ -34,6 +34,7 @@ import { RegistrarProductoComponent } from './components/registrar-producto/regi
 import { ConsultarUsuariosComponent } from './components/consultar-usuarios/consultar-usuarios.component';
 import { ConsultarPerfilComponent } from './components/consultar-perfil/consultar-perfil.component';
 import { ModificarContrasenaComponent } from './components/modificar-contrasena/modificar-contrasena.component';
+import { ModificarProductoComponent } from './components/modificar-producto/modificar-producto.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ModificarContrasenaComponent } from './components/modificar-contrasena/
     ConsultarUsuariosComponent,
     ConsultarPerfilComponent,
     ModificarContrasenaComponent,
+    ModificarProductoComponent,
     GraficoDonaComponent,
     ListaMovimientosComponent,
     ReporteStockComponent

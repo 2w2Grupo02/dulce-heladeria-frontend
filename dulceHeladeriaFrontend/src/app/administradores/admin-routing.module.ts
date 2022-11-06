@@ -13,6 +13,7 @@ import { BienvenidaComponent } from '../shared/components/bienvenida/bienvenida.
 import { ConsultarUsuariosComponent } from './components/consultar-usuarios/consultar-usuarios.component';
 import { ConsultarPerfilComponent } from './components/consultar-perfil/consultar-perfil.component';
 import { ModificarContrasenaComponent } from './components/modificar-contrasena/modificar-contrasena.component';
+import { ModificarProductoComponent } from './components/modificar-producto/modificar-producto.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path: 'ubicacion', component:RegistrarUbicacionDepositoComponent},
       {path: 'productos', component:ConsultarProductosComponent},
       {path: 'productos/nuevo', component:RegistrarProductoComponent},
+      {path: 'productos/:id/editar', component:ModificarProductoComponent},
       {path: 'perfil', component:ConsultarPerfilComponent},
       {path: 'perfil/cambiarContrasenia', component:ModificarContrasenaComponent},
       {path:'**', redirectTo:''}

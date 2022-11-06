@@ -22,4 +22,10 @@ export class ProductosService {
   create(producto: ProductoRequest): Observable<any> {
     return this.http.post<any>(`https://localhost:5001/api/product`,producto, this._options);
   }
+  getProductoById(id: number): Observable<ProductoRequest> {
+    return this.http.get<ProductoRequest>(`https://localhost:5001/api/product/${id}`, this._options);
+  }
+  updateProducto(id: number, producto: ProductoRequest ): Observable<any> {
+    return this.http.put(`https://localhost:5001/api/product/${id}`,producto, this._options);
+  }
 }
