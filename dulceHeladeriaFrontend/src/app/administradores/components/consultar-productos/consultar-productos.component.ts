@@ -56,7 +56,6 @@ export class ConsultarProductosComponent implements OnInit, OnDestroy {
     );
   }
   buscarProductos(){
-    console.log(this.busquedaForm.value)
     this.ResultBusqueda = this.productos.filter((x:Producto) => {
       return x.nombre?.toLowerCase().includes(this.busquedaForm.controls.nombre.value!.toLowerCase()) && x.cantMaxArticulos?.toString().toLowerCase().includes(this.busquedaForm.controls.cantMaxArticulos.value!.toString().toLowerCase()) 
       && x.precio?.toString().toLowerCase().includes(this.busquedaForm.controls.precio.value!.toString().toLowerCase()) && x.articulos.length?.toString().toLowerCase().includes(this.busquedaForm.controls.cantidadArticulos.value!.toString().toLowerCase());
@@ -64,7 +63,7 @@ export class ConsultarProductosComponent implements OnInit, OnDestroy {
 }
 
   editarProducto(id: number){
-    this.router.navigate([`${this.router.url}/${id}`]);
+    this.router.navigate([`${this.router.url}/${id}/editar`]);
   }
 
 }
