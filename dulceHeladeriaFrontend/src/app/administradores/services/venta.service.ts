@@ -39,5 +39,10 @@ export class VentaService {
     return this.http.get(`https://localhost:44350/range?start=${newStart}&end=${newEnd}`);
   }
 
+  getVentaConMetodoPago(start:Date): Observable<any> {
+    let newStart = this.datepipe.transform(start,"yyyy-MM-dd");
+    return this.http.get(`https://localhost:44350/day?start=${newStart}`);
+  }
+
 }
 

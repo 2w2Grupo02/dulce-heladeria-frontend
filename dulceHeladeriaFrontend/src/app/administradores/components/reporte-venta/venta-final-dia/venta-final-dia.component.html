@@ -3,8 +3,8 @@
         <h3 class="title">INFORME FINAL DEL DIA</h3>
         <h6 class="title">RESUMEN DIARIO</h6>
         <div class="container-row">
-            <select class="form-select" aria-label="seleccione el dia">
-                <option selected>HOY!</option>
+            <select class="form-select" #select aria-label="seleccione el dia"  [(ngModel)]="selectValue" (change)="onChangeDay($event)">
+                <option value="0" selected>HOY!</option>
                 <option value="1">Ayer</option>
               </select>
             <button type="submit" class="btn btn-light">Descargar Reporte</button>    
@@ -21,30 +21,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                 <!--<tr *ngFor="let i of ingresos">
-                    <td>{{i.tipo}}</td>
-                    <td>{{i.cantidad}}</td>
-                    <td>{{i.monto}}</td>
-                  </tr>-->
-                  <tr>
-                    <td><h6>EFECTIVO</h6></td>
-                    <td>1</td>
-                    <td>1500$</td>
+                 <tr *ngFor="let i of ingresos">
+                    <td>{{i.title}}</td>
+                    <td>{{i.cant}}</td>
+                    <td>{{i.total}}</td>
                   </tr>
-                  <tr>
-                    <td><h6>TARJETA</h6></td>
-                    <td>4</td>
-                    <td>4500$</td>
-                  </tr>
-                  <tr>
-                    <td><h6>MERCADO PAGO</h6></td>
-                    <td>2</td>
-                    <td>2000$</td>
-                  </tr>
-                  <tr>
+                    <tr>
                     <td><h6>TOTAL</h6></td>
                     <td></td>
-                    <td><b>8000$</b></td>
+                    <td><b>{{total | currency}}</b></td>
                   </tr>
                 </tbody>
               </table>

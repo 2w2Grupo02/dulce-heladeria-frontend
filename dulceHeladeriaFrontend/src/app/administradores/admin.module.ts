@@ -25,6 +25,7 @@ import { RegistrarUbicacionDepositoComponent } from './components/registrar-ubic
 import { RegistrarMovimientoArtComponent } from './components/registrar-movimiento-art/registrar-movimiento-art.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTableModule } from '@angular/material/table';
+import { PaymentMethodPipePipe } from '../payment-method-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatTableModule } from '@angular/material/table';
     VentaFinalDiaComponent,
     RankingItemsComponent,
     RegistrarUbicacionDepositoComponent,
-    RegistrarMovimientoArtComponent
+    RegistrarMovimientoArtComponent,
+    PaymentMethodPipePipe
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [
@@ -67,7 +69,8 @@ import { MatTableModule } from '@angular/material/table';
   ],
   providers: [
     ArticulosService,
-    DatePipe
+    DatePipe,
+    PaymentMethodPipePipe
   ]
 })
 export class AdminModule { }
