@@ -12,6 +12,7 @@ import { RegistrarProductoComponent } from './components/registrar-producto/regi
 import { BienvenidaComponent } from '../shared/components/bienvenida/bienvenida.component';
 import { ConsultarUsuariosComponent } from './components/consultar-usuarios/consultar-usuarios.component';
 import { ConsultarPerfilComponent } from './components/consultar-perfil/consultar-perfil.component';
+import { ModificarContrasenaComponent } from './components/modificar-contrasena/modificar-contrasena.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path: 'productos', component:ConsultarProductosComponent},
       {path: 'productos/nuevo', component:RegistrarProductoComponent},
       {path: 'perfil', component:ConsultarPerfilComponent},
+      {path: 'perfil/cambiarContrasenia', component:ModificarContrasenaComponent},
       {path:'**', redirectTo:''}
 
     ]
