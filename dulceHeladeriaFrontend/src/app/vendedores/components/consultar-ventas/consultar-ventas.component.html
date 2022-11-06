@@ -9,14 +9,20 @@
                 <input type="text" class="form-control" placeholder="Cliente" formControlName="cliente"
                     (keyup)="buscarVentas()">
             </div>
+            <div class="col mb-3">
+                
+                <input type="text" class="form-control" placeholder="Metodo de Pago" formControlName="metodoPago"
+                    (keyup)="buscarVentas()">
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col mb-3">
-                <input type="date" class="form-control" placeholder="Fecha" formControlName="fecha" (change)="buscarVentas()" >
+                <label for="">Fecha Desde</label>
+                <input type="date" class="form-control" placeholder="Fecha Desde" formControlName="fechades" (change)="buscarVentas()" >
             </div>
             <div class="col mb-3">
-                <input type="text" class="form-control" placeholder="Metodo de Pago" formControlName="metodoPago"
-                    (keyup)="buscarVentas()">
+                <label for="">Fecha Hasta</label>
+                <input type="date" class="form-control" placeholder="Fecha Hasta" formControlName="fechahas" (change)="buscarVentas()" >
             </div>
         </div>
         <div class="row">

@@ -7,7 +7,7 @@
   <div class="card-footer bg-transparent border-dark"><div class="btn-group" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-primary" (click)="openNuevoCliente()">Nuevo Cliente</button>
     <button type="button" class="btn btn-primary" (click)="openElegirCliente()">Seleccionar Cliente</button>
-    <button type="button" class="btn btn-secondary" (click)="cargarConsumidorF()">Consumidor Final</button>
+    <button type="button" class="btn btn-primary" (click)="cargarConsumidorF()">Consumidor Final</button>
   </div></div>
 </div>
 
@@ -33,7 +33,7 @@
                   Campo Requerido
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlSelect1">Tipo de Identificador</label>
+                  <label for="exampleFormControlSelect1">Tipo de Documento</label>
                   <select class="form-control" id="tipoIdentificador" formControlName="identifierTypeId">
                     <option [value]=1>DNI</option>
                     <option [value]=2>CUIT</option>
@@ -41,7 +41,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Nro de Identificador</label>
+                    <label for="exampleFormControlInput1">Nro de Documento</label>
                     <input class="form-control" type="text" placeholder="" id="nroIdentificador" formControlName="identifier">
                 </div>
                 <div class="alert alert-danger" role="alert" *ngIf="nuevoClienteForm.controls.identifier.touched && nuevoClienteForm.controls.identifier.invalid">

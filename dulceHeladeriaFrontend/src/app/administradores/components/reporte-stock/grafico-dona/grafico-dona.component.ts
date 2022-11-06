@@ -19,7 +19,8 @@ datos = {
       'rgb(54, 162, 235)',
       'rgb(255, 205, 86)'
     ],
-    hoverOffset: 4
+    hoverOffset: 4,
+    weight:50
   }]
 };
 

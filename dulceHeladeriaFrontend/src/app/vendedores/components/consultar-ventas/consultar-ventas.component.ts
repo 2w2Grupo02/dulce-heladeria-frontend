@@ -14,7 +14,8 @@ export class ConsultarVentasComponent implements OnInit, OnDestroy {
   ResultBusqueda: GetVentaDto[] = [];
   private sub: Subscription = new Subscription();
   busquedaForm = new FormGroup({
-    fecha: new FormControl(''),
+    fechades: new FormControl(''),
+    fechahas: new FormControl(''),
     cliente: new FormControl(''),
     metodoPago: new FormControl(''),
   });
@@ -46,12 +47,10 @@ export class ConsultarVentasComponent implements OnInit, OnDestroy {
         x.clientName
           ?.toLowerCase()
           .includes(this.busquedaForm.controls.cliente.value!.toLowerCase()) &&
-        x.date
-          ?.toString()
-          .toLowerCase()
-          .includes(
-            this.busquedaForm.controls.fecha.value!.toString().toLowerCase()
-          ) &&
+        x.date.toDateString()>=this.busquedaForm.controls.fechades.value!
+           &&
+        x.date.toDateString()<=this.busquedaForm.controls.fechahas.value!
+           &&
         x.paymentMethod
           ?.toString()
           .toLowerCase()
@@ -63,4 +62,27 @@ export class ConsultarVentasComponent implements OnInit, OnDestroy {
       );
     });
   }
+  // buscarVentas() {
+  //   this.ResultBusqueda = this.ventas.filter((x: GetVentaDto) => {
+  //     return (
+  //       x.clientName
+  //         ?.toLowerCase()
+  //         .includes(this.busquedaForm.controls.cliente.value!.toLowerCase()) &&
+  //       x.date
+  //         ?.toString()
+  //         .toLowerCase()
+  //         .includes(
+  //           this.busquedaForm.controls.fecha.value!.toString().toLowerCase()
+  //         ) &&
+  //       x.paymentMethod
+  //         ?.toString()
+  //         .toLowerCase()
+  //         .includes(
+  //           this.busquedaForm.controls.metodoPago
+  //             .value!.toString()
+  //             .toLowerCase()
+  //         )
+  //     );
+  //   });
+  // }
 }

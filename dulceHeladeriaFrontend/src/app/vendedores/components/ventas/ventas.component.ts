@@ -61,8 +61,8 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-  clientChange(event: Cliente) {
-    //this.nuevaVenta.Cliente=this.cliente;
+  clientChange(cliente: Cliente) {
+    this.cliente=cliente;
   }
   cargarProductos() {
     this.subscription.add(

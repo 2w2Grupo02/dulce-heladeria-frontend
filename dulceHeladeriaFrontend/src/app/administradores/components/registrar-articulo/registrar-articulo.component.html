@@ -1,11 +1,11 @@
-<button type="button" class="btn btn-primary" (click)="openNuevoArticulo()" [disabled]="articulo">Nuevo Articulo</button>
+<button type="button" class="btn btn-primary" (click)="openNuevoArticulo()" [disabled]="articulo">Nuevo Artículo</button>
 
 <div class="modal fade" id="NuevoArticulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Articulo</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Artículo</h5>
                 <button type="button" class="close" aria-label="Close" (click)="closeNuevoArticulo()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -18,12 +18,12 @@
                             formControlName="name">
                     </div>
                     <div class="form-group">
-                        <label for="description">Descripcion</label>
+                        <label for="description">Descripción</label>
                         <input class="form-control" type="text" placeholder="" id="description"
                             formControlName="description">
                     </div>
                     <div class="form-group">
-                        <label for="itemType">Tipo de Articulo</label>
+                        <label for="itemType">Tipo de Artículo</label>
                         <select class="form-control" id="itemType" formControlName="itemTypeId">
                             <option [value]=1>Helado Litro</option>
                             <option [value]=2>Helado Paquete</option>
@@ -31,7 +31,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="measuringType">Tipo de Medicion</label>
+                        <label for="measuringType">Tipo de Medición</label>
                         <select class="form-control" id="measuringType" formControlName="measuringType">
                             <option [value]=1>Litro</option>
                             <option [value]=2>Unidad</option>

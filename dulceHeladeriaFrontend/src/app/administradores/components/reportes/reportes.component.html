@@ -39,7 +39,7 @@
             </mat-form-field> -->
 
             <mat-form-field appearance="fill" class="example-form-field"  [formGroup]="range">
-                <mat-label>Enter a date range</mat-label>
+                <mat-label>Seleccione Un rango de fechas</mat-label>
                 <mat-date-range-input [rangePicker]="rangePicker">
                   <input matStartDate placeholder="Start date" #start formControlName="start" >
                   <input matEndDate placeholder="End date" #end formControlName="end" >
@@ -48,8 +48,8 @@
                 <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
                 <mat-date-range-picker #rangePicker>
                   <mat-date-range-picker-actions>
-                    <button mat-button matDateRangePickerCancel>Cancel</button>
-                    <button mat-raised-button color="primary" matDateRangePickerApply (click)="send()">Apply</button>
+                    <button mat-button matDateRangePickerCancel>Cancelar</button>
+                    <button mat-raised-button color="primary" matDateRangePickerApply (click)="send()">Aplicar</button>
                   </mat-date-range-picker-actions>
                 </mat-date-range-picker>
               </mat-form-field>

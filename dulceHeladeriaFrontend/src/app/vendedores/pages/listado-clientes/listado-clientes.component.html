@@ -33,6 +33,7 @@
                 <th scope="col">Razón Social</th>
                 <th scope="col">Dirección</th>
                 <th scope="col">Email</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -42,6 +43,12 @@
                 <td>{{client.businessName}}</td>
                 <td>{{client.homeAdress}}</td>
                 <td>{{client.email}}</td>
+                <td>
+                  <div id="acciones">
+                    <button class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>                
+                    <button class="btn btn-primary ms-1"><i class="bi bi-x-lg"></i></button>   
+                  </div>  
+                </td>
               </tr>
             </tbody>
           </table>
@@ -65,7 +72,7 @@
               Campo Requerido
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Tipo de Identificador</label>
+              <label for="exampleFormControlSelect1">Tipo de Documento</label>
               <select class="form-control" id="tipoIdentificador" formControlName="identifierTypeId">
                 <option [value]=1>DNI</option>
                 <option [value]=2>CUIT</option>
@@ -73,7 +80,7 @@
               </select>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Nro de Identificador</label>
+                <label for="exampleFormControlInput1">Nro de Documento</label>
                 <input class="form-control" type="text" placeholder="" id="nroIdentificador" formControlName="identifier">
             </div>
             <div class="alert alert-danger" role="alert" *ngIf="nuevoClienteForm.controls.identifier.touched && nuevoClienteForm.controls.identifier.invalid">
