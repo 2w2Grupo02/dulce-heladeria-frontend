@@ -14,6 +14,7 @@ import { ConsultarUsuariosComponent } from './components/consultar-usuarios/cons
 import { ConsultarPerfilComponent } from './components/consultar-perfil/consultar-perfil.component';
 import { ModificarContrasenaComponent } from './components/modificar-contrasena/modificar-contrasena.component';
 import { ModificarProductoComponent } from './components/modificar-producto/modificar-producto.component';
+import { ModificarArticuloComponent } from './components/modificar-articulo/modificar-articulo.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
       {path: 'reportes', component:ReportesComponent},
       {path: 'articulos', component:ConsultarArticuloComponent},
       {path: 'articulos/:id/ubicaciones', component:ConsultarUbicacionesArticuloComponent},
+      {path: 'articulos/:id/editar', component:ModificarArticuloComponent},
       {path: 'depositos', component:ConsultarDepositoComponent},
       {path: 'clientes', component:ListadoClientesComponent},
       {path: 'ubicacion', component:RegistrarUbicacionDepositoComponent},

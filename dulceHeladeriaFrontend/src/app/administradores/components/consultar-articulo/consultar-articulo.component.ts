@@ -45,6 +45,9 @@ export class ConsultarArticuloComponent implements OnInit, OnDestroy {
   verUbicaciones(id: number){
     this.router.navigate([`${this.router.url}/${id}/ubicaciones`]);
   }
+  editar(id: number){
+    this.router.navigate([`${this.router.url}/${id}/editar`]);
+  }
   buscarArticulos(){
     this.ResultBusqueda = this.articulos.filter((x:Articulos) => {
      return x.name?.toLowerCase().includes(this.busquedaForm.controls.name.value!.toLowerCase()) && x.amount?.toString().includes(this.busquedaForm.controls.cantidad.value!.toString()) 
