@@ -36,4 +36,10 @@ export class ArticulosService {
   createMovimientoStock(depositId: {}): Observable<any>{
     return this.http.post(`https://localhost:5001/api/ItemStock/movement`,depositId, this._options);
   }
+  getArticuloById(id: number): Observable<Articulo>{
+    return this.http.get(`https://localhost:5001/api/item/${id}`, this._options);
+  }
+  updateArticulo(id: number, articulo: Articulo): Observable<any>{
+    return this.http.put(`https://localhost:5001/api/item/${id}`,articulo, this._options);
+  }
 }
