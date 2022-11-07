@@ -29,6 +29,7 @@ import { ConsultarProductosComponent } from './components/consultar-productos/co
 import { RegistrarProductoComponent } from './components/registrar-producto/registrar-producto.component';
 import { ConsultarUsuariosComponent } from './components/consultar-usuarios/consultar-usuarios.component';
 import { ConsultarPerfilComponent } from './components/consultar-perfil/consultar-perfil.component';
+import { ConsultarUbicacionDepositoComponent } from './components/consultar-ubicacion-deposito/consultar-ubicacion-deposito.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ConsultarPerfilComponent } from './components/consultar-perfil/consulta
     ConsultarProductosComponent,
     RegistrarProductoComponent,
     ConsultarUsuariosComponent,
-    ConsultarPerfilComponent
+    ConsultarPerfilComponent,
+    ConsultarUbicacionDepositoComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [

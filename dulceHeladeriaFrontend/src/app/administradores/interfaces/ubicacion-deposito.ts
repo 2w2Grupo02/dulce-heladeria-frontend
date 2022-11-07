@@ -7,4 +7,5 @@ export interface UbicacionDeposito{
     depositId?: number;
     itemTypeId?: number;
     deletionDate?: Date;
+    id: number;
 }
