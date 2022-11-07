@@ -38,6 +38,8 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   cliente: Cliente;
   artSeleccionados: Articulo[] = [];
   prodSeleccionado: Producto = {} as Producto;
+  metodo: number = 1;
+  paymentMethods: string[] =['','Efectivo','Mercado Pago','Tarjeta'] ;
   productos: Producto[] = [];
   imagen: string =
     'https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg';
@@ -95,18 +97,18 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
       fecha: new Date().toLocaleDateString(),
       total: this.total,
       id: 1,
-      formaPago: "Efectivo",
+      formaPago: this.paymentMethods[this.metodo],
       producto: this.productosVenta.map((x) => {
         return { cantidad: x.cantidad!, nombre: x.nombre, precio: x.precio, articulos: x.articulos };
       }),
     };
-
+    console.log(this.nuevaFactura.formaPago)
     this.subscription.add(this.ventaService.setVenta(this.nuevaFactura));
 
     this.venta = {
       clientId: this.cliente.id!,
       clientName: this.cliente!.businessName,
-      paymentMethod: 1,
+      paymentMethod: parseInt(this.metodo.toString()),
       details: this.productosVenta.map((x) => {
         return {
           productId: x.id,
@@ -119,6 +121,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
         };
       }),
     };
+    console.log(this.venta.paymentMethod)
 
     this.subscription.add(
       this.ventaService.registrarVenta(this.venta).subscribe({
