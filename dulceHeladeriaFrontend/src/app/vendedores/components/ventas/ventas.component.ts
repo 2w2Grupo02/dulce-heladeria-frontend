@@ -92,9 +92,12 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   registrarVenta() {
     this.nuevaFactura = {
       Cliente: this.cliente,
-      fecha: Date.now().toLocaleString(),
+      fecha: new Date().toLocaleDateString(),
+      total: this.total,
+      id: 1,
+      formaPago: "Efectivo",
       producto: this.productosVenta.map((x) => {
-        return { cantidad: x.cantidad!, nombre: x.nombre, precio: x.precio };
+        return { cantidad: x.cantidad!, nombre: x.nombre, precio: x.precio, articulos: x.articulos };
       }),
     };
 
@@ -117,13 +120,12 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
       }),
     };
 
-    console.log(this.venta);
-
     this.subscription.add(
       this.ventaService.registrarVenta(this.venta).subscribe({
         next: () => {
-          swal.fire("Éxito!", "Venta Registrada Correctamente!", "success");
-          this.router.navigateByUrl('/vendedor/factura');
+          swal.fire("Éxito!", "Venta Registrada Correctamente!", "success").then(()=>{
+            this.router.navigateByUrl('/vendedor/factura');
+          });
         },
         error: () => {
           swal.fire("Error!", "Error al registrar la Venta!", "error");
@@ -177,15 +179,12 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
       this.artSeleccionados.push(articulo);
     }
     prodSeleccionado.articulos = this.artSeleccionados;
-    console.log(prodSeleccionado);
     this.productosVenta.push(prodSeleccionado);
     this.totalPrecio();
     this.cerrarModal();
-    //this.cliente = this.clientescomp.clienteSelected;
   }
 
   esProductoValido() {
-    //(this.prodSeleccionado.cantidad! < 1) &&
     if(this.prodSeleccionado.articulos){
       if (
         (!this.artSeleccionados.length || !this.prodSeleccionado.cantidad) &&
@@ -202,7 +201,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   esVentaValida(): boolean {
-    if (this.cliente && this.productosVenta) {
+    if (this.cliente && this.productosVenta.length> 0) {
       return true;
     } else {
       return false;

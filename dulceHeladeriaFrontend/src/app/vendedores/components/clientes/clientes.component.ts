@@ -90,7 +90,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   cargarConsumidorF(){
     this.sub.add(this.clienteService.getClienteByNombre("Consumidor Final").subscribe({
       next: resp => {
-        this.cliente = resp;
+        this.cliente = {id: resp.id, businessName: resp.businessName};
         this.cambioCliente();
       },
       error: err => {

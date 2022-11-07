@@ -14,11 +14,11 @@ import { NuevaVentaService } from '../../services/nueva-venta.service';
 })
 export class FacturaComponent implements OnInit {
   @ViewChild('factura',{static:false}) el!: ElementRef
-  Factura: dtoNuevaVenta= {id:1,total: 2700, fecha: '31/10/2022', 
-    producto : [{ nombre: 'Helado de 1 kilo', precio:1000, cantidad:2, gustosS :[{nombre:'Limón'},{nombre:'Chocolate'},{nombre:'Crema Americana'}]},
-                { nombre: 'Helado de 1/2 kilo', precio:700, cantidad:1, gustosS :[{nombre:'Frutilla'},{nombre:'Tramontana'},{nombre:'Banana con DDL'}]}], 
-    Cliente: {businessName: 'Juan Perez', identifierTypeId: 1, identifier:'20654135', homeAdress: 'San Lorenzo 840', email: 'jperez@gmail.com'}};
-  
+  // Factura: dtoNuevaVenta= {id:1,total: 2700, fecha: '31/10/2022', 
+  //   producto : [{ nombre: 'Helado de 1 kilo', precio:1000, cantidad:2, articulos :[{nombre:'Limón'},{nombre:'Chocolate'},{nombre:'Crema Americana'}]},
+  //               { nombre: 'Helado de 1/2 kilo', precio:700, cantidad:1, articulos :[{nombre:'Frutilla'},{nombre:'Tramontana'},{nombre:'Banana con DDL'}]}], 
+  //   Cliente: {businessName: 'Juan Perez', identifierTypeId: 1, identifier:'20654135', homeAdress: 'San Lorenzo 840', email: 'jperez@gmail.com'}};
+  Factura: dtoNuevaVenta = {} as dtoNuevaVenta;
     TiposIdentifiers: string[]=['','DNI','CUIT','CUIL'];
 
   constructor(private ventaService: NuevaVentaService) {}
