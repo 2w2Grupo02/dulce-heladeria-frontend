@@ -11,14 +11,14 @@ import { Cliente } from '../../interfaces/cliente-interface';
 import { dtoNuevaVenta } from '../../interfaces/dtoVenta';
 import { NuevaVentaService } from '../../services/nueva-venta.service';
 import { ClientesComponent } from '../clientes/clientes.component';
-import {formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductosService } from '../../services/productos.service';
 import { Producto } from '../../interfaces/producto';
 import { Articulo } from '../../interfaces/articulo';
 import { productoResponse } from '../../interfaces/productoResponse';
 import { VentaRequestDto } from '../../interfaces/ventaRequestDto';
-import swal from'sweetalert2';
+import swal from 'sweetalert2';
 
 declare var window: any;
 
@@ -62,7 +62,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription.unsubscribe();
   }
   clientChange(cliente: Cliente) {
-    this.cliente=cliente;
+    this.cliente = cliente;
   }
   cargarProductos() {
     this.subscription.add(
@@ -77,7 +77,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
                 return { id: x.id, nombre: x.name, seleccionado: false };
               }),
               cantMaxArticulos: element.maxItemAmount,
-              imagen: element.imageUrl
+              imagen: element.imageUrl,
             };
             this.productos.push(prod);
           });
@@ -92,9 +92,11 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   registrarVenta() {
     this.nuevaFactura = {
       Cliente: this.cliente,
-      fecha: Date.now.toString(),
-      producto: this.productosVenta.map(x => {return {cantidad: x.cantidad!, nombre: x.nombre, precio: x.precio}})
-    }
+      fecha: Date.now().toLocaleString(),
+      producto: this.productosVenta.map((x) => {
+        return { cantidad: x.cantidad!, nombre: x.nombre, precio: x.precio };
+      }),
+    };
 
     this.subscription.add(this.ventaService.setVenta(this.nuevaFactura));
 
@@ -115,7 +117,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
       }),
     };
 
-    console.log(this.venta)
+    console.log(this.venta);
 
     this.subscription.add(
       this.ventaService.registrarVenta(this.venta).subscribe({
@@ -128,8 +130,6 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
         },
       })
     );
-
-    
   }
 
   openModal(producto: Producto) {
@@ -138,11 +138,12 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   totalPrecio() {
+    this.total = 0;
     this.productosVenta.forEach((producto) => {
       this.total += producto.cantidad! * producto.precio!;
     });
   }
-  cargarGustos(articulo: Articulo) {
+  agregarArticulo(articulo: Articulo) {
     if (
       this.artSeleccionados.includes(articulo) ||
       this.artSeleccionados.length >= this.prodSeleccionado.cantMaxArticulos
@@ -153,7 +154,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
     this.artSeleccionados.push(articulo);
   }
 
-  quitarGustos(articulo: Articulo) {
+  quitarArticulo(articulo: Articulo) {
     this.artSeleccionados = this.artSeleccionados.filter(
       (x) => x.id !== articulo.id
     );
@@ -166,18 +167,41 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
 
   cerrarModal() {
     this.formModal.hide();
+    this.prodSeleccionado = {} as Producto;
+    this.artSeleccionados = [];
   }
 
   agregarProducto(prodSeleccionado: Producto) {
+    if (prodSeleccionado.articulos.length === 1) {
+      const articulo = prodSeleccionado.articulos.pop()!;
+      this.artSeleccionados.push(articulo);
+    }
+    prodSeleccionado.articulos = this.artSeleccionados;
+    console.log(prodSeleccionado);
     this.productosVenta.push(prodSeleccionado);
     this.totalPrecio();
     this.cerrarModal();
-    this.prodSeleccionado = {} as Producto;
-    this.artSeleccionados = [];
-    this.cliente = this.clientescomp.clienteSelected;
+    //this.cliente = this.clientescomp.clienteSelected;
   }
 
-esVentaValida(): boolean {
+  esProductoValido() {
+    //(this.prodSeleccionado.cantidad! < 1) &&
+    if(this.prodSeleccionado.articulos){
+      if (
+        (!this.artSeleccionados.length || !this.prodSeleccionado.cantidad) &&
+        this.prodSeleccionado.articulos.length > 1
+      ) {
+        return false;
+      }
+      else if(this.prodSeleccionado.articulos.length === 1 && !this.prodSeleccionado.cantidad){
+        return false
+      }
+    }
+
+    return true;
+  }
+
+  esVentaValida(): boolean {
     if (this.cliente && this.productosVenta) {
       return true;
     } else {
