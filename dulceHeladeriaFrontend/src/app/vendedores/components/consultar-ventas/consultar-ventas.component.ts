@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -12,10 +13,12 @@ import { NuevaVentaService } from '../../services/nueva-venta.service';
 export class ConsultarVentasComponent implements OnInit, OnDestroy {
   ventas: GetVentaDto[] = [];
   ResultBusqueda: GetVentaDto[] = [];
+  fechahoy: string = new Date().toString()
+  fechames: string = new Date().setMonth(new Date().getMonth()-1).toString()
   private sub: Subscription = new Subscription();
   busquedaForm = new FormGroup({
-    fechades: new FormControl(''),
-    fechahas: new FormControl(''),
+    fechades: new FormControl(this.fechames),
+    fechahas: new FormControl(this.fechahoy),
     cliente: new FormControl(''),
     metodoPago: new FormControl(''),
   });
@@ -47,9 +50,9 @@ export class ConsultarVentasComponent implements OnInit, OnDestroy {
         x.clientName
           ?.toLowerCase()
           .includes(this.busquedaForm.controls.cliente.value!.toLowerCase()) &&
-        x.date.toDateString()>=this.busquedaForm.controls.fechades.value!
+        x.date.toString()>=this.busquedaForm.controls.fechades.value!
            &&
-        x.date.toDateString()<=this.busquedaForm.controls.fechahas.value!
+        x.date.toString()<=this.busquedaForm.controls.fechahas.value!
            &&
         x.paymentMethod
           ?.toString()
