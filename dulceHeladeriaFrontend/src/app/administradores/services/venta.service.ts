@@ -20,28 +20,21 @@ export class VentaService {
     })
   };
 
-  // getAllVenta(range:range): Observable<any> {
-  //   return this.http.post<any>('https://localhost:44350/api/range',{
-  //     start : range.start,
-  //     end: range.end
-  //   });
-  // }
-
   getAllVenta(range:range): Observable<any> {
     let newStart = this.datepipe.transform(range.start,"yyyy-MM-dd");
     let newEnd = this.datepipe.transform(range.end,"yyyy-MM-dd");
-    return this.http.get(`https://localhost:44350/range?start=${newStart}&end=${newEnd}`);
+    return this.http.get(`https://localhost:5001/range?start=${newStart}&end=${newEnd}`);
   }
 
   getAllVenta2(start:Date, end:Date): Observable<any> {
     let newStart = this.datepipe.transform(start,"yyyy-MM-dd");
     let newEnd = this.datepipe.transform(end,"yyyy-MM-dd");
-    return this.http.get(`https://localhost:44350/range?start=${newStart}&end=${newEnd}`);
+    return this.http.get(`https://localhost:5001/range?start=${newStart}&end=${newEnd}`);
   }
 
   getVentaConMetodoPago(start:Date): Observable<any> {
     let newStart = this.datepipe.transform(start,"yyyy-MM-dd");
-    return this.http.get(`https://localhost:44350/day?start=${newStart}`);
+    return this.http.get(`https://localhost:5001/day?start=${newStart}`);
   }
 
 }
