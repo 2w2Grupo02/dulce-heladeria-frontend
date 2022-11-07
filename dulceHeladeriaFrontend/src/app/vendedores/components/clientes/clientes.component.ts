@@ -88,9 +88,17 @@ export class ClientesComponent implements OnInit , OnDestroy {
     this.closeNuevoCliente();
   }
   cargarConsumidorF(){
-    this.cliente={businessName:'Consumidor Final'} as Cliente;
-    console.log(this.cliente);
-    this.cambioCliente();
+    this.sub.add(this.clienteService.getClienteByNombre("Consumidor Final").subscribe({
+      next: resp => {
+        this.cliente = resp;
+        this.cambioCliente();
+      },
+      error: err => {
+        
+      }
+    }))
+
+    
   }
   buscarClientes(){
     this.ResultBusqueda = this.ResultClientes.filter((x:Cliente) => {
