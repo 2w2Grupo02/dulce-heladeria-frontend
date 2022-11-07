@@ -125,7 +125,7 @@ export class ModificarProductoComponent implements OnInit {
             next: (resp: any) => {
               Swal.fire(
                 'Actualizacion exitosa!',
-                'El producto fue actualizado exitosamente.',
+                'El producto fue actualizado correctamente.',
                 'success'
               ).then(() => {
                 this.location.back();
