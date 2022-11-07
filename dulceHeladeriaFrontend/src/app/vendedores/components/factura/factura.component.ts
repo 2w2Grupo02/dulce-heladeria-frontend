@@ -39,8 +39,8 @@ export class FacturaComponent implements OnInit {
       x:margin,
       html2canvas: {scale:scale},
       callback:(pdf) => {
-        pdf.save("factura-" + this.Factura.id!.toString() +  ".pdf");
-        pdf.output('dataurlnewwindow', {filename:'factura.pdf'});
+        pdf.save("comprobante-" + this.Factura.id!.toString() +  ".pdf");
+        pdf.output('dataurlnewwindow', {filename:'comprobante.pdf'});
       }
     });
   }
