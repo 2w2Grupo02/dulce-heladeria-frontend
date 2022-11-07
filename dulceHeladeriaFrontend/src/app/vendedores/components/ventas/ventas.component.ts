@@ -102,9 +102,9 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
         return { cantidad: x.cantidad!, nombre: x.nombre, precio: x.precio, articulos: x.articulos };
       }),
     };
-    console.log(this.nuevaFactura.formaPago)
     this.subscription.add(this.ventaService.setVenta(this.nuevaFactura));
 
+    
     this.venta = {
       clientId: this.cliente.id!,
       clientName: this.cliente!.businessName,
@@ -125,7 +125,9 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.subscription.add(
       this.ventaService.registrarVenta(this.venta).subscribe({
-        next: () => {
+        next: (resp) => {
+          this.nuevaFactura.id = resp.saleId;
+          this.subscription.add(this.ventaService.setVenta(this.nuevaFactura));
           swal.fire("Éxito!", "Venta Registrada Correctamente!", "success").then(()=>{
             this.router.navigateByUrl('/vendedor/factura');
           });
