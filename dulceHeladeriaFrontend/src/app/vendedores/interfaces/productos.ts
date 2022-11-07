@@ -13,6 +13,7 @@
 // agua:string;
 //}
 
+import { Articulo } from "./articulo";
 import { gustos } from "./gustos";
 
 export interface productos{
@@ -21,7 +22,7 @@ export interface productos{
     cantidadMaxGustos?: number;
     imagen?: string;
     cantidad:number;
-    gustosS?:gustos[];
+    articulos?: Articulo[];
 //ESTO VIENE DE LA API??
 }
 
