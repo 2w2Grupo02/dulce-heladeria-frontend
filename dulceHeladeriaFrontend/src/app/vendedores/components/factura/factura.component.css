@@ -189,3 +189,10 @@ body{margin-top:20px;
         background: #e7f2ff;
         padding: 10px;
     }
+
+    .btn-primary {
+        background-color: #744c4d;
+        border: none;
+        color: papayawhip;
+        font-weight: 500;
+      }

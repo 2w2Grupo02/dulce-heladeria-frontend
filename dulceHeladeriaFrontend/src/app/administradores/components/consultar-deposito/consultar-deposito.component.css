@@ -1,13 +1,15 @@
 .btn-primary {
-    background-color: pink;
-    border: none;
-    color: white;
+  background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
   }
   
   .btn-primary:active {
-    background-color: lightcoral;
-    border: none;
-    color: white;
+    background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
   }
   
   td {

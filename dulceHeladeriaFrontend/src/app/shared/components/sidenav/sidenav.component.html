@@ -8,7 +8,7 @@
             INVENTARIO
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/administrador/articulos">ARTÍCULOS</a></li>
+            <li><a class="dropdown-item" routerLink="/administrador/articulos">STOCK DE ARTÍCULOS</a></li>
             <li><a class="dropdown-item" routerLink="/administrador/depositos">DEPÓSITOS</a></li>
             <li><a class="dropdown-item" routerLink="/administrador/ubicacion">UBICACIONES</a></li>
             <li><a class="dropdown-item" routerLink="/administrador/productos">PRODUCTOS</a></li>
@@ -16,12 +16,13 @@
         </div>
         <button type="button" class="btn btn-outline-dark" routerLink="/administrador/usuarios">USUARIOS</button>
         <button type="button" class="btn btn-outline-dark" routerLink="/administrador/perfil">MI PERFIL</button>
-        <button type="button" class="btn btn-light" style="margin-top: 40vh;" (click)="cerrarSesion()">Cerrar Sesión</button>
+        <button type="button" class="btn btn-light" style="margin-top: 43vh; border-color: black;" (click)="cerrarSesion()">Cerrar Sesión <i class="bi bi-x-lg"></i></button>
     </div>
     <div *ngIf="router.url.includes('/vendedor')">
-        <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/venta">VENTAS</button>
+      <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/venta">NUEVA VENTA</button>
+        <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/ventas">LISTADO DE VENTAS</button>
         <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/clientes">CLIENTES</button>
         <button type="button" class="btn btn-outline-dark" routerLink="/vendedor/perfil">MI PERFIL</button>
-        <button type="button" class="btn btn-light" style="margin-top: 45vh;" (click)="cerrarSesion()">Cerrar Sesión</button>
+        <button type="button" class="btn btn-light" style="margin-top: 45vh; border-color: black;" (click)="cerrarSesion()">Cerrar Sesión <i class="bi bi-x-lg"></i></button>
     </div>
 </div>
