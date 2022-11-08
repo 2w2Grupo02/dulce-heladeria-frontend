@@ -4,13 +4,14 @@ input[type="email"]:focus,input[type="password"]:focus,input[type="text"]:focus,
     outline: 0 none;
 }
 .btn-primary{
-    background-color: pink;
-    border: none;
-    color: white;
-    font-weight: 700;
+    background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
 }
 .btn-primary:active{
-    background-color: lightcoral;
-    border: none;
-    color: white;
+    background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
 }

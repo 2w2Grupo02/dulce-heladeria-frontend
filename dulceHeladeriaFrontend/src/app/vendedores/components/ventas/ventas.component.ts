@@ -169,7 +169,7 @@ export class VentasComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   EliminarProducto(prod: Producto) {
     this.productosVenta = this.productosVenta.filter((x) => x.id != prod.id);
-    this.total -= prod.precio;
+    this.totalPrecio();
   }
 
   cerrarModal() {

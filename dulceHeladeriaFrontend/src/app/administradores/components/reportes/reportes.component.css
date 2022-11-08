@@ -25,7 +25,7 @@
 }
 
 .navbar-option{
-    color:black;
+    color:#744c4d;
     margin: 10px 10px 0px 10px;
     text-decoration: none;
 }
@@ -38,31 +38,31 @@
 }
 
 a:active {
-    text-decoration: underline pink;
+    text-decoration: underline #744c4d;;
     text-decoration-thickness: 3px;
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
-    color: pink !important;
+    color: #744c4d !important;
    }
    
    ::ng-deep.mat-form-field-underline {
     /*change color of underline*/
-    background-color: pink !important;
+    background-color: #744c4d !important;
    } 
    
    ::ng-deep.mat-form-field-ripple {
     /*change color of underline when focused*/
-    background-color: pink !important;;
+    background-color: #744c4d !important;;
    }
    
    ::ng-deep .mat-form-field-label {
     /*change color of label*/
-    color: pink !important;
+    color: #744c4d !important;
    }
    
    
    mat-datepicker-toggle {
-    color: pink !important;
+    color: #744c4d !important;
    }
