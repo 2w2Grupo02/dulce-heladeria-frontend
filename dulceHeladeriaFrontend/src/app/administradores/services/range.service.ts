@@ -20,8 +20,6 @@ export class RangeService {
   }
 
   nextState(range: range){
-    console.log("rango del servicio")
-    console.log(range)
     this.Behaviorsub.next(range);
   }
 }
