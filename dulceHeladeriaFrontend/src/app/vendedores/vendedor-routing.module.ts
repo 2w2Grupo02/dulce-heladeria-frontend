@@ -13,10 +13,10 @@ const routes: Routes = [
     path: '',
     children: [
       {path: '', component:BienvenidaComponent},
-      {path: 'venta/nueva', component:VentasComponent},
+      {path: 'venta', component:VentasComponent},
       {path: 'clientes', component:ListadoClientesComponent},
       {path: 'factura', component:FacturaComponent},
-      {path: 'venta', component:ConsultarVentasComponent},
+      {path: 'ventas', component:ConsultarVentasComponent},
       {path: 'perfil', component:ConsultarPerfilComponent},
       {path: 'perfil/cambiarContrasenia', component: ModificarContrasenaComponent},
       {path:'**', redirectTo:''}
