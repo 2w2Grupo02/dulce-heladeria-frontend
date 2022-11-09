@@ -13,3 +13,9 @@ input[type="email"]:focus,input[type="password"]:focus,input[type="text"]:focus,
     margin-left: 3vw;
     margin-top: 3vh;
 }
+#datosCliente{
+    display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: 2vh;
+}

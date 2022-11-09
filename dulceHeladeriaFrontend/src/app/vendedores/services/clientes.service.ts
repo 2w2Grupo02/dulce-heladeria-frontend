@@ -46,4 +46,7 @@ export class ClientesService {
     params = params.append('BusinessName', nombre);
     return this.http.get<Cliente>(`https://localhost:5001/api/client/name`, {...this._options, params: params});
   }
+  updateCliente(cliente: Cliente): Observable<any>{
+    return this.http.put(`https://localhost:5001/api/Client/${cliente.id}`,cliente, this._options);
+  }
 }

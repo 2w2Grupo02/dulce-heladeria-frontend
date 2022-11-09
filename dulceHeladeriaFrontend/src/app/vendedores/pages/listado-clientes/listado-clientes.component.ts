@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import swal from 'sweetalert2';
 import { Cliente } from '../../interfaces/cliente-interface';
 import { ClientesService } from '../../services/clientes.service';
@@ -15,6 +16,7 @@ declare var window:any;
 })
 export class ListadoClientesComponent implements OnInit, OnDestroy {
   formNuevo:any;
+  formModificar:any;
   ResultClientes: Cliente[];
   ResultBusqueda: Cliente[]=[];
   TiposIdentifiers: string[]=['','DNI','CUIT','CUIL']
@@ -36,10 +38,20 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
     homeAdress: new FormControl(''),
     email: new FormControl('')
   });
-
+  modificarClienteForm = new FormGroup({
+    businessName: new FormControl('', Validators.required),
+    identifierTypeId: new FormControl('1', Validators.required),
+    identifier: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
+    homeAdress: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    id: new FormControl('', Validators.required)
+  });
   ngOnInit(): void {
     this.formNuevo = new window.bootstrap.Modal(
       document.getElementById("NuevoCliente")
+    );
+    this.formModificar = new window.bootstrap.Modal(
+      document.getElementById("ModifCliente")
     );
     this.cargarClientes();
     this.buscarClientes();
@@ -53,6 +65,19 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
   closeNuevoCliente(){
     this.formNuevo.hide();
     this.cliente={} as Cliente;
+  }
+  openModifCliente(cliente:Cliente){
+    //this.cliente=cliente;
+    this.modificarClienteForm.controls.businessName.setValue(cliente.businessName);
+    this.modificarClienteForm.controls.identifierTypeId.setValue(cliente.identifierTypeId!.toString());
+    this.modificarClienteForm.controls.identifier.setValue(cliente.identifier!.toString());
+    this.modificarClienteForm.controls.homeAdress.setValue(cliente.homeAdress!);
+    this.modificarClienteForm.controls.email.setValue(cliente.email!);
+    this.modificarClienteForm.controls.id.setValue(cliente.id!.toString());
+    this.formModificar.show();
+  }
+  closeModifCliente(){
+    this.formModificar.hide();
   }
   buscarClientes(){
     console.log(this.busquedaForm.value)
@@ -100,5 +125,37 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
           })
     );
   }
-  
+  modificarCliente() {
+    if (this.modificarClienteForm.valid) {
+      let form = this.modificarClienteForm.controls;
+      this.cliente = {
+        businessName: form.businessName.value,
+        identifier: form.identifier.value,
+        homeAdress: form.homeAdress.value,
+        email: form.email.value,
+        identifierTypeId: form.identifierTypeId.value ? parseInt(form.identifierTypeId.value) : 1,
+        id: parseInt(form.id.value!)
+      } as Cliente;
+      console.log(this.cliente)
+      this.sub.add(
+        this.clientService
+          .updateCliente(this.cliente)
+          .subscribe({
+            next: (resp: any) => {
+              Swal.fire(
+                'Actualizacion exitosa!',
+                'El Cliente fue actualizado correctamente.',
+                'success'
+              ).then(() => {
+                this.closeModifCliente();
+              });
+            },
+            error: (err: any) => {
+              console.log(err);
+              alert('error');
+            },
+          })
+      );
+    }
+  }
 }
