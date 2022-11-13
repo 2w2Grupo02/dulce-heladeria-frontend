@@ -11,7 +11,9 @@
 }
 
 .btn{
-    background-color: pink;
-    color: white;
+    background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
     height: 50%;
 }

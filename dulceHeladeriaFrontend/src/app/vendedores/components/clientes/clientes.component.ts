@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Cliente } from '../../interfaces/cliente-interface';
 import { ClientesService } from '../../services/clientes.service';
 import swal from'sweetalert2';
+import Swal from 'sweetalert2';
 
 
 declare var window:any;
@@ -19,6 +20,7 @@ export class ClientesComponent implements OnInit , OnDestroy {
   private sub: Subscription = new Subscription();
   formNuevo:any;
   formElegir:any;
+  formModificar:any;
   ResultClientes: Cliente[]=[];
   ResultBusqueda: Cliente[]=[];
   TiposIdentifiers: string[]=['','DNI','CUIT','CUIL']
@@ -32,6 +34,14 @@ export class ClientesComponent implements OnInit , OnDestroy {
   busquedaForm = new FormGroup({
     businessName: new FormControl(''),
     identifier: new FormControl('')
+  });
+  modificarClienteForm = new FormGroup({
+    businessName: new FormControl('', Validators.required),
+    identifierTypeId: new FormControl('1', Validators.required),
+    identifier: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
+    homeAdress: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    id: new FormControl('', Validators.required)
   });
   constructor(private clienteService:ClientesService) { }
 
@@ -48,6 +58,9 @@ export class ClientesComponent implements OnInit , OnDestroy {
     );
     this.formElegir = new window.bootstrap.Modal(
       document.getElementById("ElegirCliente")
+    );
+    this.formModificar = new window.bootstrap.Modal(
+      document.getElementById("ModifCliente")
     );
     
   }
@@ -68,6 +81,19 @@ export class ClientesComponent implements OnInit , OnDestroy {
   closeElegirCliente(){
     this.formElegir.hide();
   }
+  openModifCliente(cliente:Cliente){
+    //this.cliente=cliente;
+    this.modificarClienteForm.controls.businessName.setValue(cliente.businessName);
+    this.modificarClienteForm.controls.identifierTypeId.setValue(cliente.identifierTypeId!.toString());
+    this.modificarClienteForm.controls.identifier.setValue(cliente.identifier!.toString());
+    this.modificarClienteForm.controls.homeAdress.setValue(cliente.homeAdress!);
+    this.modificarClienteForm.controls.email.setValue(cliente.email!);
+    this.modificarClienteForm.controls.id.setValue(cliente.id!.toString());
+    this.formModificar.show();
+  }
+  closeModifCliente(){
+    this.formModificar.hide();
+  }
   registrarCliente(){
     if(this.nuevoClienteForm.valid){
       this.cliente = this.nuevoClienteForm.value as Cliente;
@@ -79,7 +105,14 @@ export class ClientesComponent implements OnInit , OnDestroy {
       this.cambioCliente();
       this.sub.add(
         this.clienteService.create(this.cliente)
-        .subscribe({
+        .subscribe({next:() => {
+          this.clienteService.getClienteByNombre(this.cliente.businessName).subscribe({
+            next: resp => {
+              this.cliente = {id: resp.id, businessName: resp.businessName, identifier: resp.identifier, identifierTypeId: resp.identifierTypeId,homeAdress:resp.homeAdress,email:resp.email};
+              this.cambioCliente();
+              console.log(this.cliente);
+            }})
+        },
           error : () => {swal.fire("Error!", "Error al registrar al Cliente!", "error");}
         }
       ))
@@ -121,11 +154,45 @@ export class ClientesComponent implements OnInit , OnDestroy {
   cargarElegido(){
 
     this.cliente=this.clienteSelected;
+    console.log(this.cliente)
     this.cambioCliente();
     this.closeElegirCliente();
   }
   selectCliente(cliente:Cliente){
     this.clienteSelected=cliente;
     this.cambioCliente();
+  }
+  modificarCliente() {
+    if (this.modificarClienteForm.valid) {
+      let form = this.modificarClienteForm.controls;
+      this.cliente = {
+        businessName: form.businessName.value,
+        identifier: form.identifier.value,
+        homeAdress: form.homeAdress.value,
+        email: form.email.value,
+        identifierTypeId: form.identifierTypeId.value ? parseInt(form.identifierTypeId.value) : 1,
+        id: parseInt(form.id.value!)
+      } as Cliente;
+      console.log(this.cliente)
+      this.sub.add(
+        this.clienteService
+          .updateCliente(this.cliente)
+          .subscribe({
+            next: (resp: any) => {
+              Swal.fire(
+                'Actualizacion exitosa!',
+                'El Cliente fue actualizado correctamente.',
+                'success'
+              ).then(() => {
+                this.closeModifCliente();
+              });
+            },
+            error: (err: any) => {
+              console.log(err);
+              alert('error');
+            },
+          })
+      );
+    }
   }
 }

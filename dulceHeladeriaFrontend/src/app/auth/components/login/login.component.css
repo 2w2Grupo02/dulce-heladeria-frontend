@@ -1,9 +1,10 @@
 .btn{
     width: 30vw; 
     margin-left: 10px;
-    background-color: pink;
-    color: white;
-    font-weight: 700;
+    background-color: #744c4d;
+    border: none;
+    color: papayawhip;
+    font-weight: 500;
 }
 .form-floating{
     color: gray;

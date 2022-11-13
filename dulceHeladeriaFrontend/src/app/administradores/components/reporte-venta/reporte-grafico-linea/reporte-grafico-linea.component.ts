@@ -28,7 +28,6 @@ export class ReporteGraficoLineaComponent implements OnInit {
   constructor(private rangeService:RangeService, private ventaService:VentaService) { }
 
   ngOnInit(): void {
-    console.log("se llamo")
     this.rangeService.rangeEmit().subscribe({
       next: (range:range) => {
         this.ventaService.getAllVenta2(range.start!,range.end!)
@@ -39,8 +38,6 @@ export class ReporteGraficoLineaComponent implements OnInit {
               this.ventas = resp  
               this.montos = this.ventas.map((x:ventaPorDia) => x.total)
               this.dias = this.ventas.map((x:ventaPorDia) => x.date);
-              console.log("this.ventas");
-              console.log(this.ventas);
           }
         });
         this.datos = this.getOneChart();
