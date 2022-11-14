@@ -3,5 +3,4 @@ export interface movimiento {
     Motive:string, 
     MovementDate:Date
     ItemStockId:string
-    
 } 

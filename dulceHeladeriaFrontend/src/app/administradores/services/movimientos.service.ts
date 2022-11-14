@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { movimiento } from '../interfaces/Movimiento';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,23 @@ export class MovimientosService {
   };
 
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    public datepipe: DatePipe
+    ) { }
 
   getMovimietos() {
-    return this.http.get<Articulos[]>('https://localhost:5001/api/item', this._options);
+    return this.http.get<movimiento[]>('https://localhost:5001/api/Movement', this._options);
+  }
+
+  getMovimietosByItem(id : number) {
+    return this.http.get<movimiento[]>('https://localhost:5001/api/Movement/item?itemId=' + id, this._options);
+  }
+
+  getMovimietosByDates(start:Date, end:Date) {
+    let newStart = this.datepipe.transform(start,"yyyy-MM-dd");
+    let newEnd = this.datepipe.transform(end,"yyyy-MM-dd");
+    return this.http.get<movimiento[]>(`https://localhost:5001/api/Movement/dates?start=${newStart}&end=${newEnd}`, this._options);
   }
 
 }

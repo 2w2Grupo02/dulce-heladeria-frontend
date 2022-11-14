@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Articulo } from '../interfaces/articulo';
 import { Articulos } from '../interfaces/articulos';
+import { ArticuloStock } from '../interfaces/articuloStock';
 import { UbicacionArticulo } from '../interfaces/ubicacion-articulo';
 
 @Injectable({
@@ -41,5 +42,11 @@ export class ArticulosService {
   }
   updateArticulo(id: number, articulo: Articulo): Observable<any>{
     return this.http.put(`https://localhost:5001/api/item/${id}`,articulo, this._options);
+  }
+  createIngresoStock(articuloStock: ArticuloStock): Observable<any>{
+    return this.http.post("https://localhost:5001/api/ItemStock",articuloStock, this._options);
+  }
+  buscarUbicaciones(depositId: number, itemId: number): Observable<any>{
+    return this.http.get(`https://localhost:5001/api/ItemStock/locations?itemId=${itemId}&depositId=${depositId}`, this._options);
   }
 }

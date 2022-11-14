@@ -37,6 +37,7 @@ import { ModificarContrasenaComponent } from './components/modificar-contrasena/
 import { ModificarProductoComponent } from './components/modificar-producto/modificar-producto.component';
 import { ModificarArticuloComponent } from './components/modificar-articulo/modificar-articulo.component';
 import { ConsultarUbicacionDepositoComponent } from './components/consultar-ubicacion-deposito/consultar-ubicacion-deposito.component';
+import { RegistrarStockArticuloComponent } from './components/registrar-stock-articulo/registrar-stock-articulo.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ConsultarUbicacionDepositoComponent } from './components/consultar-ubic
     ListaMovimientosComponent,
     ReporteStockComponent,
     ModificarArticuloComponent,
-    ConsultarUbicacionDepositoComponent
+    ConsultarUbicacionDepositoComponent,
+    RegistrarStockArticuloComponent
   ],
   entryComponents : [VentaFinalDiaComponent],
   imports: [

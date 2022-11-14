@@ -3,7 +3,9 @@
     margin-left: 5px;
 }
 .btn:hover{
-    background-color: pink;
+    background-color: #744c4d;
+    color: papayawhip;
+    font-weight: 500;
 }
 .dropdown-item{
     width: 250px !important;
