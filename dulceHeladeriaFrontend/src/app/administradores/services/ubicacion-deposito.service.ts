@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Articulo } from 'src/app/vendedores/interfaces/articulo';
 import { UbicacionDeposito } from '../interfaces/ubicacion-deposito';
 
 @Injectable({
@@ -20,4 +21,9 @@ export class UbicacionDepositoService {
       'https://localhost:5001/api/Location',ubicacion, this._options
     );
   }
+  
+  getAll(): Observable<UbicacionDeposito[]> {
+    return this.http.get<UbicacionDeposito[]>('https://localhost:5001/api/Location', this._options);
+  }
+  
 }

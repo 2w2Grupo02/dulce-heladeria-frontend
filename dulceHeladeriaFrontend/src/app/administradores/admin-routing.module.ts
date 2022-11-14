@@ -15,6 +15,7 @@ import { ConsultarPerfilComponent } from './components/consultar-perfil/consulta
 import { ModificarContrasenaComponent } from './components/modificar-contrasena/modificar-contrasena.component';
 import { ModificarProductoComponent } from './components/modificar-producto/modificar-producto.component';
 import { ModificarArticuloComponent } from './components/modificar-articulo/modificar-articulo.component';
+import { ConsultarUbicacionDepositoComponent } from './components/consultar-ubicacion-deposito/consultar-ubicacion-deposito.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
       {path: 'articulos/:id/editar', component:ModificarArticuloComponent},
       {path: 'depositos', component:ConsultarDepositoComponent},
       {path: 'clientes', component:ListadoClientesComponent},
-      {path: 'ubicacion', component:RegistrarUbicacionDepositoComponent},
+      {path: 'ubicacion', component:ConsultarUbicacionDepositoComponent},
       {path: 'productos', component:ConsultarProductosComponent},
       {path: 'productos/nuevo', component:RegistrarProductoComponent},
       {path: 'productos/:id/editar', component:ModificarProductoComponent},

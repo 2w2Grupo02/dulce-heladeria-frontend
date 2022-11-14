@@ -5,6 +5,9 @@ export interface UbicacionDeposito{
     row?: string;
     capacity?: number;
     depositId?: number;
+    deposit?: string;
     itemTypeId?: number;
+    itemType?: string;
     deletionDate?: Date;
+    id: number;
 }

@@ -1,6 +1,9 @@
 <div id="header">
     <h3>Stock de Artículos</h3>
-    <app-registrar-articulo></app-registrar-articulo>
+    <div>
+      <app-registrar-stock-articulo (recargar)="recargar()"></app-registrar-stock-articulo>
+      <app-registrar-articulo></app-registrar-articulo>
+    </div>
 </div>
 <div id="content" class="mt-3">
     <form [formGroup]="busquedaForm">
