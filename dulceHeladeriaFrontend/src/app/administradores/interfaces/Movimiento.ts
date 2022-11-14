@@ -1,6 +1,6 @@
 export interface movimiento {
-    Amount: number, 
-    Motive:string, 
-    MovementDate:Date
-    ItemStockId:string
+    amount: number, 
+    motive:string, 
+    movementDate:Date
+    itemStockId:string
 } 

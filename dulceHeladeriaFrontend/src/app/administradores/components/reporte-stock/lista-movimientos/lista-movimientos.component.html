@@ -3,7 +3,7 @@
       <h3>Movimientos</h3>
       <select class="form-select" #select aria-label="seleccione el dia" 
       formControlName="item">
-        <option value="0" selected>Selecciona un ítem!</option>
+        <option selected >Selecciona un ítem!</option>
         <option *ngFor="let item of items, let i" value={{i.id}}>{{i.name}}</option>
       </select>
    <!--<button type="submit" class="btn btn-light">Descargar Reporte</button>-->
@@ -19,10 +19,10 @@
       </thead>
       <tbody>
           <tr *ngFor="let m of movimientos">
-            <td>{{m.Amount}}</td>
-            <td>{{m.Motive}}</td>
-            <td>{{m.MovementDate}}</td>
-            <td>{{m.ItemStockId}}</td>
+            <td>{{m.amount}}</td>
+            <td>{{m.motive}}</td>
+            <td>{{m.movementDate}}</td>
+            <td>{{m.itemStockId}}</td>
           </tr>
       </tbody>
     </table>

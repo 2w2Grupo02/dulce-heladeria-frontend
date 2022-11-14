@@ -27,15 +27,22 @@ export class ListaMovimientosComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getMovimientos();
+    this.rangeSub();
     this.getItems(); 
+    
 
     this.myForm = this.fb.group({
         item : [,]
     })
 
     this.onChangeItem(); 
-    this.rangeSub();
+    
+    
+
+    this.getMovimientos();
+
+    console.log("estos son los movimientos"); 
+    console.log(this.movimientos); 
   }
 
   rangeSub(){
