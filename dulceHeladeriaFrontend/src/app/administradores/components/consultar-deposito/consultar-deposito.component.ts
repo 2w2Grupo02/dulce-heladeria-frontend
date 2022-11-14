@@ -27,7 +27,7 @@ export class ConsultarDepositoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.consultarDepositos();
   }
-  consultarDepositos(){
+  consultarDepositos() {
     this.sub.add(this.depositoService.getAll().subscribe({
       next: resp => {
         this.depositos = resp;
@@ -38,11 +38,12 @@ export class ConsultarDepositoComponent implements OnInit, OnDestroy {
       }
     }));
   }
-  buscarDepositos(){
+  buscarDepositos() {
     console.log(this.busquedaForm.value)
-    this.ResultBusqueda = this.depositos.filter((x:Deposito) => {
-      return x.name?.toLowerCase().includes(this.busquedaForm.controls.name.value!.toLowerCase()) 
-      && x.address?.toLowerCase().includes(this.busquedaForm.controls.address.value!.toLowerCase()) && x.capacity?.toString().toLowerCase().includes(this.busquedaForm.controls.capacity.value!.toString().toLowerCase());
-  });
-}
+    this.ResultBusqueda = this.depositos.filter((x: Deposito) => {
+      return x.name?.toLowerCase().includes(this.busquedaForm.controls.name.value!.toLowerCase())
+        && x.address?.toLowerCase().includes(this.busquedaForm.controls.address.value!.toLowerCase()) && x.capacity?.toString().toLowerCase().includes(this.busquedaForm.controls.capacity.value!.toString().toLowerCase());
+    });
+    
+  }
 }

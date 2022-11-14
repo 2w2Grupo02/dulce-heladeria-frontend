@@ -9,9 +9,6 @@
           <div class="col mb-3">
             <input type="text" class="form-control" placeholder="Fila" formControlName="row" (keyup)="buscarUbicacion()">
           </div>
-          <div class="col mb-3">
-            <input type="text" class="form-control" placeholder="Tipo Articulo" formControlName="itemtype" (keyup)="buscarUbicacion()">
-          </div>
         </div>
         <div class="row">
           <div class="col mb-3">
@@ -19,11 +16,6 @@
           </div>
           <div class="col mb-3">
             <input type="number" class="form-control" placeholder="Capacidad" formControlName="capacity" (keyup)="buscarUbicacion()">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col mb-6">
-            <input type="text" class="form-control" placeholder="Nombre Deposito" formControlName="deposit" (keyup)="buscarUbicacion()">
           </div>
         </div>
         <div class="row">
@@ -38,8 +30,6 @@
                 <th scope="col">Columna</th>
                 <th scope="col">Fila</th>
                 <th scope="col">Capacidad</th>
-                <th scope="col">Tipo Articulo</th>
-                <th scope="col">Deposito</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
             </tr>
@@ -49,12 +39,9 @@
                 <td>{{ubi.column}}</td>
                 <td>{{ubi.row}}</td>
                 <td>{{ubi.capacity}}</td>
-                <td>{{ubi.itemTypeId==1 ? 'Helado Litro': '' || ubi.itemTypeId==2 ? 'Helado Paquete': '' || ubi.itemTypeId==3 ? 'Gaseosa': ''}}</td>
-                <td>{{ubi.depositId}}</td>
                 <td>{{ !ubi.deletionDate ? "Activo" : "Inactivo"}}</td>
                 <td>
                     <div id="acciones">
-              
                         <button class="btn btn-primary"><i class="bi bi-info-circle"></i></button>   
                     </div> 
                 </td>

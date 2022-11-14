@@ -46,15 +46,18 @@ export class ConsultarUbicacionDepositoComponent implements OnInit, OnDestroy {
       }
     }));
   }
+
   buscarUbicacion() {
-    console.log(this.form.value)
+    //console.log(this.form.value)
     this.ResultBusqueda = this.ubicacionDeposito.filter((x: UbicacionDeposito) => {
       return x.column?.toLowerCase().includes(this.form.controls.column.value!.toLowerCase())
         && x.row?.toLowerCase().includes(this.form.controls.row.value!.toLowerCase())
         && x.capacity?.toString().toLowerCase().includes(this.form.controls.capacity.value!.toString().toLowerCase())
-        && x.depositId?.toString().toLowerCase().includes(this.form.controls.deposit.value!.toString().toLowerCase())
-        && x.itemTypeId?.toString().toLowerCase().includes(this.form.controls.itemtype.value!.toString().toLowerCase());
     });
+    console.log(this.ResultBusqueda)
   }
 
+  buscar(){
+    this.buscarUbicacion();
+  }
 }
