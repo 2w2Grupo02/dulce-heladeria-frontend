@@ -77,7 +77,6 @@ export class RegistrarProductoComponent implements OnInit {
           },
           error: (err:any) => {
             console.log(err);
-            alert('error');
           },
         })
       );     
