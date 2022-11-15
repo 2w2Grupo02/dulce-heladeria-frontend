@@ -8,9 +8,13 @@
     </div>
 </div>
     <div>
-        <div class="row">
-            <!--<div class="col"><app-ranking-items></app-ranking-items></div>-->
-            <div class="col"><app-reporte-grafico-linea [start]="start" [end]="end"></app-reporte-grafico-linea></div>
+        <div class="reports-container">
+            <div>
+                <app-reporte-grafico-linea [start]="start" [end]="end"></app-reporte-grafico-linea>
+            </div>
+            <div>
+                <app-ranking-items></app-ranking-items>
+            </div>
         </div>
     </div>
 </div>

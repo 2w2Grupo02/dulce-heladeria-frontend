@@ -43,5 +43,11 @@ export class VentaService {
     return this.http.get(`https://localhost:5001/day?start=${newStart}`,this._options);
   }
 
+  getRanking(start:Date, end:Date): Observable<any> {
+    let newStart = this.datepipe.transform(start,"yyyy-MM-dd");
+    let newEnd = this.datepipe.transform(end,"yyyy-MM-dd");
+    return this.http.get(`https://localhost:5001/api/Sale/topProducts?start=${newStart}&end=${newEnd}`,this._options);
+  }
+
 }
 

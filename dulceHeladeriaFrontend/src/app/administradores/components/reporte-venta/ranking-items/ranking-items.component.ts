@@ -1,5 +1,9 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { range } from 'src/app/administradores/interfaces/range';
 import { RankItem } from 'src/app/administradores/interfaces/RankItem';
+import { RangeService } from 'src/app/administradores/services/range.service';
+import { VentaService } from 'src/app/administradores/services/venta.service';
 
 @Component({
   selector: 'app-ranking-items',
@@ -9,14 +13,25 @@ import { RankItem } from 'src/app/administradores/interfaces/RankItem';
 export class RankingItemsComponent implements OnInit {
   dataSource: RankItem[];
   
-  constructor() { }
+  constructor(
+    private saleService : VentaService,
+    private range:RangeService
+    ) { }
 
   ngOnInit(): void {
-    this.dataSource = [
-      {posicion: 1, producto: 'HELADO 1KG', totalVenta: 1500, cantVendido: 15},
-      {posicion: 2, producto: 'CUCURUCHO 3 BOCHAS', totalVenta: 100, cantVendido: 5},
-      {posicion: 3, producto: 'COCA', totalVenta: 500, cantVendido: 3},
-    ];
+    this.range.rangeEmit().subscribe({
+      next : (resp:range) => {
+        this.saleService.getRanking(resp.start!,resp.end!).subscribe({
+          next: (resp : RankItem[]) => {
+            this.dataSource = resp; 
+          },
+          error : () => {
+            alert("error al obtener el ranking de ventas"); 
+          }
+        })
+      }, 
+      error : () => {alert("error al obtener el rango de fechas")}
+    })
   }
 
 }
