@@ -16,8 +16,8 @@
         <tr *ngFor="let r of dataSource">
           <td>{{r.rankingPosition}}</td>
           <td>{{r.productName}}</td>
-          <td>{{r.totalSaleAmount}}</td>
-          <td>{{r.totalSaleQuantity}}</td>
+          <td>{{r.totalSaleAmount | currency}}</td>
+          <td>{{r.totalSaleQuantity }}</td>
         </tr>
     </tbody>
   </table>

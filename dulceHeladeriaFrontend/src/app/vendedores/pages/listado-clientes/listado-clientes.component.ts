@@ -143,7 +143,7 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
           .subscribe({
             next: (resp: any) => {
               Swal.fire(
-                'Actualizacion exitosa!',
+                'Actualización exitosa!',
                 'El Cliente fue actualizado correctamente.',
                 'success'
               ).then(() => {
@@ -153,7 +153,7 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
             },
             error: (err: any) => {
               console.log(err);
-              alert('error');
+              swal.fire("Error!", "Error al actualizar al Cliente!", "error");
             },
           })
       );

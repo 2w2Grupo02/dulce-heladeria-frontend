@@ -21,7 +21,7 @@
           <tr *ngFor="let m of movimientos">
             <td>{{m.amount}}</td>
             <td>{{m.motive}}</td>
-            <td>{{m.movementDate}}</td>
+            <td>{{m.movementDate | date :'dd/MM/yy'}}</td>
             <td>{{m.itemStockId}}</td>
           </tr>
       </tbody>
