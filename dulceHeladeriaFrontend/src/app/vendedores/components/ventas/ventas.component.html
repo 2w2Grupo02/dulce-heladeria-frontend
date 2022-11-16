@@ -75,14 +75,14 @@
       <div class="modal-body">
         <label><b> Precio: </b>{{prodSeleccionado.precio | currency}}</label> <br>
         <div *ngIf="prodSeleccionado.cantMaxArticulos > 1">
-          <label><b> Cantidad maxima de articulos: </b>{{prodSeleccionado.cantMaxArticulos}}</label><br>
-          <label><b> Cantidad de articulos disponibles:
+          <label><b> Cantidad máxima de artículos: </b>{{prodSeleccionado.cantMaxArticulos}}</label><br>
+          <label><b> Cantidad de artículos disponibles:
             </b>{{prodSeleccionado.cantMaxArticulos!-artSeleccionados.length}}</label>
           <hr>
         </div>
         <div class="alert alert-succes">
           <div *ngIf="prodSeleccionado.cantMaxArticulos > 1">
-            <label for="tipoGustos">Articulos</label>
+            <label for="tipoGustos">Artículos</label>
             <ul class="list-group" *ngFor="let art of prodSeleccionado.articulos">
               <li class="list-group-item d-flex justify-content-between align-items-center mb-1"
                 (click)="agregarArticulo(art)" style="cursor: pointer;">
@@ -94,7 +94,7 @@
             </ul>
             <br>
             <hr>
-            <label for="tipoGustos">Articulos Seleccionados</label><br>
+            <label for="tipoGustos">Artículos Seleccionados</label><br>
             <div *ngFor="let art of artSeleccionados">
               <span class="badge bg-danger mb-1" style="cursor: pointer;" (click)="quitarArticulo(art)">{{art.nombre}}
                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>

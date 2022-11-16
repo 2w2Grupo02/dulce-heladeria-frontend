@@ -147,6 +147,7 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
                 'El Cliente fue actualizado correctamente.',
                 'success'
               ).then(() => {
+                this.cargarClientes();
                 this.closeModifCliente();
               });
             },
