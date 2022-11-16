@@ -1,7 +1,7 @@
 
     <div class="reporte-final-container">
-        <h3 class="title">INFORME FINAL DEL DIA</h3>
-        <h6 class="title">RESUMEN DIARIO</h6>
+        <h3 class="title">INFORME FINAL DEL DÍA</h3>
+        <!-- <h6 class="title">RESUMEN DIARIO</h6> -->
         <div class="container-row">
             <select class="form-select" #select aria-label="seleccione el dia"  [(ngModel)]="selectValue" (change)="onChangeDay($event)">
                 <option value="0" selected>HOY!</option>
@@ -11,7 +11,8 @@
         </div>
         
         <div>
-            <h3 class="title">INGRESOS</h3>
+            <h6 class="title mt-3">CANTIDAD DE INGRESOS POR TIPO</h6>
+            <hr>
             <table class="table">
                 <thead>
                   <tr>
@@ -24,7 +25,7 @@
                  <tr *ngFor="let i of ingresos">
                     <td>{{i.title}}</td>
                     <td>{{i.cant}}</td>
-                    <td>{{i.total}}</td>
+                    <td>{{i.total | currency}}</td>
                   </tr>
                     <tr>
                     <td><h6>TOTAL</h6></td>
@@ -36,7 +37,7 @@
         </div>
         </div>
 
-  <button (click)="closeDialog()" class="btn">Cancel</button>
+  <button (click)="closeDialog()" class="btn">Cerrar</button>
 
 
 

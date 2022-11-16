@@ -1,20 +1,19 @@
-.ranking-container{
-    display:flex; 
-    flex-direction: column;
-    margin-top: 50px;
+.ranking-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.ranking-container-header{
-    display:flex; 
-    flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: 20px;
+.ranking-container-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 10px;
 }
 
-.btn{
-    width: 30vw; 
-    margin-left: 10px;
-    background-color: #744c4d;
+.btn {
+  width: 30vw;
+  margin-left: 10px;
+  background-color: #744c4d;
   border: none;
   color: papayawhip;
   font-weight: 700;

@@ -24,7 +24,7 @@ export class VentaFinalDiaComponent implements OnInit{
     this.obtenerVentas(this.today);
   }
 }
-total: number;
+total: number = 0;
 ingresos: ingreso[];
   constructor(public dialogRef:MatDialogRef<VentaFinalDiaComponent>,
     private ventaService:VentaService) {
@@ -43,6 +43,7 @@ ingresos: ingreso[];
  }
 
  obtenerVentas(date:Date){
+  this.total = 0;
   this.ventaService.getVentaConMetodoPago(date).subscribe({
     next:(resp)=>{
       this.ingresos = resp; 
