@@ -1,0 +1,9 @@
+.contenido{
+    display: flex;
+}
+#tabla{
+    flex-basis: 50%;
+}
+#grafico{
+    flex-basis: 50%;
+}
