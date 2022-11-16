@@ -1,6 +1,7 @@
 export interface RankItem{
-    posicion: number; 
-    producto: string; 
-    totalVenta: number; 
-    cantVendido: number; 
+    rankingPosition: number; 
+    productName: string; 
+    totalAmount: number; 
+    totalSaleQuantity: number; 
+    totalSaleAmount: number; 
 }
