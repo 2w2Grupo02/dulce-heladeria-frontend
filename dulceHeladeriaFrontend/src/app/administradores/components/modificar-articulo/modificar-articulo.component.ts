@@ -71,8 +71,8 @@ export class ModificarArticuloComponent implements OnInit {
           .subscribe({
             next: (resp: any) => {
               Swal.fire(
-                'Actualizacion exitosa!',
-                'El articulo fue actualizado correctamente.',
+                'Actualización exitosa!',
+                'El artículo fue actualizado correctamente.',
                 'success'
               ).then(() => {
                 this.regresar();

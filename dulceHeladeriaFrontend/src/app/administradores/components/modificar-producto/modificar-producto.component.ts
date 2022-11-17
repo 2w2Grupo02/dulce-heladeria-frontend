@@ -87,7 +87,7 @@ export class ModificarProductoComponent implements OnInit {
   }
 
   agregarArticulo(articulo: Articulos) {
-    console.log('articulo seleccionado', articulo);
+    console.log('artículo seleccionado', articulo);
     this.articulosSeleccionados.push(articulo);
     this.articulos = this.articulos.filter((x) => x.id !== articulo.id);
     this.nuevoProductoForm.controls.maxIArticulos.setValue(
@@ -124,7 +124,7 @@ export class ModificarProductoComponent implements OnInit {
           .subscribe({
             next: (resp: any) => {
               Swal.fire(
-                'Actualizacion exitosa!',
+                'Actualización exitosa!',
                 'El producto fue actualizado correctamente.',
                 'success'
               ).then(() => {

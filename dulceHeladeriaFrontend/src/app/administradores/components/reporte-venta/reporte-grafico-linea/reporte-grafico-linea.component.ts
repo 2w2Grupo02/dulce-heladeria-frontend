@@ -77,7 +77,7 @@ export class ReporteGraficoLineaComponent implements OnInit {
       labels: this.dias,
       datasets: [
         {
-          label: 'Ventas',
+          label: 'Total de Ventas por Día',
           data: this.montos,
           backgroundColor: '#4dc9f6',
           tension: 0.1,

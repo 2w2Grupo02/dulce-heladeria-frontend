@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { ArticulosService } from '../../services/articulos.service';
 import { ProductosService } from '../../services/productos.service';
 import { ProductoRequest } from '../../interfaces/productoRequest';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrar-producto',
@@ -72,7 +73,7 @@ export class RegistrarProductoComponent implements OnInit {
         this.productoService.create(this.producto).subscribe({
           next: (resp: any) => {
             console.log(resp);
-            alert("guardado exitoso!")
+            swal.fire("Éxito!", "Producto cargado correctamente!", "success");
             this.location.back();
           },
           error: (err:any) => {
