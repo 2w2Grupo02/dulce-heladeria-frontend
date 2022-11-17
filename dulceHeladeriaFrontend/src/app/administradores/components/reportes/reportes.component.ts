@@ -63,9 +63,9 @@ export class ReportesComponent implements OnInit {
   send(){
     let start1 = this.range.value.start;
     let end2 = this.range.value.end;
-    console.log("SXKSLMXDSMD")
-    console.log(start1);
-    console.log(end2);
+     console.log("enviando fechas")
+    // console.log(start1);
+    // console.log(end2);
     this.sendDate(start1,end2);
   }
 
